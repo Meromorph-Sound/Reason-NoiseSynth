@@ -9,6 +9,18 @@ front = {
     offset = { 185, 215},
     { path = "Tape_Horizontal_1frames", frames = 1 },
   },
+  alpha = {
+    offset = { 1000, 100},
+    {path = "Knob_01_63frames", frames=63 }
+  },
+  pan = {
+    offset = { 1200, 100},
+    {path = "Knob_01_63frames", frames=63 }
+  },
+  reload = {
+    offset = { 1400, 100},
+    {path = "Button_21_2frames", frames=2 }
+  },
   
 }
 back = { 

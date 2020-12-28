@@ -4,7 +4,31 @@ format_version = "3.0"
 
 custom_properties = jbox.property_set{
 	document_owner = {
-		properties = {}
+		properties = {
+		  alpha = jbox.number {
+		    default = 0,
+		    ui_name = jbox.ui_text("alpha"),
+		    property_tag = 1,
+		    ui_type = jbox.ui_percent({ decimals=2 })
+		  },
+		  reload = jbox.number {
+        default=0,
+        steps=2,
+        ui_name = jbox.ui_text("reload"),	
+        property_tag=2,
+        ui_type = jbox.ui_selector{ jbox.UI_TEXT_OFF, jbox.UI_TEXT_ON }	  
+		  },
+		  pan = jbox.number {
+        default = 0.5,
+        ui_name = jbox.ui_text("pan"),
+        property_tag = 3,
+        ui_type = jbox.ui_linear({})
+      },
+		  pitchBend = jbox.performance_pitchbend {
+		    ui_name = jbox.ui_text("pitchbend"),
+		    property_tag = 10,
+		  }
+		}
 	},
 	rtc_owner = {
 		properties = { instance = jbox.native_object{} }

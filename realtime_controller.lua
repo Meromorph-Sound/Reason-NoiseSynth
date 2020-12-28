@@ -29,7 +29,10 @@ rt_input_setup = {
   "/transport/request_reset_audio",
   "/environment/master_tune",
   "/environment/system_sample_rate",
-  "/note_states/*"
+  "/note_states/*",
+  "/custom_property/alpha",
+  "/custom_property/reload",
+  "/custom_property/pan"
   }
 }
 

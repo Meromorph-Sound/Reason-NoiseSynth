@@ -1,10 +1,32 @@
 #include <cmath>
 #include <cstring>
 #include "RackExtension.hpp"
+#include <algorithm>
 
 namespace meromorph {
 
-const uint32 RackExtension::MAX_NOTES = 64;
+
+const uint32 RackExtension::MAX_NOTES = 8;
+
+TJBox_ObjectRef getRef(const char *base,const char *code) {
+	char inP[80];
+	append(inP,base,code);
+	trace(inP);
+	return JBox_GetMotherboardObjectRef(inP);
+}
+
+OutputChannel::OutputChannel(const char *code) : buffer(ChannelProcessor::BUFFER_SIZE) {
+	output=getRef("/audio_outputs/audio",code);
+}
+
+void OutputChannel::write(iterator begin,iterator end) {
+	auto p = pan;
+	std::transform(begin,end,buffer.begin(),[p](float32 f) { return f*p; });
+
+	auto ref = JBox_LoadMOMPropertyByTag(output, kJBox_AudioOutputBuffer);
+	JBox_SetDSPBufferData(ref, 0, buffer.size(), buffer.data());
+}
+
 
 
 RackExtension::RackExtension() : notes(MAX_NOTES), left("L"), right("R") {
@@ -12,10 +34,9 @@ RackExtension::RackExtension() : notes(MAX_NOTES), left("L"), right("R") {
 }
 
 void RackExtension::process() {
-
-		left.process(currentNote);
-		right.process(currentNote);
-
+	channel.process(currentNote);
+	left.write(channel.begin(),channel.end());
+	right.write(channel.begin(),channel.end());
 }
 
 
@@ -23,14 +44,9 @@ void RackExtension::process() {
 void RackExtension::processMIDIEvent(const TJBox_PropertyDiff &diff) {
 	auto event = JBox_AsNoteEvent(diff);
 	if(forwarding) JBox_OutputNoteEvent(event); // forwarding notes
-	auto note=NoteEvent(event,masterTune,sampleRate);
-
-	if(currentNote.isOff()) {
-		if(note.isOn()) currentNote=note;
-	}
-	else {
-		if(note.isOff() && note.note==currentNote.note) currentNote.setOff();
-		else if(note.isOn() && note.note!=currentNote.note) currentNote=note;
+	if(notes.update(event)) {
+		if(notes.isOn()) currentNote=notes();
+		else currentNote.setOff();
 	}
 }
 
@@ -43,15 +59,30 @@ void RackExtension::RenderBatch(const TJBox_PropertyDiff diffs[], TJBox_UInt32 n
 			switch(diff.fPropertyTag) {
 			case kJBox_EnvironmentSystemSampleRate:
 				sampleRate = toFloat(diff.fCurrentValue);
+				notes.setSampleRate(sampleRate);
 				break;
 			case kJBox_EnvironmentMasterTune:
 				masterTune  = toFloat(diff.fCurrentValue)/100.0;
+				notes.setMasterTune(masterTune);
 				break;
 			case kJBox_TransportRequestResetAudio:
 				trace("Reset request");
-				left.reset();
-				right.reset();
+				channel.reset();
+				notes.reset();
 				break;
+			case Tags::ALPHA:
+				channel.setAlpha(toFloat(diff.fCurrentValue));
+				break;
+			case Tags::RELOAD:
+				if(toBool(diff.fCurrentValue)) {
+					channel.reset();
+				}
+				break;
+			case Tags::PAN: {
+				auto pan = toFloat(diff.fCurrentValue);
+				left.setPan(sqrt(1-pan));
+				right.setPan(sqrt(pan));
+				break; }
 			default:
 				break;
 			}
