@@ -11,23 +11,12 @@ namespace meromorph {
 enum Tags : uint32 {
 		ALPHA=1,
 		RELOAD=2,
-		GAIN=3
+		GAIN=3,
+		EXPONENT=4,
+		NOTE = 5,
+		VOLUME = 6
 	};
 
-
-class OutputChannel {
-private:
-	TJBox_ObjectRef output;
-	std::vector<float32> buffer;
-	float32 pan=1;
-public:
-	using iterator=std::vector<float32>::iterator;
-	OutputChannel(const char *code);
-	virtual ~OutputChannel() = default;
-
-	void write(iterator begin,iterator end);
-	void setPan(const float32 p) { pan=p; }
-};
 
 class RackExtension {
 
@@ -36,6 +25,9 @@ private:
 	const static uint32 MAX_NOTES;
 
 	TJBox_ObjectRef noteState;
+	TJBox_ObjectRef left;
+	TJBox_ObjectRef right;
+	TJBox_ObjectRef props;
 
 	NoteHandler notes;
 	uint32 noteCount=0;
@@ -43,14 +35,13 @@ private:
 	bool forwarding = false;
 	float32 masterTune = 1.0;
 	float32 sampleRate = 48000;
-
+	std::vector<float32> buffer;
 
 
 	NoteEvent currentNote;
 	ChannelProcessor channel;
-	OutputChannel left,right;
 
-
+	void set(const float32 value,const Tag tag);
 	void process();
 
 

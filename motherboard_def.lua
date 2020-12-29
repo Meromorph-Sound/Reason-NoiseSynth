@@ -16,6 +16,21 @@ function linearType()
   }
 end
 
+function rangeType(n)
+  return jbox.ui_linear {
+    min=0,
+    max=n-1,
+    units = {
+      min_text = jbox.ui_text("zero"),
+      max_text = jbox.ui_text("max"),
+      { 
+        decimals=0,
+        unit = { template = jbox.ui_text("linear_template") }
+      }
+    }
+  }
+end
+
 function panType()
   return jbox.ui_nonlinear {
     data_to_gui = function(value) 
@@ -49,12 +64,6 @@ custom_properties = jbox.property_set{
         property_tag=2,
         ui_type = jbox.ui_selector{ jbox.UI_TEXT_OFF, jbox.UI_TEXT_ON }	  
 		  },
-		  pan = jbox.number {
-        default = 0.5,
-        ui_name = jbox.ui_text("gain"),
-        property_tag = 3,
-        ui_type = gainType()
-      },
       exponent = jbox.number {
         default=0.5,
         ui_name = jbox.ui_text("exponent"),
@@ -72,7 +81,20 @@ custom_properties = jbox.property_set{
 	},
 	rt_owner = {
 		properties = {
-		
+		  note = jbox.number {
+		    default=0,
+		    steps=2,
+		    ui_name=jbox.ui_text("note"),
+		    property_tag=5,
+		    ui_type = jbox.ui_selector{ jbox.UI_TEXT_OFF, jbox.UI_TEXT_ON }
+		  },
+		  volume = jbox.number {
+        default=0,
+        steps=8,
+        ui_name=jbox.ui_text("volume"),
+        property_tag=6,
+        ui_type = rangeType(8)
+      }
 		},
 		
 	}

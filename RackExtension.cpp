@@ -8,35 +8,36 @@ namespace meromorph {
 
 const uint32 RackExtension::MAX_NOTES = 8;
 
-TJBox_ObjectRef getRef(const char *base,const char *code) {
-	char inP[80];
-	append(inP,base,code);
-	trace(inP);
-	return JBox_GetMotherboardObjectRef(inP);
-}
-
-OutputChannel::OutputChannel(const char *code) : buffer(ChannelProcessor::BUFFER_SIZE) {
-	output=getRef("/audio_outputs/audio",code);
-}
-
-void OutputChannel::write(iterator begin,iterator end) {
-	auto p = pan;
-	std::transform(begin,end,buffer.begin(),[p](float32 f) { return f*p; });
-
-	auto ref = JBox_LoadMOMPropertyByTag(output, kJBox_AudioOutputBuffer);
-	JBox_SetDSPBufferData(ref, 0, buffer.size(), buffer.data());
-}
 
 
 
-RackExtension::RackExtension() : notes(MAX_NOTES), left("L"), right("R") {
+RackExtension::RackExtension() : notes(MAX_NOTES), buffer(ChannelProcessor::BUFFER_SIZE) {
 	noteState = JBox_GetMotherboardObjectRef("/note_states");
+	left=JBox_GetMotherboardObjectRef("/audio_outputs/audioL");
+	right=JBox_GetMotherboardObjectRef("/audio_outputs/audioR");
+	props=JBox_GetMotherboardObjectRef("/custom_properties");
+}
+
+
+void RackExtension::set(const float32 value,const Tag tag) {
+	TJBox_Value v = JBox_MakeNumber(static_cast<float64>(value));
+	JBox_StoreMOMPropertyByTag(props,tag,v);
 }
 
 void RackExtension::process() {
 	channel.process(currentNote);
-	left.write(channel.begin(),channel.end());
-	right.write(channel.begin(),channel.end());
+	std::copy(channel.begin(),channel.end(),buffer.begin());
+
+	auto refL = JBox_LoadMOMPropertyByTag(left, kJBox_AudioOutputBuffer);
+	JBox_SetDSPBufferData(refL, 0, buffer.size(), buffer.data());
+
+	auto refR = JBox_LoadMOMPropertyByTag(right, kJBox_AudioOutputBuffer);
+	JBox_SetDSPBufferData(refR, 0, buffer.size(), buffer.data());
+
+	//float32 mag=0;
+	//for(auto it=buffer.begin();it!=buffer.end();it++) mag+=fabs(*it);
+	//set(mag*8/(float32)ChannelProcessor::BUFFER_SIZE,Tags::VOLUME);
+
 }
 
 
@@ -46,9 +47,11 @@ void RackExtension::processMIDIEvent(const TJBox_PropertyDiff &diff) {
 	if(forwarding) JBox_OutputNoteEvent(event); // forwarding notes
 	if(notes.update(event)) {
 		//trace("Upating note");
-		if(notes.isOn()) currentNote=notes();
+		auto on = notes.isOn();
+		if(on) currentNote=notes();
 		else currentNote.setOff();
 		//trace("Current note is ^0 and active ^1",currentNote.note, currentNote.isOn() ? 1 : 0);
+		set(on ? 1 : 0,Tags::NOTE);
 	}
 }
 
@@ -88,6 +91,10 @@ void RackExtension::RenderBatch(const TJBox_PropertyDiff diffs[], TJBox_UInt32 n
 				//left.setPan(sqrt(1-pan));
 				//right.setPan(sqrt(pan));
 				break; }
+			case Tags::EXPONENT:
+				trace("EXPONENT is ^0",toFloat(diff.fCurrentValue));
+				channel.setExponent(toFloat(diff.fCurrentValue));
+				break;
 			default:
 				break;
 			}

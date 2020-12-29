@@ -6,27 +6,27 @@ front = {
     { path = "Panel_Front_1U" },
   },
   deviceName = {
-    offset = { 185, 215},
+    offset = { 200, 250},
     { path = "Tape_Horizontal_1frames", frames = 1 },
   },
-  alpha = {
-    offset = { 1000, 100},
-    {path = "Knob_01_63frames", frames=63 }
+  note = {
+    offset = {750,50},
+    { path = "Lamp_10_GREEN_2frames", frames = 2 }
   },
-  gain = {
-    offset = { 1200, 100},
-    {path = "Knob_01_63frames", frames=63 }
+  alpha = {
+    offset = { 2100, 20},
+    {path = "Knob_47_63frames", frames=63 }
   },
   reload = {
-    offset = { 1400, 100},
+    offset = { 3100, 130},
     {path = "Button_21_2frames", frames=2 }
   },
   exponent = {
-    offset = {1600,100},
-    {path = "Knob_01_63frames", frames=63 }
+    offset = {2100,185},
+    {path = "Knob_47_63frames", frames=63 }
   },
   exponent_display = {
-    offset = { 1800,20},
+    offset = { 2300,20},
     {path="Display_20_1frames", frames=1}
   }
   

@@ -2,9 +2,9 @@ format_version = "1.0"
 
 texts = {
   ["audioOutput"] = "Audio Output",
-  ["alpha"] = "Spreading factor",
+  ["alpha"] = "Leakage factor",
   ["reload"] = "Reload",
-  ["gain"] = "Gain",
+  ["note"] = "Note",
   ["exponent"] = "Exponent",
   
   ["left"] = "Full left",
@@ -18,5 +18,6 @@ texts = {
   
   ["linear_template"] = "^0",
   ["zero"] = "0",
-  ["one"] = "1"
+  ["one"] = "1",
+  ["max"] = "max"
 }

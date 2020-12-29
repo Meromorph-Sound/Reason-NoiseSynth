@@ -11,10 +11,6 @@ front = jbox.panel {
 	 graphics = { node = "alpha" },
 	 value = "/custom_properties/alpha"
 	},
-	jbox.analog_knob{
-   graphics = { node = "gain" },
-   value = "/custom_properties/gain"
-  },
   jbox.momentary_button{
     graphics = { node = "reload" },
     value = "/custom_properties/reload"
@@ -32,6 +28,10 @@ front = jbox.panel {
         "/custom_properties/exponent"
         },
       draw_function = "drawExponent"
+    },
+    jbox.sequence_meter{
+      graphics={note="note"},
+      value = "/custom_properties/note"
     }
   }
 	

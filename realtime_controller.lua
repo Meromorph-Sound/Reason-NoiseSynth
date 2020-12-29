@@ -32,7 +32,7 @@ rt_input_setup = {
   "/note_states/*",
   "/custom_properties/alpha",
   "/custom_properties/reload",
-  "/custom_properties/pan"
+  "/custom_properties/exponent"
   }
 }
 

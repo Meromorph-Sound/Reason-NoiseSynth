@@ -54,7 +54,8 @@ void ChannelProcessor::process(const NoteEvent &n) {
 				length = std::min(period,SEQUENCE_SIZE);
 				startPos=fmod(startPos+length,SEQUENCE_SIZE);
 				sequencePos=0;
-				inc=std::max(0.1f,alpha*powf(length,0.4));
+
+				//inc=std::max(0.1f,alpha*powf(length,0.4));
 			}
 		}
 	}
@@ -64,6 +65,7 @@ void ChannelProcessor::process(const NoteEvent &n) {
 
 	if(!isOn) buffer.assign(BUFFER_SIZE,0);
 	else if(length>0) {
+		inc=std::max(0.001f,alpha*powf(length,exponent));
 		//trace("Length is ^0",length);
 		auto offset = lround(startPos);
 		for(auto i=0;i<BUFFER_SIZE;i++) {
