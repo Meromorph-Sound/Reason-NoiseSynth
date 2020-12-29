@@ -30,9 +30,9 @@ rt_input_setup = {
   "/environment/master_tune",
   "/environment/system_sample_rate",
   "/note_states/*",
-  "/custom_property/alpha",
-  "/custom_property/reload",
-  "/custom_property/pan"
+  "/custom_properties/alpha",
+  "/custom_properties/reload",
+  "/custom_properties/pan"
   }
 }
 

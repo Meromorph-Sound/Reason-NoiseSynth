@@ -4,7 +4,8 @@ texts = {
   ["audioOutput"] = "Audio Output",
   ["alpha"] = "Spreading factor",
   ["reload"] = "Reload",
-  ["pan"] = "Pan",
+  ["gain"] = "Gain",
+  ["exponent"] = "Exponent",
   
   ["left"] = "Full left",
   ["right"] = "Full right",
@@ -13,5 +14,9 @@ texts = {
   
 
   ["inMode"] = "Input Mode",
-  ["outMode"] = "Output Mode"
+  ["outMode"] = "Output Mode",
+  
+  ["linear_template"] = "^0",
+  ["zero"] = "0",
+  ["one"] = "1"
 }

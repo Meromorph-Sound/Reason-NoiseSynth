@@ -11,7 +11,7 @@ namespace meromorph {
 enum Tags : uint32 {
 		ALPHA=1,
 		RELOAD=2,
-		PAN=3
+		GAIN=3
 	};
 
 
@@ -19,7 +19,7 @@ class OutputChannel {
 private:
 	TJBox_ObjectRef output;
 	std::vector<float32> buffer;
-	float32 pan=0;
+	float32 pan=1;
 public:
 	using iterator=std::vector<float32>::iterator;
 	OutputChannel(const char *code);
@@ -43,7 +43,7 @@ private:
 	bool forwarding = false;
 	float32 masterTune = 1.0;
 	float32 sampleRate = 48000;
-	float32 pan=0;
+
 
 
 	NoteEvent currentNote;

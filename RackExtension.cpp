@@ -45,8 +45,10 @@ void RackExtension::processMIDIEvent(const TJBox_PropertyDiff &diff) {
 	auto event = JBox_AsNoteEvent(diff);
 	if(forwarding) JBox_OutputNoteEvent(event); // forwarding notes
 	if(notes.update(event)) {
+		//trace("Upating note");
 		if(notes.isOn()) currentNote=notes();
 		else currentNote.setOff();
+		//trace("Current note is ^0 and active ^1",currentNote.note, currentNote.isOn() ? 1 : 0);
 	}
 }
 
@@ -71,17 +73,20 @@ void RackExtension::RenderBatch(const TJBox_PropertyDiff diffs[], TJBox_UInt32 n
 				notes.reset();
 				break;
 			case Tags::ALPHA:
+				trace("ALPHA is ^0",toFloat(diff.fCurrentValue));
 				channel.setAlpha(toFloat(diff.fCurrentValue));
 				break;
 			case Tags::RELOAD:
 				if(toBool(diff.fCurrentValue)) {
+					trace("RELOAD");
 					channel.reset();
 				}
 				break;
-			case Tags::PAN: {
-				auto pan = toFloat(diff.fCurrentValue);
-				left.setPan(sqrt(1-pan));
-				right.setPan(sqrt(pan));
+			case Tags::GAIN: {
+				auto gain = toFloat(diff.fCurrentValue);
+				trace("GAIN is ^0",gain);
+				//left.setPan(sqrt(1-pan));
+				//right.setPan(sqrt(pan));
 				break; }
 			default:
 				break;

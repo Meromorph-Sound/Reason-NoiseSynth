@@ -12,13 +12,27 @@ front = jbox.panel {
 	 value = "/custom_properties/alpha"
 	},
 	jbox.analog_knob{
-   graphics = { node = "pan" },
-   value = "/custom_properties/pan"
+   graphics = { node = "gain" },
+   value = "/custom_properties/gain"
   },
   jbox.momentary_button{
     graphics = { node = "reload" },
     value = "/custom_properties/reload"
-  }
+  },
+    jbox.analog_knob{
+      graphics={ node = "exponent" },
+      value = "/custom_properties/exponent"
+    },
+    jbox.custom_display {
+      graphics={ node="exponent_display" },
+      display_width_pixels = 600,
+      display_height_pixels = 300,
+      values = {
+        "/custom_properties/alpha",
+        "/custom_properties/exponent"
+        },
+      draw_function = "drawExponent"
+    }
   }
 	
 }

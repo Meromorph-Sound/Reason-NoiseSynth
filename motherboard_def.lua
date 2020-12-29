@@ -1,6 +1,37 @@
 format_version = "3.0"
 
 
+function linearType()
+  return jbox.ui_linear {
+    min=0,
+    max=1,
+    units = {
+      min_text = jbox.ui_text("zero"),
+      max_text = jbox.ui_text("one"),
+      { 
+        decimals=2,
+        unit = { template = jbox.ui_text("linear_template") }
+      }
+    }
+  }
+end
+
+function panType()
+  return jbox.ui_nonlinear {
+    data_to_gui = function(value) 
+      return 90*(2*value-1)
+    end,
+    gui_to_data = function(value)
+      return ((value/90)+1)*0.5
+    end,
+    units = {
+      { 
+        decimals=2,
+        unit = { template = jbox.ui_text("linear_template") }
+      }
+    }
+  }
+end
 
 custom_properties = jbox.property_set{
 	document_owner = {
@@ -9,7 +40,7 @@ custom_properties = jbox.property_set{
 		    default = 0,
 		    ui_name = jbox.ui_text("alpha"),
 		    property_tag = 1,
-		    ui_type = jbox.ui_percent({ decimals=2 })
+		    ui_type = linearType()
 		  },
 		  reload = jbox.number {
         default=0,
@@ -20,9 +51,15 @@ custom_properties = jbox.property_set{
 		  },
 		  pan = jbox.number {
         default = 0.5,
-        ui_name = jbox.ui_text("pan"),
+        ui_name = jbox.ui_text("gain"),
         property_tag = 3,
-        ui_type = jbox.ui_linear({})
+        ui_type = gainType()
+      },
+      exponent = jbox.number {
+        default=0.5,
+        ui_name = jbox.ui_text("exponent"),
+        property_tag = 4,
+        ui_type = linearType()
       },
 		  pitchBend = jbox.performance_pitchbend {
 		    ui_name = jbox.ui_text("pitchbend"),

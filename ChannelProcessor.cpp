@@ -45,7 +45,7 @@ void ChannelProcessor::process(const NoteEvent &n) {
 		initialised=true;
 	}
 
-	if(n.isOn()) {	// changed to on from silence, or to different note
+	if(n.isOn()) {	/// changed to on from silence, or to different note
 		if(!isOn || n.note!=note) {
 			note=n.note;
 			auto period = n.period();
@@ -54,18 +54,20 @@ void ChannelProcessor::process(const NoteEvent &n) {
 				length = std::min(period,SEQUENCE_SIZE);
 				startPos=fmod(startPos+length,SEQUENCE_SIZE);
 				sequencePos=0;
-				inc=alpha*BUFFER_SIZE/(float32)length;
+				inc=std::max(0.1f,alpha*powf(length,0.4));
 			}
 		}
 	}
-	else {	// switch off
+	else {	/// switch off
 		isOn=false;
 	}
 
 	if(!isOn) buffer.assign(BUFFER_SIZE,0);
 	else if(length>0) {
+		//trace("Length is ^0",length);
+		auto offset = lround(startPos);
 		for(auto i=0;i<BUFFER_SIZE;i++) {
-			buffer[i]=sequence[(lround(startPos)+sequencePos) % SEQUENCE_SIZE];
+			buffer[i]=sequence[(offset+sequencePos) % SEQUENCE_SIZE];
 			sequencePos = (sequencePos+1) % length;
 		}
 		startPos+=inc; //std::max(1.0f,length/9.0f);

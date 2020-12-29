@@ -13,7 +13,7 @@ front = {
     offset = { 1000, 100},
     {path = "Knob_01_63frames", frames=63 }
   },
-  pan = {
+  gain = {
     offset = { 1200, 100},
     {path = "Knob_01_63frames", frames=63 }
   },
@@ -21,6 +21,14 @@ front = {
     offset = { 1400, 100},
     {path = "Button_21_2frames", frames=2 }
   },
+  exponent = {
+    offset = {1600,100},
+    {path = "Knob_01_63frames", frames=63 }
+  },
+  exponent_display = {
+    offset = { 1800,20},
+    {path="Display_20_1frames", frames=1}
+  }
   
 }
 back = { 

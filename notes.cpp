@@ -77,32 +77,32 @@ bool NoteHandler::update(const TJBox_NoteEvent &event) {
 	auto note = event.fNoteNumber;
 
 
-	// trying to switch the note on: this can only happen if there is currently
-	// no valid (on or waiting) matching note
+	/// trying to switch the note on: this can only happen if there is currently
+	/// no valid (on or waiting) matching note
 
 	if(isOn && noValidNote(note)) {
-		trace("Switching on new note ^0",note);
-		//  if there is an active note, switch it to wait mode
+		//trace("Switching on new note ^0",note);
+		///  if there is an active note, switch it to wait mode
 		if(currentIndex!=notes.end()) currentIndex->setOff();
 
-		// now find a slot (preferably invalid)
+		/// now find a slot (preferably invalid)
 		auto it=std::find_if(notes.begin(),notes.end(),
 				[](NoteEvent & n) { return n.isInvalid(); });
 		if(it!=notes.end()) {
-			// found one
+			/// found one
 			currentIndex=it;
 		}
 		else {
-			// going to have to steal one of the waiting notes :
-			// go for the oldest
+			/// going to have to steal one of the waiting notes :
+			/// go for the oldest
 			auto itm = std::min_element(notes.begin(),notes.end(),
 					[](NoteEvent &n1,NoteEvent &n2) { return n1.id < n2.id; });
 			if(itm!=notes.end()) {
-				// found one to steal
+				/// found one to steal
 				currentIndex=itm;
 			}
 			else {
-				// strange stuff is happening
+				/// strange stuff is happening
 				currentIndex=notes.begin();
 			}
 		}
@@ -111,41 +111,41 @@ bool NoteHandler::update(const TJBox_NoteEvent &event) {
 	}
 
 	else if(!isOn) {
-		trace("Switching off note ^0",note);
-		// it wants to switch off the active note
+		//trace("Switching off note ^0",note);
+		/// it wants to switch off the active note
 		auto it=activeAt(note);
 		if(it!=notes.end()) {
-			trace("It's the active note - switching it off");
+			//trace("It's the active note - switching it off");
 			it->invalidate();
 
-			// now find the most recent valid note
+			/// now find the most recent valid note
 			auto it = notes.begin(); // get pointer to element with highest id that's not on
-			trace("First note has id ^0", it->id);
+			//trace("First note has id ^0", it->id);
 			for(auto it2=notes.begin()+1;it2!=notes.end();it2++) {
 				if(it2->isValid() && (it->id)<(it2->id)) it=it2;
-				trace("Next note has id ^0 and is valid ^1", it2->id,it2->isValid() ? 1 : 0);
+				//trace("Next note has id ^0 and is valid ^1", it2->id,it2->isValid() ? 1 : 0);
 			}
-			trace("Picked note has id ^0 and is valid ^1", it->id,it->isValid() ? 1 : 0);
+			//trace("Picked note has id ^0 and is valid ^1", it->id,it->isValid() ? 1 : 0);
 
-			// check again
+			/// check again
 			if(it->isValid()) {
-				trace("Switching it on");
+				//trace("Switching it on");
 				it->setOn();
 				currentIndex=it;
 			}
 			else {
-				trace("Nothing to switch on");
+				//trace("Nothing to switch on");
 				currentIndex=notes.end();
 			}
 			return true;
 		}
 		else {
-			trace("It's an inactive note - switching it off");
-			// no active note; check if there is a waiting one
+			//trace("It's an inactive note - switching it off");
+			/// no active note; check if there is a waiting one
 			auto itt = waitingAt(note);
 			if(itt!=notes.end()) {
-				trace("Found note at ^0 - invalidating",itt-notes.begin());
-				// there is a waiting note; invalidate it, but no more change
+				//trace("Found note at ^0 - invalidating",itt-notes.begin());
+				/// there is a waiting note; invalidate it, but no more change
 				itt->invalidate();
 			}
 			return false;
