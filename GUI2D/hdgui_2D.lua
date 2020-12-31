@@ -22,7 +22,7 @@ front = jbox.panel {
     jbox.custom_display {
       graphics={ node="exponent_display" },
       display_width_pixels = 600,
-      display_height_pixels = 300,
+      display_height_pixels = 245,
       values = {
         "/custom_properties/alpha",
         "/custom_properties/exponent"
@@ -30,8 +30,15 @@ front = jbox.panel {
       draw_function = "drawExponent"
     },
     jbox.sequence_meter{
-      graphics={note="note"},
+      graphics={node="note"},
       value = "/custom_properties/note"
+    },
+    jbox.custom_display {
+      graphics={node="volume"},
+      display_width_pixels=300,
+      display_height_pixels=40,
+      values = { "/custom_properties/volume" },
+      draw_function = "drawVolume"
     }
   }
 	

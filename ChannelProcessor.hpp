@@ -21,7 +21,6 @@ private:
 	static const uint32 SEQUENCE_SIZE;
 	Random rng;
 	TJBox_ObjectRef env;
-	float32 last = 0;
 	std::vector<float32> buffer;
 
 	float32 startPos=0;

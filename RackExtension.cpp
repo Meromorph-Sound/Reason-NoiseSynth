@@ -34,9 +34,7 @@ void RackExtension::process() {
 	auto refR = JBox_LoadMOMPropertyByTag(right, kJBox_AudioOutputBuffer);
 	JBox_SetDSPBufferData(refR, 0, buffer.size(), buffer.data());
 
-	//float32 mag=0;
-	//for(auto it=buffer.begin();it!=buffer.end();it++) mag+=fabs(*it);
-	//set(mag*8/(float32)ChannelProcessor::BUFFER_SIZE,Tags::VOLUME);
+
 
 }
 
@@ -52,6 +50,7 @@ void RackExtension::processMIDIEvent(const TJBox_PropertyDiff &diff) {
 		else currentNote.setOff();
 		//trace("Current note is ^0 and active ^1",currentNote.note, currentNote.isOn() ? 1 : 0);
 		set(on ? 1 : 0,Tags::NOTE);
+		set(on ? currentNote.level() : 0,Tags::VOLUME);
 	}
 }
 

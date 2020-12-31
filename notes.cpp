@@ -32,7 +32,10 @@ bool NoteEvent::match(const uint8 note_) const {
 }
 bool NoteEvent::precedes(const NoteEvent &other) const { return id<other.id; }
 
-
+float32 NoteEvent::level() const {
+	float32 v=std::min(127.0f,(float32)velocity);
+	return v/127.0;
+}
 
 float32 NoteEvent::frequency() const {
 	return std::powf(2.0f, ((note + masterTune) - 69.0f) / 12.0f) * 440.0f;

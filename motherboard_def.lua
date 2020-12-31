@@ -90,10 +90,9 @@ custom_properties = jbox.property_set{
 		  },
 		  volume = jbox.number {
         default=0,
-        steps=8,
         ui_name=jbox.ui_text("volume"),
         property_tag=6,
-        ui_type = rangeType(8)
+        ui_type = linearType()
       }
 		},
 		

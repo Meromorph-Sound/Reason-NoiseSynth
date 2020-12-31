@@ -36,7 +36,7 @@ private:
 	float32 masterTune = 1.0;
 	float32 sampleRate = 48000;
 	std::vector<float32> buffer;
-
+	float32 lastNorm=0.0f;
 
 	NoteEvent currentNote;
 	ChannelProcessor channel;

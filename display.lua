@@ -1,8 +1,8 @@
 format_version = "1.0"
 
 local Axes = { r=180,g=180,b=180 }
-local Line = { r=255,g=0,b=0 }
-local Graph = { r=0,g=255,b=0 }
+local Rect = { r=80,g=80,b=80,a = 64 }
+local Graph = { r=0,g=255,b=0  }
 
 function clip(value)
   return math.max(0,math.min(1,value))
@@ -38,6 +38,10 @@ function drawExponent(property_values,display_info,dirty_rect)
     jbox.trace("Alpha ="..alpha)
     jbox.trace("Exponent ="..exponent)
     
+    -- lines
+    local yAlpha = h*valueOf(rate,alpha,0,fMin)
+    jbox_display.draw_rect({left= 0, top= h-yAlpha, right= w-1, bottom= h-1},Rect)
+    
     for x = 0,w,5 do
       local freq=fMin+xScale*x
       local y=valueOf(rate,alpha,exponent,freq)/yScale
@@ -48,17 +52,20 @@ function drawExponent(property_values,display_info,dirty_rect)
     table.insert(points,{x=0,y=h})
     jbox_display.draw_polygon(points,Graph)
     
+    
+    
   end
   
    -- axes
-  jbox_display.draw_lines({ {x=0,y=0},{x=w-1,y=0},{x=w-1,y=h-1},{x=0,y=h-1} },Axes,"closed")
-    local freq=fMax/10
-    while freq < fMax do
-      local x = freq/xScale
-      jbox.trace("x="..x.." of w="..w)
-      jbox_display.draw_line({x=x,y=h-1},{x=x,y=0},Axes,5,"round")
-      freq=freq*2
-    end
+  jbox_display.draw_lines({ {x=0,y=0},{x=w-1,y=0},{x=w-1,y=h-1},{x=0,y=h-1} },Axes,"closed") 
+end
 
-   
+function drawVolume(property_values,display_info,dirty_rect)
+  local volume=clip(property_values[1])
+  local w = display_info.width
+  local h = display_info.height
+  
+  local width = w*volume
+  jbox_display.draw_rect({left= 0, top= 0, right= width, bottom= h-1},Graph)
+  
 end

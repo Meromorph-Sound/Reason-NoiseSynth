@@ -34,6 +34,7 @@ struct NoteEvent {
 	NoteEvent(const NoteEvent &) = default;
 	NoteEvent & operator=(const NoteEvent &) = default;
 
+	float32 level() const;
 	float32 frequency() const;
 	uint32 period() const;
 	bool isOn () const { return action==NoteActions::NoteOn; }

@@ -6,6 +6,7 @@ texts = {
   ["reload"] = "Reload",
   ["note"] = "Note",
   ["exponent"] = "Exponent",
+  ["volume"] = "Volume",
   
   ["left"] = "Full left",
   ["right"] = "Full right",

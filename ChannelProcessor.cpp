@@ -65,11 +65,12 @@ void ChannelProcessor::process(const NoteEvent &n) {
 
 	if(!isOn) buffer.assign(BUFFER_SIZE,0);
 	else if(length>0) {
+		auto level=n.level();
 		inc=std::max(0.001f,alpha*powf(length,exponent));
 		//trace("Length is ^0",length);
 		auto offset = lround(startPos);
 		for(auto i=0;i<BUFFER_SIZE;i++) {
-			buffer[i]=sequence[(offset+sequencePos) % SEQUENCE_SIZE];
+			buffer[i]=sequence[(offset+sequencePos) % SEQUENCE_SIZE]*level;
 			sequencePos = (sequencePos+1) % length;
 		}
 		startPos+=inc; //std::max(1.0f,length/9.0f);

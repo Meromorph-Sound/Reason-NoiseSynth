@@ -13,6 +13,10 @@ front = {
     offset = {750,50},
     { path = "Lamp_10_GREEN_2frames", frames = 2 }
   },
+  volume = {
+    offset = {1000,80},
+    { path = "Display_200_50_1frames", frames = 1 }
+  },
   alpha = {
     offset = { 2100, 20},
     {path = "Knob_47_63frames", frames=63 }
@@ -26,7 +30,7 @@ front = {
     {path = "Knob_47_63frames", frames=63 }
   },
   exponent_display = {
-    offset = { 2300,20},
+    offset = { 2300,40},
     {path="Display_20_1frames", frames=1}
   }
   
