@@ -15,6 +15,12 @@ front = jbox.panel {
     graphics = { node = "reload" },
     value = "/custom_properties/reload"
   },
+  jbox.sequence_fader{
+    graphics={node="seed"},
+    value = "/custom_properties/seed",
+    orientation = "horizontal",
+    handle_size = 25
+  },
     jbox.analog_knob{
       graphics={ node = "exponent" },
       value = "/custom_properties/exponent"

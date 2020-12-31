@@ -21,8 +21,8 @@ function rangeType(n)
     min=0,
     max=n-1,
     units = {
-      min_text = jbox.ui_text("zero"),
-      max_text = jbox.ui_text("max"),
+      min_text = jbox.ui_text("linear_template"),
+      max_text = jbox.ui_text("linear_template"),
       { 
         decimals=0,
         unit = { template = jbox.ui_text("linear_template") }
@@ -31,17 +31,17 @@ function rangeType(n)
   }
 end
 
-function panType()
+function seedType()
   return jbox.ui_nonlinear {
     data_to_gui = function(value) 
-      return 90*(2*value-1)
+      return value+1
     end,
     gui_to_data = function(value)
-      return ((value/90)+1)*0.5
+      return value-1
     end,
     units = {
       { 
-        decimals=2,
+        decimals=0,
         unit = { template = jbox.ui_text("linear_template") }
       }
     }
@@ -64,15 +64,27 @@ custom_properties = jbox.property_set{
         property_tag=2,
         ui_type = jbox.ui_selector{ jbox.UI_TEXT_OFF, jbox.UI_TEXT_ON }	  
 		  },
+		  seed = jbox.number {
+        default=13,
+        steps=25,
+        ui_name = jbox.ui_text("seed"),
+        property_tag = 3,
+        ui_type = seedType()
+      },
       exponent = jbox.number {
         default=0.5,
         ui_name = jbox.ui_text("exponent"),
         property_tag = 4,
         ui_type = linearType()
       },
+
 		  pitchBend = jbox.performance_pitchbend {
 		    ui_name = jbox.ui_text("pitchbend"),
 		    property_tag = 10,
+		  },
+		  expression = jbox.performance_expression {
+		    ui_name = jbox.ui_text("expression"),
+		    property_tag=11  
 		  }
 		}
 	},

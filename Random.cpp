@@ -75,9 +75,13 @@ uint64 Random::seed(const uint64 n) {
    return u;
 }
 
+
+
 void Random::init(const uint64 n) {
 	rng.reset(0,0,seed(n));
 }
+
+
 
 
 } /* namespace meromorph */

@@ -32,6 +32,7 @@ private:
 	float32 inc=0;
 	float32 alpha=0;
 	float32 exponent = 0.5;
+	uint32 seed = 12;
 
 	bool initialised=false;
 	std::vector<float32> sequence;
@@ -50,6 +51,7 @@ public:
 	void reset();
 	void setAlpha(const float32 a) { alpha = a*0.5f; }
 	void setExponent(const float32 e) { exponent = e; }
+	void setSeed(const uint32 s) { seed = s; }
 
 	iterator begin() { return buffer.begin(); }
 	iterator end() { return buffer.end(); }

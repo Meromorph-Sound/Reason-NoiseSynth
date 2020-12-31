@@ -84,12 +84,9 @@ void RackExtension::RenderBatch(const TJBox_PropertyDiff diffs[], TJBox_UInt32 n
 					channel.reset();
 				}
 				break;
-			case Tags::GAIN: {
-				auto gain = toFloat(diff.fCurrentValue);
-				trace("GAIN is ^0",gain);
-				//left.setPan(sqrt(1-pan));
-				//right.setPan(sqrt(pan));
-				break; }
+			case Tags::SEED:
+				channel.setSeed(toInt(diff.fCurrentValue));
+				break;
 			case Tags::EXPONENT:
 				trace("EXPONENT is ^0",toFloat(diff.fCurrentValue));
 				channel.setExponent(toFloat(diff.fCurrentValue));

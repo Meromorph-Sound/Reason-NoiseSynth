@@ -35,6 +35,9 @@ private:
 	static uint64 seed(const uint64 n);
 
 public:
+
+
+
 	Random(const float32 lower_ = 0,const float32 upper_ = 1) : rng(), lower(lower_), upper(upper_) {};
 	virtual ~Random() = default;
 

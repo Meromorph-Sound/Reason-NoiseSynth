@@ -11,10 +11,13 @@ namespace meromorph {
 enum Tags : uint32 {
 		ALPHA=1,
 		RELOAD=2,
-		GAIN=3,
+		SEED=3,
 		EXPONENT=4,
 		NOTE = 5,
-		VOLUME = 6
+		VOLUME = 6,
+		PITCH_BEND_RANGE = 9,
+		PITCH_BEND = 10,
+		EXPRESSION = 11
 	};
 
 
@@ -37,6 +40,8 @@ private:
 	float32 sampleRate = 48000;
 	std::vector<float32> buffer;
 	float32 lastNorm=0.0f;
+
+
 
 	NoteEvent currentNote;
 	ChannelProcessor channel;
