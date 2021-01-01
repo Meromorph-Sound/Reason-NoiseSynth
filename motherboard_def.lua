@@ -48,6 +48,23 @@ function seedType()
   }
 end
 
+function bendRangeType()
+  return jbox.ui_nonlinear {
+    data_to_gui = function(value) 
+      return value+1
+    end,
+    gui_to_data = function(value)
+      return value-1
+    end,
+    units = {
+      { 
+        decimals=0,
+        unit = { template = jbox.ui_text("linear_template") }
+      }
+    }
+  }
+end
+
 custom_properties = jbox.property_set{
 	document_owner = {
 		properties = {
@@ -78,6 +95,13 @@ custom_properties = jbox.property_set{
         ui_type = linearType()
       },
 
+      pitchBendRange = jbox.number {
+        default=11,
+        steps=24,
+        ui_name=jbox.ui_text("range"),
+        property_tag = 9,
+        ui_type = bendRangeType()
+      },
 		  pitchBend = jbox.performance_pitchbend {
 		    ui_name = jbox.ui_text("pitchbend"),
 		    property_tag = 10,

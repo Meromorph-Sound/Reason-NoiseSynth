@@ -28,6 +28,7 @@ struct NoteEvent {
 	float32 sampleRate;
 	NoteActions action;
 
+	float32 bend;
 	uint64 id;
 
 	NoteEvent();
@@ -44,6 +45,8 @@ struct NoteEvent {
 	void touch(const uint64 id_) { setOn(); id=id_; }
 	bool isInvalid() const { return action==NoteActions::Invalid; }
 	bool isValid() const { return action!=NoteActions::Invalid; }
+
+	void setBend(const float32 bend_) { bend=bend_; }
 
 	void load (const uint8 note_,const uint8 velocity_,const uint16 idx_,const uint64 id_=0,const float32 masterTune_=1.0f,const float32 rate=48000.0f);
 	void load (const TJBox_NoteEvent &event,const uint64 id_,const float32 masterTune_=1.0f,const float32 rate=48000.0f);
@@ -71,6 +74,7 @@ private:
 	float32 masterTune = 1.0f;
 	float32 sampleRate = 48000.0f;
 
+
 	iterator activeAt(const uint8 note_) ;
 	iterator waitingAt(const uint8 note_) ;
 	bool noValidNote(const uint8 note_) ;
@@ -87,6 +91,7 @@ public:
 
 	void setMasterTune(const float32 tune) { masterTune=tune; }
 	void setSampleRate(const float32 rate) { sampleRate=rate; }
+
 
 	bool update(const TJBox_NoteEvent &event);
 

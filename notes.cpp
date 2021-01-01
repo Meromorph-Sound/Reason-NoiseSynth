@@ -10,7 +10,7 @@
 namespace meromorph {
 
 NoteEvent::NoteEvent() : note(0), velocity(0), index(0),
-		masterTune(1), sampleRate(48000), action(Invalid), id(0) {}
+		masterTune(1), sampleRate(48000), action(Invalid), bend(0), id(0) {}
 
 void NoteEvent::load (const uint8 note_,const uint8 velocity_,const uint16 idx_,
 		const uint64 id_,const float32 masterTune_,const float32 rate) {
@@ -38,7 +38,7 @@ float32 NoteEvent::level() const {
 }
 
 float32 NoteEvent::frequency() const {
-	return std::powf(2.0f, ((note + masterTune) - 69.0f) / 12.0f) * 440.0f;
+	return std::powf(2.0f, ((note + masterTune + bend) - 69.0f) / 12.0f) * 440.0f;
 }
 uint32 NoteEvent::period() const {
 	auto f = frequency();
@@ -78,6 +78,7 @@ void NoteHandler::load(const TJBox_NoteEvent &event) {
 bool NoteHandler::update(const TJBox_NoteEvent &event) {
 	bool isOn = event.fVelocity>0;
 	auto note = event.fNoteNumber;
+
 
 
 	/// trying to switch the note on: this can only happen if there is currently

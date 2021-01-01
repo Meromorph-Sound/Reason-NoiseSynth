@@ -36,6 +36,14 @@ front = {
   seed = {
     offset = { 2600, 220},
     {path = "Fader_25frames", frames=25}
+  },
+  range = {
+    offset = { 800,150 },
+    { path = "upDown", frames = 3}
+  },
+  rangeDisplay = {
+    offset = {900,150},
+    { path = "Display_24frames", frames=24}
   }
   
 }
@@ -64,6 +72,10 @@ folded_front = {
   Bg = {
     { path = "Panel_Folded_Front" },
   },
+  deviceName = {
+    offset = { 3000, 42},
+    { path = "Tape_Horizontal_1frames", frames = 1 },
+  },
 }
 folded_back = { 
   Bg = {
@@ -71,5 +83,9 @@ folded_back = {
   },
   CableOrigin = {
     offset = { 1885, 75 },
+  },
+  deviceName = {
+    offset = { 200, 42},
+    { path = "Tape_Horizontal_1frames", frames = 1 },
   },
 }

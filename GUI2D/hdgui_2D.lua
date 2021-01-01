@@ -45,6 +45,14 @@ front = jbox.panel {
       display_height_pixels=40,
       values = { "/custom_properties/volume" },
       draw_function = "drawVolume"
+    },
+    jbox.up_down_button{
+    graphics={node="range"},
+    value="/custom_properties/pitchBendRange"
+    },
+    jbox.analog_knob{
+    graphics={ node = "rangeDisplay" },
+    value="/custom_properties/pitchBendRange"
     }
   }
 	

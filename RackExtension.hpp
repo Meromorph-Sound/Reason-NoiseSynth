@@ -38,6 +38,11 @@ private:
 	bool forwarding = false;
 	float32 masterTune = 1.0;
 	float32 sampleRate = 48000;
+
+	uint32 pitchBendRange = 12;
+	float32 pitchBend = 0;
+
+
 	std::vector<float32> buffer;
 	float32 lastNorm=0.0f;
 

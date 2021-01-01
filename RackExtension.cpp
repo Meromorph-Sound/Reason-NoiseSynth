@@ -25,6 +25,7 @@ void RackExtension::set(const float32 value,const Tag tag) {
 }
 
 void RackExtension::process() {
+	currentNote.setBend(pitchBend*(float32)pitchBendRange);
 	channel.process(currentNote);
 	std::copy(channel.begin(),channel.end(),buffer.begin());
 
@@ -90,6 +91,14 @@ void RackExtension::RenderBatch(const TJBox_PropertyDiff diffs[], TJBox_UInt32 n
 			case Tags::EXPONENT:
 				trace("EXPONENT is ^0",toFloat(diff.fCurrentValue));
 				channel.setExponent(toFloat(diff.fCurrentValue));
+				break;
+			case Tags::PITCH_BEND_RANGE:
+				pitchBendRange=std::max(1,std::min(24,toInt(diff.fCurrentValue)));
+				break;
+			case Tags::PITCH_BEND:
+				pitchBend=toFloat(diff.fCurrentValue);
+				break;
+			case Tags::EXPRESSION:
 				break;
 			default:
 				break;
