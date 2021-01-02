@@ -136,10 +136,29 @@ custom_properties = jbox.property_set{
 }
 
 midi_implementation_chart = {
-	midi_cc_chart = {}
+	midi_cc_chart = {
+	 [12] = "/custom_properties/reload",              -- ControlEffectControl1
+   [13] = "/custom_properties/seed",                -- ControlEffectControl2
+	 [16] = "/custom_properties/alpha",               -- ControlGeneralPurpose1
+	 [17] = "/custom_properties/exponent",            -- ControlGeneralPurpose2
+	 [18] = "/custom_properties/pitchBendRange",      -- ControlGeneralPurpose3
+	}
 }
 
+function remote(name) 
+return {
+  internal_name = name,
+  short_ui_name = jbox.ui_text(name.."_short"),
+  shortest_ui_name = jbox.ui_text(name.."_shortest")
+}
+end
+
 remote_implementation_chart = {
+  ["/custom_properties/reload"] = remote("reload"),
+  ["/custom_properties/seed"] = remote("seed"),
+  ["/custom_properties/alpha"] = remote("alpha"),
+  ["/custom_properties/exponent"] = remote("exponent"),
+  ["/custom_properties/pitchBendRange"] = remote("range")
 }
 
 ui_groups = {}

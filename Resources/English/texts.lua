@@ -3,12 +3,24 @@ format_version = "1.0"
 texts = {
   ["audioOutput"] = "Audio Output",
   ["alpha"] = "Leakage factor",
-  ["reload"] = "Reload",
-  ["seed"] = "Randomisation seed",
-  ["note"] = "Note",
+  ["alpha_short"] = "Leakage",
+  ["alpha_shortest"] = "LEAK",
   ["exponent"] = "Exponent",
-  ["volume"] = "Volume",
+  ["exponent_short"] = "Exponent",
+  ["exponent_shortest"] = "EXP",
+  ["reload"] = "Reload",
+  ["reload_short"] = "Reload",
+  ["reload_shortest"] = "RELD",
+  ["seed"] = "Randomisation seed",
+  ["seed_short"] = "RND Seed",
+  ["seed_shortest"] = "SEED",
   ["range"] = "Pitch Bend Range",
+  ["range_short"] = "bndRange",
+  ["range_shortest"] = "BRNG",
+  
+  ["note"] = "Note",
+  ["volume"] = "Volume",
+  
   
   
   ["left"] = "Full left",

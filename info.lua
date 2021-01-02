@@ -3,15 +3,15 @@ format_version = "1.0"
 -- Note that changing this file requires a Reason/Recon restart
 
 -- Max 40 chars
-long_name = "Random Oscillator"
+long_name = "Noise Synth"
 
 -- Max 20 chars
-medium_name = "Random Osc"
+medium_name = "Noise Synth"
 
 -- Max 10 chars
-short_name = "RandOsc"
+short_name = "NoiseSynth"
 
-product_id = "org.porternet.randomoscillator"
+product_id = "org.porternet.noisesynth"
 manufacturer = "meromorph"
 version_number = "1.0.0d1"
 device_type = "instrument"

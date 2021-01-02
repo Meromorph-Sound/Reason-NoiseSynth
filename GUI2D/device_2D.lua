@@ -38,11 +38,11 @@ front = {
     {path = "Fader_25frames", frames=25}
   },
   range = {
-    offset = { 800,150 },
-    { path = "upDown", frames = 3}
+    offset = { 795,130 },
+    { path = "upDown", frames = 3}    
   },
   rangeDisplay = {
-    offset = {900,150},
+    offset = {700,140},
     { path = "Display_24frames", frames=24}
   }
   
@@ -56,15 +56,15 @@ back = {
     { path = "Placeholder" },
   },
   AudioLeft = {
-    offset = {900,100},
+    offset = {1550,120},
     { path = "SharedAudioJack", frames = 3},
   },
   AudioRight = {
-    offset = {1100,100},
+    offset = {1750,120},
     { path = "SharedAudioJack", frames = 3},
   },
   deviceName = {
-    offset = { 2000, 215},
+    offset = { 200, 230},
     { path = "Tape_Horizontal_1frames", frames = 1 },
   },
   }

@@ -27,7 +27,10 @@ void RackExtension::set(const float32 value,const Tag tag) {
 void RackExtension::process() {
 	currentNote.setBend(pitchBend*(float32)pitchBendRange);
 	channel.process(currentNote);
-	std::copy(channel.begin(),channel.end(),buffer.begin());
+	float32 factor=1.0+expression;
+	std::transform(channel.begin(),channel.end(),buffer.begin(),
+			[factor](float32 f) { return f*factor; });
+	//std::copy(channel.begin(),channel.end(),buffer.begin());
 
 	auto refL = JBox_LoadMOMPropertyByTag(left, kJBox_AudioOutputBuffer);
 	JBox_SetDSPBufferData(refL, 0, buffer.size(), buffer.data());
@@ -97,9 +100,12 @@ void RackExtension::RenderBatch(const TJBox_PropertyDiff diffs[], TJBox_UInt32 n
 				break;
 			case Tags::PITCH_BEND:
 				pitchBend=toFloat(diff.fCurrentValue);
+				//trace("PITCH BEND IS ^0",pitchBend);
 				break;
-			case Tags::EXPRESSION:
-				break;
+			case Tags::EXPRESSION: {
+				float32 expr = toFloat(diff.fCurrentValue)-0.5;
+				expression = std::max(0.f,tanh(expr*8));
+				break; }
 			default:
 				break;
 			}

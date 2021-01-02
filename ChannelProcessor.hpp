@@ -27,12 +27,13 @@ private:
 	uint32 sequencePos = 0;
 
 	bool isOn = false;
-	uint32 note = 0;
+	float32 note = 0;
 	uint32 length = 1;
 	float32 inc=0;
 	float32 alpha=0;
 	float32 exponent = 0.5;
 	uint32 seed = 12;
+
 
 	bool initialised=false;
 	std::vector<float32> sequence;

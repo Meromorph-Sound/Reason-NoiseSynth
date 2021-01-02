@@ -35,7 +35,8 @@ rt_input_setup = {
   "/custom_properties/exponent",
   "/custom_properties/seed",
   "/custom_properties/pitchBendRange",
-  "/custom_properties/pitchBend"
+  "/custom_properties/pitchBend",
+  "/custom_properties/expression"
   }
 }
 

@@ -41,10 +41,11 @@ private:
 
 	uint32 pitchBendRange = 12;
 	float32 pitchBend = 0;
+	float32 expression = 0.0;
 
 
 	std::vector<float32> buffer;
-	float32 lastNorm=0.0f;
+
 
 
 

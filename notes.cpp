@@ -10,7 +10,7 @@
 namespace meromorph {
 
 NoteEvent::NoteEvent() : note(0), velocity(0), index(0),
-		masterTune(1), sampleRate(48000), action(Invalid), bend(0), id(0) {}
+		masterTune(1), sampleRate(48000), action(Invalid), id(0), bend(0) {}
 
 void NoteEvent::load (const uint8 note_,const uint8 velocity_,const uint16 idx_,
 		const uint64 id_,const float32 masterTune_,const float32 rate) {
@@ -48,6 +48,8 @@ uint32 NoteEvent::period() const {
 		return (uint32)p;
 	}
 }
+
+
 
 void NoteHandler::reset() {
 	std::for_each(notes.begin(),notes.end(),[](auto &n) { n.invalidate();});

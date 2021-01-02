@@ -47,14 +47,13 @@ void ChannelProcessor::reset() {
 
 
 
-
 void ChannelProcessor::process(const NoteEvent &n) {
 	if(!initialised) {
 		reset();
 		initialised=true;
 	}
 
-	if(n.isOn()) {	/// changed to on from silence, or to different note
+	if(n.isOn()) {	/// changed to or from silence, or to different note or bend
 		if(!isOn || n.note!=note) {
 			note=n.note;
 			auto period = n.period();
@@ -73,16 +72,19 @@ void ChannelProcessor::process(const NoteEvent &n) {
 	}
 
 	if(!isOn) buffer.assign(BUFFER_SIZE,0);
-	else if(length>0) {
-		auto level=n.level();
-		inc=std::max(0.001f,alpha*powf(length,exponent));
-		//trace("Length is ^0",length);
-		auto offset = lround(startPos);
-		for(auto i=0;i<BUFFER_SIZE;i++) {
-			buffer[i]=sequence[(offset+sequencePos) % SEQUENCE_SIZE]*level;
-			sequencePos = (sequencePos+1) % length;
+	else {
+		length = std::min(n.period(),SEQUENCE_SIZE);
+		if(length>0) {
+			auto level=n.level();
+			inc=std::max(0.001f,alpha*powf(length,exponent));
+			//trace("Length is ^0",length);
+			auto offset = lround(startPos);
+			for(auto i=0;i<BUFFER_SIZE;i++) {
+				buffer[i]=sequence[(offset+sequencePos) % SEQUENCE_SIZE]*level;
+				sequencePos = (sequencePos+1) % length;
+			}
+			startPos+=inc; //std::max(1.0f,length/9.0f);
 		}
-		startPos+=inc; //std::max(1.0f,length/9.0f);
 	}
 }
 
