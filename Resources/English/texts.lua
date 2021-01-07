@@ -17,6 +17,9 @@ texts = {
   ["range"] = "Pitch Bend Range",
   ["range_short"] = "bndRange",
   ["range_shortest"] = "BRNG",
+  ["mutate"] = "Mutation rate",
+  ["mutate_short"] = "mutate",
+  ["mutate_shortest"] = "MUT",
   
   ["note"] = "Note",
   ["volume"] = "Volume",

@@ -35,6 +35,10 @@ front = jbox.panel {
         },
       draw_function = "drawExponent"
     },
+    jbox.analog_knob{
+   graphics = { node = "mutate" },
+   value = "/custom_properties/mutate"
+  },
     jbox.sequence_meter{
       graphics={node="note"},
       value = "/custom_properties/note"

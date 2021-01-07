@@ -95,6 +95,9 @@ void RackExtension::RenderBatch(const TJBox_PropertyDiff diffs[], TJBox_UInt32 n
 				trace("EXPONENT is ^0",toFloat(diff.fCurrentValue));
 				channel.setExponent(toFloat(diff.fCurrentValue));
 				break;
+			case Tags::MUTATE:
+				channel.setMutationRate(toFloat(diff.fCurrentValue));
+				break;
 			case Tags::PITCH_BEND_RANGE:
 				pitchBendRange=std::max(1,std::min(24,toInt(diff.fCurrentValue)));
 				break;

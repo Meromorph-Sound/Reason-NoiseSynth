@@ -6,7 +6,7 @@ front = {
     { path = "Panel_Front_1U" },
   },
   deviceName = {
-    offset = { 200, 250},
+    offset = { 200, 230},
     { path = "Tape_Horizontal_1frames", frames = 1 },
   },
   note = {
@@ -25,16 +25,20 @@ front = {
     offset = {1500,70},
     {path = "Knob_01_63frames", frames=63 }
   },
+  mutate = {
+    offset = {2600,70},
+    {path = "Knob_01_63frames", frames=63 }
+  },
   exponent_display = {
-    offset = { 1850,40},
+    offset = { 1850,35},
     {path="Display_20_1frames", frames=1}
   },
   reload = {
-    offset = { 2590, 60},
+    offset = { 2900, 60},
     {path = "Button_23_2frames", frames=2 }
   },
   seed = {
-    offset = { 2600, 220},
+    offset = { 2900, 220},
     {path = "Fader_25frames", frames=25}
   },
   range = {
@@ -52,7 +56,7 @@ back = {
     { path = "Panel_Back_1U" },
   },
   Placeholder = {
-    offset = { 100, 100 },
+    offset = { 2000, 100 },
     { path = "Placeholder" },
   },
   AudioLeft = {
@@ -72,10 +76,6 @@ folded_front = {
   Bg = {
     { path = "Panel_Folded_Front" },
   },
-  deviceName = {
-    offset = { 3000, 42},
-    { path = "Tape_Horizontal_1frames", frames = 1 },
-  },
 }
 folded_back = { 
   Bg = {
@@ -83,9 +83,5 @@ folded_back = {
   },
   CableOrigin = {
     offset = { 1885, 75 },
-  },
-  deviceName = {
-    offset = { 200, 42},
-    { path = "Tape_Horizontal_1frames", frames = 1 },
   },
 }

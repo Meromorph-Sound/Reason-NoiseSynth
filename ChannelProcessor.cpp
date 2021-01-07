@@ -25,7 +25,7 @@ union Converter {
 };
 
 ChannelProcessor::ChannelProcessor()
-	: rng(-1,1), buffer(ChannelProcessor::BUFFER_SIZE), sequence(SEQUENCE_SIZE) {
+	: rng(-1,1), flag(0.75), buffer(ChannelProcessor::BUFFER_SIZE), sequence(SEQUENCE_SIZE) {
 	env=JBox_GetMotherboardObjectRef("/transport");
 }
 
@@ -80,10 +80,24 @@ void ChannelProcessor::process(const NoteEvent &n) {
 			//trace("Length is ^0",length);
 			auto offset = lround(startPos);
 			for(auto i=0;i<BUFFER_SIZE;i++) {
-				buffer[i]=sequence[(offset+sequencePos) % SEQUENCE_SIZE]*level;
+				auto n = (offset+sequencePos) % SEQUENCE_SIZE;
+				buffer[i]=sequence[n]*level;
+
 				sequencePos = (sequencePos+1) % length;
 			}
+
+			if(flag) {
+			uint32 N=lround(flag.next()*25.f);
+			for(auto i=0;i<N;i++) {
+				auto o = (offset+i+sequencePos) % SEQUENCE_SIZE;
+				auto p = flag.nextInt(SEQUENCE_SIZE);
+				auto v = sequence[o];
+				sequence[o] = sequence[p];
+				sequence[p]=v;
+			}
+			}
 			startPos+=inc; //std::max(1.0f,length/9.0f);
+
 		}
 	}
 }

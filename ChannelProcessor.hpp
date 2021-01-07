@@ -20,6 +20,7 @@ class ChannelProcessor {
 private:
 	static const uint32 SEQUENCE_SIZE;
 	Random rng;
+	Bernoulli flag;
 	TJBox_ObjectRef env;
 	std::vector<float32> buffer;
 
@@ -53,6 +54,7 @@ public:
 	void setAlpha(const float32 a) { alpha = a*0.5f; }
 	void setExponent(const float32 e) { exponent = e; }
 	void setSeed(const uint32 s) { seed = s; }
+	void setMutationRate(const float32 m) { flag.setThreshold(m); }
 
 	iterator begin() { return buffer.begin(); }
 	iterator end() { return buffer.end(); }

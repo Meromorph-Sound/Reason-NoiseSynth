@@ -94,7 +94,12 @@ custom_properties = jbox.property_set{
         property_tag = 4,
         ui_type = linearType()
       },
-
+      mutate = jbox.number {
+        default = 0,
+        ui_name = jbox.ui_text("mutate"),
+        property_tag = 7,
+        ui_type = linearType()
+      },
       pitchBendRange = jbox.number {
         default=11,
         steps=24,
@@ -142,6 +147,7 @@ midi_implementation_chart = {
 	 [16] = "/custom_properties/alpha",               -- ControlGeneralPurpose1
 	 [17] = "/custom_properties/exponent",            -- ControlGeneralPurpose2
 	 [18] = "/custom_properties/pitchBendRange",      -- ControlGeneralPurpose3
+	 [19] = "/custom_properties/mutate",              -- ControlGeneralPurpose3
 	}
 }
 
@@ -158,7 +164,8 @@ remote_implementation_chart = {
   ["/custom_properties/seed"] = remote("seed"),
   ["/custom_properties/alpha"] = remote("alpha"),
   ["/custom_properties/exponent"] = remote("exponent"),
-  ["/custom_properties/pitchBendRange"] = remote("range")
+  ["/custom_properties/pitchBendRange"] = remote("range"),
+  ["/custom_properties/mutate"] = remote("mutate")
 }
 
 ui_groups = {}

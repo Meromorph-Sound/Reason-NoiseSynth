@@ -15,6 +15,7 @@ enum Tags : uint32 {
 		EXPONENT=4,
 		NOTE = 5,
 		VOLUME = 6,
+		MUTATE = 7,
 		PITCH_BEND_RANGE = 9,
 		PITCH_BEND = 10,
 		EXPRESSION = 11
