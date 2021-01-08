@@ -29,16 +29,24 @@ front = {
     offset = {2600,70},
     {path = "Knob_01_63frames", frames=63 }
   },
+  mutateRange = {
+    offset = {2935,100},
+    { path = "upDown", frames=3 }
+  },
+  mutateRangeDisplay = {
+    offset = {2840,110},
+    {path = "Display_6frames",frames=6 }
+  },
   exponent_display = {
     offset = { 1850,35},
     {path="Display_20_1frames", frames=1}
   },
   reload = {
-    offset = { 2900, 60},
+    offset = { 3250, 60},
     {path = "Button_23_2frames", frames=2 }
   },
   seed = {
-    offset = { 2900, 220},
+    offset = { 3250, 220},
     {path = "Fader_25frames", frames=25}
   },
   range = {

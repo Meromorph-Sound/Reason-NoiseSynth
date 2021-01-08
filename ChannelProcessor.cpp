@@ -7,6 +7,7 @@
 
 #include "ChannelProcessor.hpp"
 #include <cmath>
+#include <utility>
 
 namespace meromorph {
 
@@ -45,7 +46,19 @@ void ChannelProcessor::reset() {
 }
 
 
-
+void ChannelProcessor::permute(const uint32 offset) {
+	uint32 N=lround(flag.next()*permutationSize);
+	auto off = offset+sequencePos;
+	for(auto i=0;i<N;i++) {
+		if(flag) {
+			auto idx1 = (off+i) % SEQUENCE_SIZE;
+			auto idx2 = flag.nextInt(SEQUENCE_SIZE);
+			auto v1 = sequence.begin()+idx1;
+			auto v2 = sequence.begin()+idx2;
+			std::swap(*v1,*v2);
+		}
+	}
+}
 
 void ChannelProcessor::process(const NoteEvent &n) {
 	if(!initialised) {
@@ -86,16 +99,7 @@ void ChannelProcessor::process(const NoteEvent &n) {
 				sequencePos = (sequencePos+1) % length;
 			}
 
-			if(flag) {
-			uint32 N=lround(flag.next()*25.f);
-			for(auto i=0;i<N;i++) {
-				auto o = (offset+i+sequencePos) % SEQUENCE_SIZE;
-				auto p = flag.nextInt(SEQUENCE_SIZE);
-				auto v = sequence[o];
-				sequence[o] = sequence[p];
-				sequence[p]=v;
-			}
-			}
+			if(flag) permute(offset);
 			startPos+=inc; //std::max(1.0f,length/9.0f);
 
 		}

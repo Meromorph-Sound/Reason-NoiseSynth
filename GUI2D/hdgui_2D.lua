@@ -57,6 +57,14 @@ front = jbox.panel {
     jbox.analog_knob{
     graphics={ node = "rangeDisplay" },
     value="/custom_properties/pitchBendRange"
+    },
+    jbox.up_down_button{
+    graphics={node="mutateRange"},
+    value="/custom_properties/mutateRange"
+    },
+    jbox.analog_knob{
+    graphics={ node = "mutateRangeDisplay" },
+    value="/custom_properties/mutateRange"
     }
   }
 	

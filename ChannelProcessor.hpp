@@ -34,12 +34,14 @@ private:
 	float32 alpha=0;
 	float32 exponent = 0.5;
 	uint32 seed = 12;
+	float32 permutationSize = 25.0;
 
 
 	bool initialised=false;
 	std::vector<float32> sequence;
 
 	float32 getEnvVariable(const uint32 tag) const;
+	void permute(const uint32 offset);
 
 
 public:
@@ -55,6 +57,7 @@ public:
 	void setExponent(const float32 e) { exponent = e; }
 	void setSeed(const uint32 s) { seed = s; }
 	void setMutationRate(const float32 m) { flag.setThreshold(m); }
+	void setMutationRange(const float32 r) { permutationSize=r; }
 
 	iterator begin() { return buffer.begin(); }
 	iterator end() { return buffer.end(); }

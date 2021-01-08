@@ -7,6 +7,7 @@ namespace meromorph {
 
 
 const uint32 RackExtension::MAX_NOTES = 8;
+const uint32 RackExtension::MAX_MUTATE_RANGES = 5;
 
 
 
@@ -97,6 +98,9 @@ void RackExtension::RenderBatch(const TJBox_PropertyDiff diffs[], TJBox_UInt32 n
 				break;
 			case Tags::MUTATE:
 				channel.setMutationRate(toFloat(diff.fCurrentValue));
+				break;
+			case Tags::MUTATE_RANGE:
+				channel.setMutationRange(MutateRanges[std::min(5,toInt(diff.fCurrentValue))]);
 				break;
 			case Tags::PITCH_BEND_RANGE:
 				pitchBendRange=std::max(1,std::min(24,toInt(diff.fCurrentValue)));

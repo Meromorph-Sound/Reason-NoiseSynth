@@ -34,6 +34,7 @@ rt_input_setup = {
   "/custom_properties/reload",
   "/custom_properties/exponent",
   "/custom_properties/mutate",
+  "/custom_properties/mutateRange",
   "/custom_properties/seed",
   "/custom_properties/pitchBendRange",
   "/custom_properties/pitchBend",

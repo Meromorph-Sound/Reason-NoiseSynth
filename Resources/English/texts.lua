@@ -20,6 +20,9 @@ texts = {
   ["mutate"] = "Mutation rate",
   ["mutate_short"] = "mutate",
   ["mutate_shortest"] = "MUT",
+  ["mutateRange"] = "Mutation ranger",
+  ["mutateRange_short"] = "mute-rng",
+  ["mutateRange_shortest"] = "MUTR",
   
   ["note"] = "Note",
   ["volume"] = "Volume",

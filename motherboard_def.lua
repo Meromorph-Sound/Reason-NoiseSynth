@@ -65,6 +65,30 @@ function bendRangeType()
   }
 end
 
+local mutateValues = {5,10,25,50,75,100}
+
+function mutateRangeType() 
+  return jbox.ui_nonlinear {
+    data_to_gui = function(value) 
+      return mutateValues[value+1]
+    end,
+    gui_to_data = function(value)
+      for k, v in pairs(mutateValues) do
+        if v==value then
+          return k-1
+        end
+      end
+      return 0
+    end,
+    units = {
+      { 
+        decimals=0,
+        unit = { template = jbox.ui_text("linear_template") }
+      }
+    }
+  }
+end
+
 custom_properties = jbox.property_set{
 	document_owner = {
 		properties = {
@@ -99,6 +123,13 @@ custom_properties = jbox.property_set{
         ui_name = jbox.ui_text("mutate"),
         property_tag = 7,
         ui_type = linearType()
+      },
+      mutateRange = jbox.number {
+        default = 2,
+        steps = 6,
+        ui_name=jbox.ui_text("mutateRange"),
+        property_tag=8,
+        ui_type = mutateRangeType()
       },
       pitchBendRange = jbox.number {
         default=11,
@@ -148,6 +179,7 @@ midi_implementation_chart = {
 	 [17] = "/custom_properties/exponent",            -- ControlGeneralPurpose2
 	 [18] = "/custom_properties/pitchBendRange",      -- ControlGeneralPurpose3
 	 [19] = "/custom_properties/mutate",              -- ControlGeneralPurpose3
+	 [20] = "/custom_properties/mutateRange",         -- ControlGeneralPurpose3
 	}
 }
 
@@ -165,7 +197,8 @@ remote_implementation_chart = {
   ["/custom_properties/alpha"] = remote("alpha"),
   ["/custom_properties/exponent"] = remote("exponent"),
   ["/custom_properties/pitchBendRange"] = remote("range"),
-  ["/custom_properties/mutate"] = remote("mutate")
+  ["/custom_properties/mutate"] = remote("mutate"),
+  ["/custom_properties/mutateRange"] = remote("mutateRange")
 }
 
 ui_groups = {}

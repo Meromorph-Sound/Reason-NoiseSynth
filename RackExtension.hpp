@@ -16,6 +16,7 @@ enum Tags : uint32 {
 		NOTE = 5,
 		VOLUME = 6,
 		MUTATE = 7,
+		MUTATE_RANGE = 8,
 		PITCH_BEND_RANGE = 9,
 		PITCH_BEND = 10,
 		EXPRESSION = 11
@@ -27,7 +28,8 @@ class RackExtension {
 	
 private:
 	const static uint32 MAX_NOTES;
-
+	const static float32 constexpr MutateRanges[] = {5,10,25,50,75,100};
+	const static uint32 MAX_MUTATE_RANGES;
 	TJBox_ObjectRef noteState;
 	TJBox_ObjectRef left;
 	TJBox_ObjectRef right;
