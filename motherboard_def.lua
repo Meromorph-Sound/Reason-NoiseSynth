@@ -121,25 +121,44 @@ custom_properties = jbox.property_set{
       default=0,
       ui_name = jbox.ui_text("pitch"),  
       property_tag=2,
-      ui_type = jbox.ui_percent{decimals=3}
-     },
+      ui_type = jbox.ui_linear{
+        min = 100,
+        max = 10000,
+        units = {{ decimals=1, unit = { template = jbox.ui_text("hertz") }}}
+      }
+    },
      ["length"] = jbox.number {
       default=0,
       ui_name = jbox.ui_text("length"),  
       property_tag=3,
-      ui_type = jbox.ui_percent{decimals=3}
+      ui_type = jbox.ui_linear{
+        min=0,
+        max=500,
+        units = {{ decimals=0}}
+      }
      },
      ["pan"] = jbox.number {
       default=0.5,
-      ui_name = jbox.ui_text("length"),  
+      ui_name = jbox.ui_text("pan"),  
       property_tag=4,
-      ui_type = jbox.ui_percent{decimals=3}
+      ui_type = jbox.ui_linear{
+        min = -90,
+        max = 90,
+        units = {
+          min_text=jbox.ui_text("left"),
+          max_text=jbox.ui_text("right"),
+          { 
+            decimals=2,
+            unit={ template = jbox.ui_text("degrees") }
+          }
+        }
+      }
      },
-     ["amplitude"..n] = jbox.number {
+     ["amplitude"] = jbox.number {
       default=1,
-      ui_name = jbox.ui_text("length"),  
+      ui_name = jbox.ui_text("amplitude"),  
       property_tag=5,
-      ui_type = jbox.ui_percent{decimals=3}
+      ui_type = jbox.ui_percent{decimals=1}
      },
      ["trigger"] = jbox.number {
         default=0,
@@ -197,7 +216,7 @@ remote_implementation_chart = {
 ui_groups = {}
 
 cv_inputs = {
-  externalTrigger = hbox.cv_input{ ui_name = jbox.ui_text("trigger") }
+  externalTrigger = jbox.cv_input{ ui_name = jbox.ui_text("trigger") }
 }
 cv_outputs = {}
 

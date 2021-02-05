@@ -57,7 +57,7 @@ back = jbox.panel {
     },
     jbox.cv_input_socket {
       graphics = { node = "TriggerIn" },
-      socket = "/audio_outputs/externalTrigger",
+      socket = "/cv_inputs/externalTrigger",
     },
     jbox.audio_output_socket {
       graphics = { node = "AudioOutLeft" },

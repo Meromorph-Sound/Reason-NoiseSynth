@@ -7,26 +7,26 @@ front = {
     { path = "Panel_Front_2U" }
   },
   deviceName = {
-    offset = { 200, 575},
+    offset = { 100, 575},
     { path = "Tape_Horizontal_1frames", frames = 1 },
   },
   patches = {
-    offset = { 2300,100},
+    offset = { 2400,100},
     { path = "PatchBrowseGroup", frames = 1}
   },
   patch = {
-    offset = {2600,100},
+    offset = {2700,100},
     { path = "204x10_5x5",frames=1}
   },
-  shape = { offset = {500,100}, { path = "Clicks_9frames", frames = 9}},
+  shape = { offset = {500,50}, { path = "Clicks_9frames", frames = 9}},
   shapeUpDown   = { offset = {700,100}, { path = "UpDown", frames = 3}},
-  triggerMode = { offset = {900,100}, {path = "Fader_32_3frames", frames=3}},
-  trigger  = { offset = {1000,100}, { path = "Button_53_2frames", frames = 2}},
-  triggered = { offset = {1000,400}, { path = "Lamp_10_GREEN_2frames", frames=2}},
-  pitch = { offset = {1200,100}, { path = "Knob_51_63frames", frames = 63}},
-  length = { offset = {1500,100}, { path = "Knob_51_63frames", frames = 63}},
-  pan = { offset = {1800,100}, { path = "Knob_51_63frames", frames = 63}},
-  amplitude = { offset = {2100,100}, { path = "Knob_51_63frames", frames = 63}},
+  triggerMode = { offset = {500,350}, {path = "Fader_32_3frames", frames=3}},
+  trigger  = { offset = {200,150}, { path = "Button_53_2frames", frames = 2}},
+  triggered = { offset = {212,50}, { path = "Lamp_10_GREEN_2frames", frames=2}},
+  pitch = { offset = {1200,100}, { path = "Knob_01_63frames", frames = 63}},
+  length = { offset = {1500,100}, { path = "Knob_01_63frames", frames = 63}},
+  pan = { offset = {1800,100}, { path = "Knob_01_63frames", frames = 63}},
+  amplitude = { offset = {2100,100}, { path = "Knob_01_63frames", frames = 63}},
   
 }
 back = { 
