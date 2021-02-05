@@ -45,35 +45,6 @@ public:
 
 };
 
-//class SquareClick : public ClickShape {
-//	virtual float32 shape(const uint32 n) { return 1; }
-//};
-//class TriangularClick : public ClickShape {
-//	virtual float32 shape(const uint32 n) { return 1.0-(abs(n-100.0)/100.0); }
-//};
-//class HalfTriangularDownClick : public ClickShape {
-//	virtual float32 shape(const uint32 n) { return std::max(0.0,1-(n/100.0)); }
-//};
-//class HalfTriangularUpClick : public ClickShape {
-//	virtual float32 shape(const uint32 n) { return (n<100) ? n/100.0 : 0.0; }
-//};
-//class NormalClick : public ClickShape {
-//	virtual float32 shape(const uint32 n) { return exp(-pow((n-100.0)/10.0,2.0)); }
-//};
-//class PoissonClick : public ClickShape {
-//	virtual float32 shape(const uint32 n) { return exp(-n/10.0); }
-//};
-//class DeltaClick : public ClickShape {
-//	virtual float32 shape(const uint32 n) { return (n<10) ? 1.0 : 0.0; }
-//};
-//class ExpFallHardClick : public ClickShape {
-//	virtual float32 shape(const uint32 n) { return (n<100) ? 1.0-exp(n-75.0) : 0.0; }
-//};
-//class ExpFallSoftClick : public ClickShape {
-//	virtual float32 shape(const uint32 n) { return (n<100) ? 1.0-exp(n-200.0) : 0.0; }
-//};
-
-
 enum ClickShape : uint32 {
 	SQUARE = 0,
 	TRIANGULAR = 1,
@@ -88,7 +59,7 @@ enum ClickShape : uint32 {
 	N_SHAPE_FUNCTIONS = 9
 };
 
-using ptr_t = std::shared_ptr<Shape>;
+
 
 class Clicks {
 protected:

@@ -39,8 +39,6 @@ private:
 	bool triggered = false;
 	bool initialised = false;
 
-
-
 	float32 sampleRate = 48000;
 
 
