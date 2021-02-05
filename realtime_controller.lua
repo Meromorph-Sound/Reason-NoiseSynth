@@ -26,19 +26,9 @@ native = {
 
 rt_input_setup = { 
   notify = {
-  "/transport/request_reset_audio",
-  "/environment/master_tune",
-  "/environment/system_sample_rate",
-  "/note_states/*",
-  "/custom_properties/alpha",
-  "/custom_properties/reload",
-  "/custom_properties/exponent",
-  "/custom_properties/mutate",
-  "/custom_properties/mutateRange",
-  "/custom_properties/seed",
-  "/custom_properties/pitchBendRange",
-  "/custom_properties/pitchBend",
-  "/custom_properties/expression"
+  "/custom_properties/trigger",
+  "/custom_properties/triggerMode",
+  "/custom_properties/shape"
   }
 }
 

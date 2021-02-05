@@ -1,69 +1,50 @@
 #pragma once
 
 #include "base.hpp"
-#include "ChannelProcessor.hpp"
-#include "notes.hpp"
 #include <vector>
 #include <cmath>
+#include <type_traits>
+
 
 namespace meromorph {
 
-enum Tags : uint32 {
-		ALPHA=1,
-		RELOAD=2,
-		SEED=3,
-		EXPONENT=4,
-		NOTE = 5,
-		VOLUME = 6,
-		MUTATE = 7,
-		MUTATE_RANGE = 8,
-		PITCH_BEND_RANGE = 9,
-		PITCH_BEND = 10,
-		EXPRESSION = 11
-	};
+
 
 
 class RackExtension {
 
 	
 private:
-	const static uint32 MAX_NOTES;
-	const static float32 constexpr MutateRanges[] = {5,10,25,50,75,100};
-	const static uint32 MAX_MUTATE_RANGES;
-	TJBox_ObjectRef noteState;
-	TJBox_ObjectRef left;
-	TJBox_ObjectRef right;
-	TJBox_ObjectRef props;
-
-	NoteHandler notes;
-	uint32 noteCount=0;
-
-	bool forwarding = false;
-	float32 masterTune = 1.0;
-	float32 sampleRate = 48000;
-
-	uint32 pitchBendRange = 12;
-	float32 pitchBend = 0;
-	float32 expression = 0.0;
 
 
-	std::vector<float32> buffer;
+		TJBox_ObjectRef props;
+		TJBox_ObjectRef noteState;
+
+protected:
+		static const uint32 BUFFER_SIZE;
+		bool forwarding = false;
+		std::vector<float32> buffer;
 
 
 
+		void set(const float32 value,const Tag tag);
+		virtual void setSampleRate(const float32) {};
+			virtual void setMasterTune(const float32) {};
+			virtual void reset() {};
 
-	NoteEvent currentNote;
-	ChannelProcessor channel;
+			virtual void processSystemCall(const TJBox_PropertyDiff &diff);
+			virtual void processApplicationMessage(const TJBox_PropertyDiff &diff) { };
+			virtual void processMIDIEvent(const TJBox_PropertyDiff &diff);
 
-	void set(const float32 value,const Tag tag);
-	void process();
-
-
-	void processMIDIEvent(const TJBox_PropertyDiff &diff);
+			virtual void process() {}
 
 public:
-	static const uint32 BUFFER_SIZE;
+
 	explicit RackExtension();
+	virtual ~RackExtension() = default;
+
+
+
 //	~CFollower(); 
     
     void RenderBatch(const TJBox_PropertyDiff iPropertyDiffs[], TJBox_UInt32 iDiffCount);

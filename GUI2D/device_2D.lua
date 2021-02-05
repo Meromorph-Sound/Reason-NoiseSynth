@@ -1,78 +1,52 @@
 format_version = "2.0"
 
 
+
 front = { 
   Bg = {
-    { path = "Panel_Front_1U" },
+    { path = "Panel_Front_2U" }
   },
   deviceName = {
-    offset = { 200, 230},
+    offset = { 200, 575},
     { path = "Tape_Horizontal_1frames", frames = 1 },
   },
-  note = {
-    offset = {500,54},
-    { path = "Lamp_10_GREEN_2frames", frames = 2 }
+  patches = {
+    offset = { 2300,100},
+    { path = "PatchBrowseGroup", frames = 1}
   },
-  volume = {
-    offset = {700,54},
-    { path = "Display_200_50_1frames", frames = 1 }
+  patch = {
+    offset = {2600,100},
+    { path = "204x10_5x5",frames=1}
   },
-  alpha = {
-    offset = { 1200, 70},
-    {path = "Knob_01_63frames", frames=63 }
-  },
-  exponent = {
-    offset = {1500,70},
-    {path = "Knob_01_63frames", frames=63 }
-  },
-  mutate = {
-    offset = {2600,70},
-    {path = "Knob_01_63frames", frames=63 }
-  },
-  mutateRange = {
-    offset = {2935,100},
-    { path = "upDown", frames=3 }
-  },
-  mutateRangeDisplay = {
-    offset = {2840,110},
-    {path = "Display_6frames",frames=6 }
-  },
-  exponent_display = {
-    offset = { 1850,35},
-    {path="Display_20_1frames", frames=1}
-  },
-  reload = {
-    offset = { 3250, 60},
-    {path = "Button_23_2frames", frames=2 }
-  },
-  seed = {
-    offset = { 3250, 220},
-    {path = "Fader_25frames", frames=25}
-  },
-  range = {
-    offset = { 795,130 },
-    { path = "upDown", frames = 3}    
-  },
-  rangeDisplay = {
-    offset = {700,140},
-    { path = "Display_24frames", frames=24}
-  }
+  shape = { offset = {500,100}, { path = "Clicks_9frames", frames = 9}},
+  shapeUpDown   = { offset = {700,100}, { path = "UpDown", frames = 3}},
+  triggerMode = { offset = {900,100}, {path = "Fader_32_3frames", frames=3}},
+  trigger  = { offset = {1000,100}, { path = "Button_53_2frames", frames = 2}},
+  triggered = { offset = {1000,400}, { path = "Lamp_10_GREEN_2frames", frames=2}},
+  pitch = { offset = {1200,100}, { path = "Knob_51_63frames", frames = 63}},
+  length = { offset = {1500,100}, { path = "Knob_51_63frames", frames = 63}},
+  pan = { offset = {1800,100}, { path = "Knob_51_63frames", frames = 63}},
+  amplitude = { offset = {2100,100}, { path = "Knob_51_63frames", frames = 63}},
   
 }
 back = { 
   Bg = {
-    { path = "Panel_Back_1U" },
+    { path = "Panel_Back_2U" },
   },
   Placeholder = {
-    offset = { 2000, 100 },
+    offset = { 100, 100 },
     { path = "Placeholder" },
   },
-  AudioLeft = {
-    offset = {1550,120},
+  TriggerIn = {
+    offset = {1750,120},
+    {path = "SharedCVJack", frames=3}
+  },
+  AudioOutLeft = {
+    offset = {1950,120},
     { path = "SharedAudioJack", frames = 3},
   },
-  AudioRight = {
-    offset = {1750,120},
+  AudioOutRight = {
+    offset = {2150,120},
     { path = "SharedAudioJack", frames = 3},
   },
   deviceName = {
