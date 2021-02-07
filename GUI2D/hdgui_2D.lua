@@ -6,9 +6,9 @@ front = jbox.panel {
     jbox.patch_browse_group { graphics = {node="patches"}},
     jbox.patch_name{
       graphics = { node = "patch" },
-      fg_color = { 0, 0, 0 },
-      loader_alt_color = { 0, 0, 0 },
-      center = true,
+      fg_color = { 255,255,255 },
+      loader_alt_color = { 55,105,192 },
+      center = false,
       text_style = "Bold LCD font",
     },
     jbox.up_down_button{

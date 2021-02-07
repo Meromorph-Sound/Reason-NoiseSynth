@@ -104,6 +104,22 @@ function append(to,extras)
   return to
 end  
 
+local shapeNames = { 
+  "normal", 
+  "poisson", 
+  "triangleDown", 
+  "triangleUp", 
+  "triangle", 
+  "delta", 
+  "expHard", 
+  "expSoft", 
+  "square" 
+}
+
+local uiShapeNames={}
+for _,name in pairs(shapeNames) do
+  table.insert(uiShapeNames,jbox.ui_text(name))
+end 
 
 
 
@@ -115,7 +131,7 @@ custom_properties = jbox.property_set{
         steps=9,
         ui_name = jbox.ui_text("shape"),  
         property_tag=1,
-        ui_type = rangeType(9) 
+        ui_type = jbox.ui_selector(uiShapeNames)
       },
      ["pitch"] = jbox.number {
       default=0,

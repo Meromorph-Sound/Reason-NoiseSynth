@@ -45,5 +45,15 @@ texts = {
   ["linear_template"] = "^0",
   ["zero"] = "0",
   ["one"] = "1",
-  ["max"] = "max"
+  ["max"] = "max",
+  
+  ["normal"] = "Normal", 
+  ["poisson"] = "Poisson", 
+  ["triangleDown"] = "Sawtooth down", 
+  ["triangleUp"] = "Sawtooth up", 
+  ["triangle"] = "Triangle", 
+  ["delta"] = "Pulse", 
+  ["expHard"] = "Hard exponential drop", 
+  ["expSoft"] = "Soft exponential drop", 
+  ["square"] = "Square"
 }

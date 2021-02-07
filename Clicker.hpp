@@ -9,10 +9,13 @@
 #define CLICKER_HPP_
 
 #import "RackExtension.hpp"
+#import "Carrier.hpp"
 
 
 namespace meromorph {
 namespace click {
+
+
 
 enum Tags : uint32 {
 	SHAPE=1,
@@ -27,21 +30,42 @@ enum Tags : uint32 {
 	};
 
 
+
+struct TriggerState {
+	static const float32 TriggerPeriod;
+	enum Action : uint32 {
+		SET = 1,
+		RESET = 2,
+		NIL = 3
+	};
+	uint32 triggerDelay = 1;
+	int32 triggeredCount = 0;
+	bool triggered = false;
+
+	TriggerState() = default;
+	virtual ~TriggerState() = default;
+
+	void set() { triggered=true; }
+	void clear() { triggered=false; }
+	void setDelay(const float32 sampleRate,const float32 BUFFER_SIZE);
+	Action step();
+	void reset();
+};
+
 class Clicker : public RackExtension {
 private:
 	TJBox_ObjectRef left;
 	TJBox_ObjectRef right;
 	TJBox_ObjectRef externalTrigger;
 
-	static const float32 TriggerPeriod;
-	uint32 triggerDelay = 1;
-	int32 triggeredCount = 0;
-	bool triggered = false;
+
+	TriggerState tState;
 	bool initialised = false;
 
 	float32 sampleRate = 48000;
 
 
+	Carrier carrier;
 
 	void computeTriggerDelay();
 	void handleTriggerLED();
