@@ -10,6 +10,7 @@
 
 #import "RackExtension.hpp"
 #import "Carrier.hpp"
+#import "Click.hpp"
 
 
 namespace meromorph {
@@ -47,6 +48,7 @@ struct TriggerState {
 
 	void set() { triggered=true; }
 	void clear() { triggered=false; }
+	bool isTriggered() const { return triggered; }
 	void setDelay(const float32 sampleRate,const float32 BUFFER_SIZE);
 	Action step();
 	void reset();
@@ -58,14 +60,27 @@ private:
 	TJBox_ObjectRef right;
 	TJBox_ObjectRef externalTrigger;
 
+	std::vector<float32> lBuffer;
+	std::vector<float32> rBuffer;
+	float32 lPan = 0.71;
+	float32 rPan = 0.71;
+
 
 	TriggerState tState;
 	bool initialised = false;
 
 	float32 sampleRate = 48000;
+	bool clicking = false;
+	uint32 clickOffset = 0;
+	uint32 clickLength = 200;
 
 
 	Carrier carrier;
+	Clicks clicks;
+	Shape click;
+
+	float32 amplitude = 1.0;
+
 
 	void computeTriggerDelay();
 	void handleTriggerLED();
