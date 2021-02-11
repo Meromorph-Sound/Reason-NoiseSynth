@@ -39,6 +39,8 @@ void trace(const char *tmpl,const float32 value1,const float32 value2);
 
 
  float32 toFloat(const TJBox_Value diff);
+ float32 clampedFloat(const TJBox_Value diff);
+ float32 scaledFloat(const TJBox_Value diff,const float32 min=0.0,const float32 max=1.0);
  bool toBool(const TJBox_Value diff);
  int32 toInt(const TJBox_Value diff);
 
@@ -49,6 +51,8 @@ T clamp(const T lo,const T hi,const T value) {
 
  void append(char *str,const char *root,const char *ext);
 
+ inline float32 const Pi = 3.141592653589793f;
+ inline float32 const TwoPi = 2.f*Pi;
 }
 
 

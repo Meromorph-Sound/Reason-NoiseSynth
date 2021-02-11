@@ -45,7 +45,7 @@ const float32 TriggerState::TriggerPeriod = 0.1;
 
 Clicker::Clicker() : RackExtension(), lBuffer(BUFFER_SIZE), rBuffer(BUFFER_SIZE) {
 	trace("Clicker is here");
-	computeTriggerDelay();
+	tState.setDelay(sampleRate,BUFFER_SIZE);
 	right=JBox_GetMotherboardObjectRef("/audio_outputs/audioOutRight");
 	left=JBox_GetMotherboardObjectRef("/audio_outputs/audioOutLeft");
 	externalTrigger=JBox_GetMotherboardObjectRef("/cv_inputs/externalTrigger");
@@ -56,25 +56,29 @@ void Clicker::processApplicationMessage(const TJBox_PropertyDiff &diff) {
 	switch(tag) {
 	case Tags::SHAPE: {
 		trace("Shape fired");
-		auto s = clamp(0,ClickShape::N_SHAPE_FUNCTIONS-1,toInt(diff.fCurrentValue));
-		click=clicks[s];
+		click = Clicks::asShape(diff);
 		break;
 	}
-	case Tags::PITCH:
-		carrier.setFrequency(toFloat(diff.fCurrentValue));
+	case Tags::PITCH: {
+		auto f = scaledFloat(diff.fCurrentValue,100,10000);
+		trace("Carrier frequency is ^0",f);
+		carrier.setFrequency(f);
 		break;
+	}
 	case Tags::LENGTH:
-		clickLength = toInt(diff.fCurrentValue);
+		clickLength = lround(scaledFloat(diff.fCurrentValue,100,500));
+		trace("Click length is ^0",clickLength);
 		break;
 	case Tags::PAN: {
-		auto coefft = clamp(-1.f,1.f,toFloat(diff.fCurrentValue));
-		auto angle = M_PI*(coefft+1)/4;
+		auto angle = scaledFloat(diff.fCurrentValue,0,meromorph::Pi/2);
 		lPan = cos(angle);
 		rPan = sin(angle);
+		trace("Pan angle is ^0",angle);
 		break;
 	}
 	case Tags::AMPLITUDE:
-		amplitude = clamp(0.f,1.f,toFloat(diff.fCurrentValue));
+		amplitude = clampedFloat(diff.fCurrentValue);
+		trace("Amplitude is ^0",amplitude);
 		break;
 	case Tags::TRIGGER:
 		trace("Trigger fired");
@@ -106,6 +110,7 @@ void Clicker::setSampleRate(const float32 rate) {
 	sampleRate=rate;
 	tState.setDelay(rate,BUFFER_SIZE);
 	carrier.setSampleRate(rate);
+	trace("Sample rate is ^0",rate);
 }
 
 void Clicker::process() {
@@ -113,13 +118,16 @@ void Clicker::process() {
 		clicking=true;
 		clickOffset=0;
 	}
+	if(clicking) trace("Clicking ON  Click offset is ^0",clickOffset);
+
+
 	if(clicking && clickOffset>=clickLength) {
 		clicking=false;
 		clickOffset=0;
 	}
 
 	for(auto n=0;n<BUFFER_SIZE;n++) {
-		auto c = (clicking) ? click[clickOffset++] : 0.f;
+		auto c = (clicking) ? clicks.at(click,clickOffset++) : 0.f;
 		auto f = carrier.next();
 		auto sample=c*f*amplitude;
 

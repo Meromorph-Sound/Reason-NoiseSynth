@@ -15,7 +15,6 @@ namespace click {
 
 class Oscillator {
 protected:
-	static const float32 TwoPi;
 	float32 sampleRate;
 	float32 frequency = 0;
 	float32 phase =0;

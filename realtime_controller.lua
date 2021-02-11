@@ -28,7 +28,11 @@ rt_input_setup = {
   notify = {
   "/custom_properties/trigger",
   "/custom_properties/triggerMode",
-  "/custom_properties/shape"
+  "/custom_properties/shape",
+  "/custom_properties/pitch",
+  "/custom_properties/length",
+  "/custom_properties/pan",
+  "/custom_properties/amplitude"
   }
 }
 

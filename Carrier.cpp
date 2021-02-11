@@ -10,10 +10,10 @@
 namespace meromorph {
 namespace click {
 
-const float32 Oscillator::TwoPi = 2*M_PI;
+
 
 void Oscillator::update() {
-	delta = Oscillator::TwoPi*frequency/sampleRate;
+	delta = meromorph::TwoPi*frequency/sampleRate;
 }
 
 void Oscillator::setSampleRate(const float32 rate) {
@@ -30,7 +30,7 @@ void Oscillator::reset() {
 }
 
 float32 Oscillator::next() {
-	phase=remainder(phase+delta,Oscillator::TwoPi);
+	phase=remainder(phase+delta,meromorph::TwoPi);
 	return sin(phase);
 }
 

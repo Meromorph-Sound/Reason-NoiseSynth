@@ -17,33 +17,7 @@
 namespace meromorph {
 namespace click {
 
-using ShapeFunction = std::function<float32(const uint32)>;
 
-class Shape {
-protected:
-	std::vector<float32> buffer;
-public:
-	static const uint32 CLICK_LENGTH;
-	using iterator = std::vector<float32>::iterator;
-	using const_iterator = std::vector<float32>::const_iterator;
-	using size_t = uint32;
-
-
-	Shape() : buffer(CLICK_LENGTH) {};
-	Shape(const Shape &o) : buffer(o.buffer) {};
-	Shape & operator=(const Shape &o);
-	virtual ~Shape() = default;
-
-	void load(ShapeFunction &&func);
-	float32 operator[](const uint32 n) const;
-
-	size_t size() const { return buffer.size(); }
-	iterator begin() { return buffer.begin(); }
-	iterator end() { return buffer.end(); }
-	const_iterator cbegin() const { return buffer.cbegin(); }
-	const_iterator cend() const { return buffer.cend(); }
-
-};
 
 enum ClickShape : uint32 {
 	NORMAL = 0,
@@ -56,26 +30,35 @@ enum ClickShape : uint32 {
 	EXP_FALL_SOFT = 7,
 	SQUARE = 8,
 
-	N_SHAPE_FUNCTIONS = 9
+
 };
 
 
 
 class Clicks {
 protected:
+	static const uint32 CLICK_LENGTH;
+	static const uint32 N_SHAPE_FUNCTIONS;
+
+	float32 *shapes;
+
+	uint32 static offsetFor(const ClickShape shape,const uint32 idx=0);
 
 
-	Shape clicks[N_SHAPE_FUNCTIONS];
 public:
+	using iterator = float32 *;
+	ClickShape static asShape(const TJBox_PropertyDiff&);
+
 	Clicks();
-	virtual ~Clicks() = default;
+	virtual ~Clicks();
 	Clicks(const Clicks &other) = default;
 	Clicks& operator=(const Clicks &other) = default;
 
-	float32 at(const ClickShape click,const uint32 idx) const { return clicks[click][idx]; }
-	Shape::iterator begin(const ClickShape click) { return clicks[click].begin(); }
-	Shape::iterator end(const ClickShape click) { return clicks[click].end(); }
-	uint32 size() const { return Shape::CLICK_LENGTH; }
+
+	float32 &at(const ClickShape click,const uint32 idx);
+	iterator begin(const ClickShape click);
+	iterator end(const ClickShape click);
+	uint32 size() const;
 
 };
 

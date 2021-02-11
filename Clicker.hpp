@@ -77,12 +77,11 @@ private:
 
 	Carrier carrier;
 	Clicks clicks;
-	Shape click;
+	ClickShape click = ClickShape::SQUARE;
 
 	float32 amplitude = 1.0;
 
 
-	void computeTriggerDelay();
 	void handleTriggerLED();
 
 protected:

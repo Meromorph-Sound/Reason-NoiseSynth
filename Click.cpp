@@ -14,27 +14,43 @@ namespace click {
 
 
 
-const uint32 Shape::CLICK_LENGTH = 200;
-Shape & Shape::operator=(const Shape &o) {
-		std::copy(o.buffer.begin(),o.buffer.end(),buffer.begin());
-		return *this;
-	}
-float32 Shape::operator[](const uint32 n) const { return (n<CLICK_LENGTH) ? buffer[n] : 0.0; }
-void Shape::load(ShapeFunction &&func) {
-	for(auto i=0;i<CLICK_LENGTH;i++) buffer[i]=func(i);
+const uint32 Clicks::CLICK_LENGTH = 200;
+const uint32 Clicks::N_SHAPE_FUNCTIONS = 9;
+
+ClickShape Clicks::asShape(const TJBox_PropertyDiff & diff) {
+	int32 i = toInt(diff.fCurrentValue);
+	int32 limited = clamp(0,(int32)N_SHAPE_FUNCTIONS-1,i);
+	return static_cast<ClickShape>(limited);
 }
 
-Clicks::Clicks()  {
-	clicks[SQUARE].load([](const uint32 f) { return (float32)f; });
-	clicks[TRIANGULAR].load([](const uint32 n) { return 1.0-(abs(n-100.0)/100.0); });
-	clicks[HALF_TRIANGULAR_DOWN].load([](const uint32 n) { return std::max(0.0,1-(n/100.0)); });
-	clicks[HALF_TRIANGULAR_UP].load([](const uint32 n) { return (n<100) ? n/100.0 : 0.0; });
-	clicks[NORMAL].load([](const uint32 n) { return exp(-pow((n-100.0)/10.0,2.0)); });
-	clicks[POISSON].load([](const uint32 n) { return exp(-n/10.0); });
-	clicks[DELTA].load([](const uint32 n) { return (n<10) ? 1.0 : 0.0; });
-	clicks[EXP_FALL_HARD].load([](const uint32 n){ return (n<100) ? 1.0-exp(n-75.0) : 0.0; });
-	clicks[EXP_FALL_SOFT].load([](const uint32 n){ return (n<100) ? 1.0-exp(n-200.0) : 0.0; });
+Clicks::Clicks() {
+	shapes=new float32[N_SHAPE_FUNCTIONS*CLICK_LENGTH];
+
+	for(auto n=0;n<Clicks::CLICK_LENGTH;n++) {
+		at(SQUARE,n) = 1;
+		at(TRIANGULAR,n) = 1.0-(abs(n-100.0)/100.0);
+		at(HALF_TRIANGULAR_DOWN,n) = std::max(0.0,1-(n/100.0));
+		at(HALF_TRIANGULAR_UP,n) = (n<100) ? n/100.0 : 0.0;
+		at(NORMAL,n) = exp(-pow((n-100.0)/10.0,2.0));
+		at(POISSON,n) = exp(-n/10.0);
+		at(DELTA,n) = (n<10) ? 1.0 : 0.0;
+		at(EXP_FALL_HARD,n) = (n<100) ? 1.0-exp(n-75.0) : 0.0;
+		at(EXP_FALL_SOFT,n) = (n<100) ? 1.0-exp(n-200.0) : 0.0;
+	}
 }
+
+Clicks::~Clicks() {
+	if(shapes!=nullptr) delete [] shapes;
+}
+
+uint32 Clicks::offsetFor(const ClickShape shape,const uint32 idx) {
+	return idx+static_cast<uint32>(shape)*CLICK_LENGTH;
+}
+
+float32 &Clicks::at(const ClickShape click,const uint32 idx) { return shapes[offsetFor(click,idx)]; }
+Clicks::iterator Clicks::begin(const ClickShape click) { return shapes+offsetFor(click); }
+Clicks::iterator Clicks::end(const ClickShape click) { return shapes+offsetFor(click,CLICK_LENGTH); }
+uint32 Clicks::size() const { return Clicks::CLICK_LENGTH; }
 
 
 	// TODO Auto-generated constructor stub
