@@ -121,6 +121,13 @@ for _,name in pairs(shapeNames) do
   table.insert(uiShapeNames,jbox.ui_text(name))
 end 
 
+-- Some range properties
+PITCH_MIN = 100
+PITCH_MAX = 10000
+
+LENGTH_MIN = 1
+LENGTH_MAX = 500
+
 
 
 custom_properties = jbox.property_set{
@@ -138,8 +145,8 @@ custom_properties = jbox.property_set{
       ui_name = jbox.ui_text("pitch"),  
       property_tag=2,
       ui_type = jbox.ui_linear{
-        min = 100,
-        max = 10000,
+        min = PITCH_MIN,
+        max = PITCH_MAX,
         units = {{ decimals=1, unit = { template = jbox.ui_text("hertz") }}}
       }
     },
@@ -147,11 +154,11 @@ custom_properties = jbox.property_set{
       default=0,
       ui_name = jbox.ui_text("length"),  
       property_tag=3,
-      ui_type = jbox.ui_linear{
-        min=0,
-        max=500,
-        units = {{ decimals=0}}
-      }
+        ui_type = jbox.ui_linear{
+          min=LENGTH_MIN,
+          max=LENGTH_MAX,
+          units = {{ decimals=0}}
+        }
      },
      ["pan"] = jbox.number {
       default=0.5,
@@ -241,6 +248,27 @@ audio_outputs = {
 	audioOutLeft = jbox.audio_output{ ui_name = jbox.ui_text("audioOutput") },
 	audioOutRight = jbox.audio_output{ ui_name = jbox.ui_text("audioOutput") }
 }
+
+
+
+jbox.add_stereo_instrument_routing_hint{
+  left_output = "/audio_outputs/audioOutLeft",
+  right_output = "/audio_outputs/audioOutRight",
+}
+jbox.add_stereo_audio_routing_target{
+  signal_type = "send",
+  left = "/audio_outputs/audioOutLeft",
+  right = "/audio_outputs/audioOutRight",
+  auto_route_enable = true
+}
+
+jbox.add_stereo_audio_routing_pair{
+  left = "/audio_outputs/audioOutLeft",
+  right = "/audio_outputs/audioOutRight"
+}
+
+
+
 
 
 

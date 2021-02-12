@@ -44,7 +44,8 @@ Clicks::~Clicks() {
 }
 
 uint32 Clicks::offsetFor(const ClickShape shape,const uint32 idx) {
-	return idx+static_cast<uint32>(shape)*CLICK_LENGTH;
+	auto i = lround(idx*scale);
+	return i+static_cast<uint32>(shape)*CLICK_LENGTH;
 }
 
 float32 &Clicks::at(const ClickShape click,const uint32 idx) { return shapes[offsetFor(click,idx)]; }
@@ -52,6 +53,9 @@ Clicks::iterator Clicks::begin(const ClickShape click) { return shapes+offsetFor
 Clicks::iterator Clicks::end(const ClickShape click) { return shapes+offsetFor(click,CLICK_LENGTH); }
 uint32 Clicks::size() const { return Clicks::CLICK_LENGTH; }
 
+void Clicks::setScale(const uint32 length) {
+	scale = (length>0) ? Clicks::CLICK_LENGTH/(float32)length : 0;
+}
 
 	// TODO Auto-generated constructor stub
 

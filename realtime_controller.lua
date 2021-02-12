@@ -32,7 +32,11 @@ rt_input_setup = {
   "/custom_properties/pitch",
   "/custom_properties/length",
   "/custom_properties/pan",
-  "/custom_properties/amplitude"
+  "/custom_properties/amplitude",
+  "/cv_inputs/trigger",
+  "/transport/request_reset_audio",
+  "/environment/master_tune",
+  "/environment/system_sample_rate"
   }
 }
 

@@ -10,28 +10,14 @@
 namespace meromorph {
 namespace click {
 
-
-
-void Oscillator::update() {
-	delta = meromorph::TwoPi*frequency/sampleRate;
-}
-
-void Oscillator::setSampleRate(const float32 rate) {
-	sampleRate=rate;
-	update();
-}
-void Oscillator::setFrequency(const float32 freq) {
-	frequency=freq;
-	update();
-}
-
-void Oscillator::reset() {
-	phase=0;
-}
-
-float32 Oscillator::next() {
+float32 Carrier::next() {
 	phase=remainder(phase+delta,meromorph::TwoPi);
 	return sin(phase);
+}
+
+float32 Pulse::next() {
+	phase = remainder(phase+delta,meromorph::TwoPi);
+	return (phase<delta) ? 1.0 : 0.0;
 }
 
 } /* namespace click */

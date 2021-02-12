@@ -49,7 +49,16 @@ Clicker::Clicker() : RackExtension(), lBuffer(BUFFER_SIZE), rBuffer(BUFFER_SIZE)
 	right=JBox_GetMotherboardObjectRef("/audio_outputs/audioOutRight");
 	left=JBox_GetMotherboardObjectRef("/audio_outputs/audioOutLeft");
 	externalTrigger=JBox_GetMotherboardObjectRef("/cv_inputs/externalTrigger");
+
 }
+
+
+TriggerMode asMode(const TJBox_PropertyDiff & diff) {
+	int32 i = toInt(diff.fCurrentValue);
+	int32 limited = clamp(0,2,i);
+	return static_cast<TriggerMode>(limited);
+}
+
 
 void Clicker::processApplicationMessage(const TJBox_PropertyDiff &diff) {
 	Tag tag = diff.fPropertyTag;
@@ -60,13 +69,14 @@ void Clicker::processApplicationMessage(const TJBox_PropertyDiff &diff) {
 		break;
 	}
 	case Tags::PITCH: {
-		auto f = scaledFloat(diff.fCurrentValue,100,10000);
+		auto f = scaledFloat(diff.fCurrentValue,PITCH_MIN,PITCH_MAX);
 		trace("Carrier frequency is ^0",f);
 		carrier.setFrequency(f);
 		break;
 	}
 	case Tags::LENGTH:
-		clickLength = lround(scaledFloat(diff.fCurrentValue,100,500));
+		clickLength = lround(scaledFloat(diff.fCurrentValue,LENGTH_MIN,LENGTH_MAX));
+		clicks.setScale(clickLength);
 		trace("Click length is ^0",clickLength);
 		break;
 	case Tags::PAN: {
@@ -81,12 +91,20 @@ void Clicker::processApplicationMessage(const TJBox_PropertyDiff &diff) {
 		trace("Amplitude is ^0",amplitude);
 		break;
 	case Tags::TRIGGER:
-		trace("Trigger fired");
-		if(toBool(diff.fCurrentValue)) tState.set();
+		if(mode==TriggerMode::MANUAL) {
+			trace("Trigger fired (manual)");
+			if(toBool(diff.fCurrentValue)) tState.set();
+		}
 		break;
 	case Tags::TRIGGER_MODE:
 		trace("Trigger mode ^0",toFloat(diff.fCurrentValue));
+		mode = asMode(diff);
 		break;
+	case kJBox_CVInputValue:
+		if(mode==TriggerMode::EXT_CLOCK) {
+			trace("Trigger fired (external clock)");
+			if(toFloat(diff.fCurrentValue)>0) tState.set();
+		}
 	}
 
 
@@ -114,6 +132,10 @@ void Clicker::setSampleRate(const float32 rate) {
 }
 
 void Clicker::process() {
+	if(!initialised) {
+		clicks.setScale(clickLength);
+		initialised=true;
+	}
 	if(tState.isTriggered()) {
 		clicking=true;
 		clickOffset=0;

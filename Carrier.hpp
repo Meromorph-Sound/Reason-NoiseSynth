@@ -9,41 +9,37 @@
 #define CARRIER_HPP_
 
 #include "base.hpp"
+#include "OscillatorBase.hpp"
 
 namespace meromorph {
 namespace click {
 
-class Oscillator {
+class Carrier : public OscillatorBase {
 protected:
-	float32 sampleRate;
-	float32 frequency = 0;
-	float32 phase =0;
-	float32 delta =0;
 
-	void update();
 public:
-	Oscillator(const float32 N) : sampleRate(N) {};
-	virtual ~Oscillator() = default;
-	Oscillator(const Oscillator &other) = default;
-	Oscillator& operator=(const Oscillator &other) = default;
-
-	void setSampleRate(const float32 rate);
-	void setFrequency(const float32 freq);
-	virtual void reset();
+	Carrier() : OscillatorBase(48000) {};
+	virtual ~Carrier() = default;
+	Carrier(const Carrier &other) = default;
+	Carrier& operator=(const Carrier &other) = default;
 
 	virtual float32 next();
 
 };
 
-class Carrier : public Oscillator {
+class Pulse : public OscillatorBase {
+protected:
 
 public:
-	Carrier() : Oscillator(48000) {};
-	virtual ~Carrier() = default;
-	Carrier(const Carrier &other) = default;
-	Carrier& operator=(const Carrier &other) = default;
+	Pulse() : OscillatorBase(48000) {};
+	virtual ~Pulse() = default;
+	Pulse(const Pulse &other) = default;
+	Pulse& operator=(const Pulse &other) = default;
+
+	virtual float32 next();
 
 };
+
 
 } /* namespace click */
 } /* namespace meromorph */

@@ -42,8 +42,8 @@ protected:
 
 	float32 *shapes;
 
-	uint32 static offsetFor(const ClickShape shape,const uint32 idx=0);
-
+	uint32 offsetFor(const ClickShape shape,const uint32 idx=0);
+	float32 scale = 1.0;
 
 public:
 	using iterator = float32 *;
@@ -59,6 +59,8 @@ public:
 	iterator begin(const ClickShape click);
 	iterator end(const ClickShape click);
 	uint32 size() const;
+
+	void setScale(const uint32 length);
 
 };
 

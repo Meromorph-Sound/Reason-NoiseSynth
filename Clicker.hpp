@@ -30,7 +30,11 @@ enum Tags : uint32 {
 	TRIGGER_BACK = 10
 	};
 
-
+enum TriggerMode : uint32 {
+	MANUAL = 0,
+	EXT_CLOCK = 1,
+	INT_CLOCK = 2
+};
 
 struct TriggerState {
 	static const float32 TriggerPeriod;
@@ -42,6 +46,7 @@ struct TriggerState {
 	uint32 triggerDelay = 1;
 	int32 triggeredCount = 0;
 	bool triggered = false;
+
 
 	TriggerState() = default;
 	virtual ~TriggerState() = default;
@@ -65,7 +70,7 @@ private:
 	float32 lPan = 0.71;
 	float32 rPan = 0.71;
 
-
+	TriggerMode mode = MANUAL;
 	TriggerState tState;
 	bool initialised = false;
 
@@ -85,6 +90,13 @@ private:
 	void handleTriggerLED();
 
 protected:
+	const static inline float32 PITCH_MIN = 100.f;
+	const static inline float32 PITCH_MAX = 10000.f;
+
+	const static inline float32 LENGTH_MIN = 1.f;
+	const static inline float32 LENGTH_MAX = 500.f;
+
+
 	virtual void setSampleRate(const float32 rate);
 	virtual void processApplicationMessage(const TJBox_PropertyDiff &diff);
 	virtual void process();
