@@ -35,60 +35,30 @@ public:
 	virtual float32 next() { return 0; }
 };
 
-class Thresholder {
+class EdgeDetector {
 private:
-	float32 threshold;
-	bool last;
+	float32 threshold = 0.5;
+	uint32 delay = 0;
+	float32 last = NAN;
+	int32 counter = 0;
+
+
+	bool trigger(const float32 value);
 
 public:
+	EdgeDetector() = default;
+	EdgeDetector(const float32 t, const uint32 d=0) : threshold(t), delay(d) {}
+	virtual ~EdgeDetector() = default;
+	EdgeDetector(const EdgeDetector &) = default;
+	EdgeDetector & operator=(const EdgeDetector &) = default;
 
-	Thresholder() : threshold(0.5), last(false) {};
-	Thresholder(const float32 t) : threshold(t), last(false) {};
-	virtual ~Thresholder() = default;
-	Thresholder(const Thresholder &) = default;
-	Thresholder & operator=(const Thresholder &) = default;
-
-	void reset() { last = false; }
+	void reset();
 	void setThreshold(const float32 t) { threshold=t; }
-
-	bool operator()(const float32 value) {
-		auto  t=value>threshold;
-		auto out = t && (!last);
-		last = t;
-		return out;
-	}
+	void setDelay(const uint32 d = 0) { delay = d; }
+	bool operator()(const float32 next);
 };
 
-class HysteresisThresholder {
-private:
-	float32 threshold;
-	uint32 gap;
-	bool last;
-	bool blocked;
-	uint32 counter;
 
-public:
-
-	HysteresisThresholder() : threshold(0.5), last(false), gap(1), counter(0) {};
-	HysteresisThresholder(const float32 t,const uint32 g=1) : threshold(t), last(false), gap(g), counter(0) {};
-	virtual ~HysteresisThresholder() = default;
-	HysteresisThresholder(const HysteresisThresholder &) = default;
-	HysteresisThresholder & operator=(const HysteresisThresholder &) = default;
-
-	void reset() { last = false; counter=0; }
-	void setThreshold(const float32 t) { threshold=t; }
-	void seGap(const uint32 g) { gap=g; }
-
-	bool operator()(const float32 value) {
-		auto  t=value>threshold;
-		if(t && !last) {
-
-		}
-		auto out = t && (!last);
-		last = t;
-		return out;
-	}
-};
 
 } /* namespace click */
 } /* namespace meromorph */

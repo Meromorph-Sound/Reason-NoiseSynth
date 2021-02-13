@@ -16,8 +16,9 @@ float32 Carrier::next() {
 }
 
 float32 Pulse::next() {
+	auto last=phase;
 	phase = remainder(phase+delta,meromorph::TwoPi);
-	return (phase<delta) ? 1.0 : 0.0;
+	return (last>phase) ? 1.0 : 0.0;
 }
 
 } /* namespace click */

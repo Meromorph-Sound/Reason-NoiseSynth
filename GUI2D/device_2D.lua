@@ -18,16 +18,24 @@ front = {
     offset = {505,20},
     { path = "204x10_5x5",frames=1}
   },
-  shape = { offset = {800,150}, { path = "Clicks_9frames", frames = 9}},
-  shapeUpDown   = { offset = {1000,187}, { path = "UpDown", frames = 3}},
-  triggerMode = { offset = {3285,200}, {path = "Fader_32_3frames", frames=3}},
-  trigger  = { offset = {3295,500}, { path = "Button_53_2frames", frames = 2}},
+  triggerMode = { offset = {700,120}, {path = "Fader_32_3frames", frames=3}},
+  trigger  = { offset = {710,420}, { path = "Button_53_2frames", frames = 2}},
   triggered = { offset = {1580,25}, { path = "Lamp_10_GREEN_2frames", frames=2}},
-  pitch = { offset = {1650,150}, { path = "Knob_01_63frames", frames = 63}},
-  length = { offset = {1200,150}, { path = "Knob_01_63frames", frames = 63}},
-  pan = { offset = {3150,20}, { path = "Knob_51_63frames", frames = 63}},
-  amplitude = { offset = {3350,20}, { path = "Knob_51_63frames", frames = 63}},
-  
+  --
+  threshold = { offset = {1000,120}, {path="Knob_51_63frames", frames=63}},
+  delay = { offset = {1000,300}, {path="Knob_51_63frames", frames=63}},
+  --
+  shape = { offset = {1500,120}, { path = "Clicks_9frames", frames = 9}},
+  shapeUpDown   = { offset = {1700,157}, { path = "UpDown", frames = 3}},
+  --
+  length = { offset = {1850,120}, { path = "Knob_01_63frames", frames = 63}},
+  pitch = { offset = {2100,120}, { path = "Knob_01_63frames", frames = 63}},
+  --
+  limiter = { offset = {2500,120}, {path="Knob_51_63frames", frames=63}},
+  limiterOnOff = { offset = {2500,260}, {path="Button_53_2frames",frames=2}},
+  --
+  pan = { offset = {3100,50}, { path = "Knob_01_63frames", frames = 63}},
+  amplitude = { offset = {3100,400}, { path = "Knob_01_63frames", frames = 63}}
 }
 back = { 
   Bg = {

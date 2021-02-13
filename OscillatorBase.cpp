@@ -29,6 +29,21 @@ void OscillatorBase::reset() {
 
 
 
+void EdgeDetector::reset() {
+	last=NAN;
+	counter=0;
+}
+
+	bool EdgeDetector::operator()(const float32 next) {
+		bool out=false;
+		if(counter>0) counter--;
+		else if(last<threshold && next>threshold) {
+			counter=delay;
+			out=true;
+		}
+		last=next;
+		return out;
+	}
 
 
 } /* namespace click */

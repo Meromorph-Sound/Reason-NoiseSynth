@@ -62,6 +62,7 @@ TriggerMode asMode(const TJBox_PropertyDiff & diff) {
 
 void Clicker::processApplicationMessage(const TJBox_PropertyDiff &diff) {
 	Tag tag = diff.fPropertyTag;
+	bool setTrigger=false;
 	switch(tag) {
 	case Tags::SHAPE: {
 		trace("Shape fired");
@@ -92,19 +93,26 @@ void Clicker::processApplicationMessage(const TJBox_PropertyDiff &diff) {
 		break;
 	case Tags::TRIGGER:
 		if(mode==TriggerMode::MANUAL) {
-			trace("Trigger fired (manual)");
-			if(toBool(diff.fCurrentValue)) tState.set();
+			if(toBool(diff.fCurrentValue)) setTrigger=true;
 		}
 		break;
 	case Tags::TRIGGER_MODE:
 		trace("Trigger mode ^0",toFloat(diff.fCurrentValue));
 		mode = asMode(diff);
+		if(mode==TriggerMode::EXT_CLOCK) edges.reset();
 		break;
 	case kJBox_CVInputValue:
 		if(mode==TriggerMode::EXT_CLOCK) {
-			trace("Trigger fired (external clock)");
-			if(toFloat(diff.fCurrentValue)>0) tState.set();
+			if(edges(toFloat(diff.fCurrentValue))) setTrigger=true;
 		}
+	}
+
+	auto p = pulse.next();
+	if(mode==TriggerMode::INT_CLOCK) setTrigger=p>0;
+
+	if(setTrigger) {
+		trace("Triggering pulse, mode is ^0",mode);
+		tState.set();
 	}
 
 

@@ -31,7 +31,7 @@ class Pulse : public OscillatorBase {
 protected:
 
 public:
-	Pulse() : OscillatorBase(48000) {};
+	Pulse() : OscillatorBase(750) {};
 	virtual ~Pulse() = default;
 	Pulse(const Pulse &other) = default;
 	Pulse& operator=(const Pulse &other) = default;

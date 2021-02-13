@@ -9,6 +9,7 @@
 #define CLICKER_HPP_
 
 #import "RackExtension.hpp"
+#import "OscillatorBase.hpp"
 #import "Carrier.hpp"
 #import "Click.hpp"
 
@@ -81,6 +82,8 @@ private:
 
 
 	Carrier carrier;
+	Pulse pulse;
+	EdgeDetector edges;
 	Clicks clicks;
 	ClickShape click = ClickShape::SQUARE;
 
