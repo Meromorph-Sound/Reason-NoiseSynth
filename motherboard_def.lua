@@ -197,8 +197,7 @@ custom_properties = jbox.property_set{
         property_tag=7,
         ui_type = labelType({"external","clocked","manual"})
       },
-    }
-	},
+	}},
 	rtc_owner = {
 		properties = { instance = jbox.native_object{} }
 	},

@@ -34,6 +34,7 @@ texts = {
   ["right"] = "Full right",
   ["degrees"] = "^0 deg",
   ["hertz"] = "^0 Hz",
+  ["seconds"] = "^0 s",
   
   ["pitchbend"] = "Pitch Bend",
   ["expression"] = "Expression",
@@ -55,5 +56,7 @@ texts = {
   ["delta"] = "Pulse", 
   ["expHard"] = "Hard exponential drop", 
   ["expSoft"] = "Soft exponential drop", 
-  ["square"] = "Square"
+  ["square"] = "Square",
+  
+  ["period"] = "Period"
 }

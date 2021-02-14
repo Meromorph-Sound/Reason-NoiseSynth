@@ -46,7 +46,7 @@ front = jbox.panel {
     jbox.sequence_meter{
       graphics = { node = "triggered" },
       value = "/custom_properties/triggered"
-    }
+    },
   }	
 }
 back = jbox.panel { 
