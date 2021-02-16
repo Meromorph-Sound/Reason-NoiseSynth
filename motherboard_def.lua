@@ -197,6 +197,49 @@ custom_properties = jbox.property_set{
         property_tag=7,
         ui_type = labelType({"external","clocked","manual"})
       },
+      
+      ["vcoFrequency"] = jbox.number {
+        default=20,
+        ui_name = jbox.ui_text("frequency"),
+        property_tag = 20,
+        ui_type = jbox.ui_linear{
+        min = 0,
+        max = 750,
+        units = {
+          { 
+            decimals=3,
+            unit={ template = jbox.ui_text("hertz") }
+          }
+        }
+      }},
+      ["vcoHold"] =jbox.number {
+        default=0,
+        steps=2,
+        ui_name = jbox.ui_text("hold"),  
+        property_tag=21,
+        ui_type = jbox.ui_selector({jbox.UI_TEXT_OFF,jbox.UI_TEXT_ON})   
+      },
+      ["vcoModulatorMultiplier"] = jbox.number {
+      default=1,
+      ui_name = jbox.ui_text("multiplier"),  
+      property_tag=22,
+      ui_type = jbox.ui_linear{
+        min = -1,
+        max = 1,
+        units = {
+          { 
+            decimals=2,
+            unit={ template = jbox.ui_text("linear_template") }
+          }
+        }
+     }},
+     ["vcoModulatorActive"] =jbox.number {
+        default=0,
+        steps=2,
+        ui_name = jbox.ui_text("modulator"),  
+        property_tag=23,
+        ui_type = jbox.ui_selector({jbox.UI_TEXT_OFF,jbox.UI_TEXT_ON})   
+      }
 	}},
 	rtc_owner = {
 		properties = { instance = jbox.native_object{} }

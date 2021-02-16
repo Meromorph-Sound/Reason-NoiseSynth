@@ -40,20 +40,13 @@ front = {
   -- OnOff: whether the unit is switched on - push to toggle
   -- Hold: switches stepping on/off - otherwise frozen at current value - push to toggle
   -- Reset: resets the unit to the default value (i.e. offset)  - push to reset
-  LFOOnOff = { offset = {2500,400}, {path="Button_53_2frames",frames=2}}, 
-  LFOHold = { offset = {2500,490}, {path="Button_53_2frames",frames=2}}, 
-  LFOReset = { offset = {2500,580}, {path="Button_53_2frames",frames=2}}, 
+  VCOModOnOff = { offset = {2500,400}, {path="Button_53_2frames",frames=2}}, 
+  VCOHold = { offset = {2500,580}, {path="Button_53_2frames",frames=2}}, 
   -- Size: the multiplying factor before it ids added to the click frequency
   -- Offset: the offset added to the click frequency
-  LFOSize = { offset = {2700,400}, { path = "Knob_51_63frames", frames = 63}},
-  LFOOffset = { offset = {2700,550}, { path = "Knob_51_63frames", frames = 63}},
-  -- Select whether square, ramp or triangular
-  LFOShape = { offset = {3100,400}, { path = "Clicks_9frames", frames = 9}},
-  LFOShapeUpDown   = { offset = {3300,437}, { path = "UpDown", frames = 3}}, 
-  LFODutyCycle = { offset = {2900,450}, { path = "Knob_51_63frames", frames = 63}},
-  -- does it repeat or end and hold
-  LFOOneShotOnOff = { offset = {3425,400}, {path="Button_53_2frames",frames=2}}, 
-  -- still need to add frequency control
+  VCOFreq = { offset = {2700,400}, { path = "Knob_51_63frames", frames = 63}},
+  VCOModMultiplier = { offset = {2700,550}, { path = "Knob_51_63frames", frames = 63}},
+
 
 }
 back = { 
@@ -66,6 +59,10 @@ back = {
   },
   TriggerIn = {
     offset = {1750,120},
+    {path = "SharedCVJack", frames=3}
+  },
+  ModulatorIn = {
+    offset = {1550,120},
     {path = "SharedCVJack", frames=3}
   },
   AudioOutLeft = {

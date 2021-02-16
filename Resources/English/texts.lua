@@ -58,5 +58,8 @@ texts = {
   ["expSoft"] = "Soft exponential drop", 
   ["square"] = "Square",
   
-  ["period"] = "Period"
+  ["frequency"] = "Frequency",
+  ["multiplier"] = "Multiplier",
+  ["modulator"] = "VCO Modulator",
+  ["hold"] = "Hold"
 }

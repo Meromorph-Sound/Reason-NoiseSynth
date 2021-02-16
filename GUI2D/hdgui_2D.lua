@@ -47,6 +47,23 @@ front = jbox.panel {
       graphics = { node = "triggered" },
       value = "/custom_properties/triggered"
     },
+    jbox.analog_knob{
+      graphics{node="VCOFreq"},
+      value="/custom_properties/vcoFrequency"
+    },
+    jbox.toggle_button{
+      graphics = {node="VCOHold"},
+      value="/custom_properties/vcoHold"
+    },
+    jbox.toggle_button{
+      graphics = {node="VCOModOnOff"},
+      value="/custom_properties/vcoModulatorActive"
+    },
+    jbox.analog_knob{
+      graphics{node="VCOModMultiplier"},
+      value="/custom_properties/vcoModulatorMultiplier"
+    },
+    
   }	
 }
 back = jbox.panel { 
