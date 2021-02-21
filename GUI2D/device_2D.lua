@@ -37,8 +37,8 @@ front = {
   --
   limiter = { offset = {2800,120}, {path="Knob_51_63frames", frames=63}},
   limiterDisplay = { offset = {2800, 240 },{ path = "Display" }},
-  limiterOnOff = { offset = {2550,200}, {path="Button_53_2frames",frames=2}},
-  limiterHardSoft = { offset = {2550,480}, {path="Button_53_2frames",frames=2}},
+  limiterOnOff = { offset = {2550,120}, {path="Button_53_2frames",frames=2}},
+  limiterHardSoft = { offset = {2550,200}, {path="Button_53_2frames",frames=2}},
   --
   
   --
