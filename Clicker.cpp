@@ -20,17 +20,17 @@ void TriggerState::setDelay(const float32 sampleRate,const float32 BUFFER_SIZE) 
 
 TriggerState::Action TriggerState::step() {
 	if(triggered) {
-			trace("Starting trigger");
+			//trace("Starting trigger");
 			triggeredCount=triggerDelay;
 			return SET;
 		}
 		else if(triggeredCount==1) {
-			trace("Ending trigger");
+			//trace("Ending trigger");
 			triggeredCount=0;
 			return RESET;
 		}
 		else if(triggeredCount>1) {
-			if(0 == triggeredCount%10) trace("Decrementing trigger x 10");
+			//if(0 == triggeredCount%10) trace("Decrementing trigger x 10");
 			triggeredCount--;
 		}
 	return NIL;
@@ -62,7 +62,7 @@ TriggerMode asMode(const TJBox_PropertyDiff & diff) {
 
 void Clicker::processApplicationMessage(const TJBox_PropertyDiff &diff) {
 	Tag tag = diff.fPropertyTag;
-	bool setTrigger=false;
+
 	switch(tag) {
 	case Tags::SHAPE: {
 		trace("Shape fired");
@@ -91,9 +91,34 @@ void Clicker::processApplicationMessage(const TJBox_PropertyDiff &diff) {
 		amplitude = clampedFloat(diff.fCurrentValue);
 		trace("Amplitude is ^0",amplitude);
 		break;
+
+	case Tags::LIMITER: {
+		auto l = clampedFloat(diff.fCurrentValue);
+		limiter.setLimit(pow(10.f,l));
+		break;
+	}
+	case Tags::LIMITER_ONOFF:
+		limiter.setActive(toBool(diff.fCurrentValue));
+		break;
+	case Tags::LIMITER_HARD_SOFT: {
+		auto mode = toBool(diff.fCurrentValue) ? Limiter::HARD : Limiter::SOFT;
+		limiter.setMode(mode);
+		break;
+	}
+	case Tags::LFO_FREQUENCY: {
+		auto freq = scaledFloat(diff.fCurrentValue,0,750);
+		trace("Setting pulse to ^0",freq);
+		pulse.setFrequency(freq);
+		break; }
+	case Tags::LFO_HOLD:
+		pulse.hold(toBool(diff.fCurrentValue));
+		break;
+	case Tags::LFO_MODULATOR_ONOFF:
+		break;
+
 	case Tags::TRIGGER:
 		if(mode==TriggerMode::MANUAL) {
-			if(toBool(diff.fCurrentValue)) setTrigger=true;
+			if(toBool(diff.fCurrentValue)) shouldTrigger=true;
 		}
 		break;
 	case Tags::TRIGGER_MODE:
@@ -103,17 +128,11 @@ void Clicker::processApplicationMessage(const TJBox_PropertyDiff &diff) {
 		break;
 	case kJBox_CVInputValue:
 		if(mode==TriggerMode::EXT_CLOCK) {
-			if(edges(toFloat(diff.fCurrentValue))) setTrigger=true;
+			if(edges(toFloat(diff.fCurrentValue))) shouldTrigger=true;
 		}
 	}
 
-	auto p = pulse.next();
-	if(mode==TriggerMode::INT_CLOCK) setTrigger=p>0;
 
-	if(setTrigger) {
-		trace("Triggering pulse, mode is ^0",mode);
-		tState.set();
-	}
 
 
 
@@ -144,11 +163,25 @@ void Clicker::process() {
 		clicks.setScale(clickLength);
 		initialised=true;
 	}
+
+	auto p = pulse.next();
+	if(mode==TriggerMode::INT_CLOCK) {
+		shouldTrigger=p>0;
+		//if(p>0) trace("Triggering internal");
+	}
+
+	if(shouldTrigger) {
+		//trace("Triggering pulse, mode is ^0",mode);
+		tState.set();
+		shouldTrigger=false;
+	}
+
+
 	if(tState.isTriggered()) {
 		clicking=true;
 		clickOffset=0;
 	}
-	if(clicking) trace("Clicking ON  Click offset is ^0",clickOffset);
+	//if(clicking) trace("Clicking ON  Click offset is ^0",clickOffset);
 
 
 	if(clicking && clickOffset>=clickLength) {
@@ -164,6 +197,10 @@ void Clicker::process() {
 		lBuffer[n]=sample*lPan;
 		rBuffer[n]=sample*rPan;
 	}
+
+	limiter.limit(lBuffer);
+	limiter.limit(rBuffer);
+
 	auto refL = JBox_LoadMOMPropertyByTag(left, kJBox_AudioOutputBuffer);
 	JBox_SetDSPBufferData(refL, 0, lBuffer.size(), lBuffer.data());
 

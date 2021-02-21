@@ -34,7 +34,9 @@ texts = {
   ["right"] = "Full right",
   ["degrees"] = "^0 deg",
   ["hertz"] = "^0 Hz",
-  ["seconds"] = "^0 s",
+  ["seconds"] = "^0s",
+  ["samples"] = "^0 samples",
+  ["decibels"] = "^0 dB",
   
   ["pitchbend"] = "Pitch Bend",
   ["expression"] = "Expression",
@@ -60,6 +62,7 @@ texts = {
   
   ["frequency"] = "Frequency",
   ["multiplier"] = "Multiplier",
-  ["modulator"] = "VCO Modulator",
-  ["hold"] = "Hold"
+  ["modulator"] = "LFO Modulator",
+  ["hold"] = "Hold",
+  ["limiter"] = "Limiter"
 }

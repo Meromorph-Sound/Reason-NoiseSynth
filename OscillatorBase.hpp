@@ -19,6 +19,7 @@ protected:
 	float32 frequency = 0;
 	float32 phase =0;
 	float32 delta =0;
+	bool holding = false;
 
 	void update();
 
@@ -30,6 +31,7 @@ public:
 
 	void setSampleRate(const float32 rate);
 	void setFrequency(const float32 freq);
+	virtual void hold(const bool h);
 	virtual void reset();
 
 	virtual float32 next() { return 0; }

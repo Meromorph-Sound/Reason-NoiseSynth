@@ -11,7 +11,7 @@ front = {
     { path = "Tape_Horizontal_1frames", frames = 1 },
   },
   patches = {
-    offset = { 200,20},
+    offset = { 200,10},
     { path = "PatchBrowseGroup", frames = 1}
   },
   patch = {
@@ -25,28 +25,32 @@ front = {
   threshold = { offset = {1000,120}, {path="Knob_51_63frames", frames=63}},
   delay = { offset = {1000,300}, {path="Knob_51_63frames", frames=63}},
   --
-  shape = { offset = {1500,120}, { path = "Clicks_9frames", frames = 9}},
-  shapeUpDown   = { offset = {1700,157}, { path = "UpDown", frames = 3}},
+  shape = { offset = {1200,120}, { path = "Clicks_9frames", frames = 9}},
+  shapeUpDown   = { offset = {1400,157}, { path = "UpDown", frames = 3}},
   --
-  length = { offset = {1850,120}, { path = "Knob_01_63frames", frames = 63}},
-  pitch = { offset = {2100,120}, { path = "Knob_01_63frames", frames = 63}},
+  length = { offset = {1550,120}, { path = "Knob_01_63frames", frames = 63}},
+  lengthDisplay = { offset = { 1540, 400 },{ path = "Display" }},
+  pitch = { offset = {1800,120}, { path = "Knob_01_63frames", frames = 63}},
+  pitchDisplay = { offset = { 1790, 400 },{ path = "Display" }},
+  pan = { offset = {2050,120}, { path = "Knob_01_63frames", frames = 63}},
+  amplitude = { offset = {2300,120}, { path = "Knob_01_63frames", frames = 63}},
   --
-  limiter = { offset = {2500,120}, {path="Knob_51_63frames", frames=63}},
-  limiterOnOff = { offset = {2500,260}, {path="Button_53_2frames",frames=2}},
+  limiter = { offset = {2800,120}, {path="Knob_51_63frames", frames=63}},
+  limiterDisplay = { offset = {2800, 240 },{ path = "Display" }},
+  limiterOnOff = { offset = {2550,200}, {path="Button_53_2frames",frames=2}},
+  limiterHardSoft = { offset = {2550,480}, {path="Button_53_2frames",frames=2}},
   --
-  pan = { offset = {3100,50}, { path = "Knob_01_63frames", frames = 63}},
-  amplitude = { offset = {3350,50}, { path = "Knob_01_63frames", frames = 63}},
+  
   --
   -- OnOff: whether the unit is switched on - push to toggle
   -- Hold: switches stepping on/off - otherwise frozen at current value - push to toggle
   -- Reset: resets the unit to the default value (i.e. offset)  - push to reset
-  VCOModOnOff = { offset = {2500,400}, {path="Button_53_2frames",frames=2}}, 
-  VCOHold = { offset = {2500,580}, {path="Button_53_2frames",frames=2}}, 
+  VCOModOnOff = { offset = {1550,580}, {path="Button_53_2frames",frames=2}}, 
+  VCOHold = { offset = {1550,500}, {path="Button_53_2frames",frames=2}}, 
   -- Size: the multiplying factor before it ids added to the click frequency
   -- Offset: the offset added to the click frequency
-  VCOFreq = { offset = {2700,400}, { path = "Knob_51_63frames", frames = 63}},
-  VCOModMultiplier = { offset = {2700,550}, { path = "Knob_51_63frames", frames = 63}},
-
+  VCOFreq = { offset = {1250,450}, { path = "Knob_51_63frames", frames = 63}},
+  lfoFreqDisplay = { offset = { 1200, 620 },{ path = "Display" }},
 
 }
 back = { 
@@ -58,12 +62,16 @@ back = {
     { path = "Placeholder" },
   },
   TriggerIn = {
-    offset = {1750,120},
+    offset = {1200,120},
     {path = "SharedCVJack", frames=3}
   },
-  ModulatorIn = {
-    offset = {1550,120},
+  LFOModulatorIn = {
+    offset = {1450,120},
     {path = "SharedCVJack", frames=3}
+  },
+  LFOModulatorTrim = {
+    offset = { 1450, 250 },
+    { path = "TrimKnob" }
   },
   AudioOutLeft = {
     offset = {1950,120},

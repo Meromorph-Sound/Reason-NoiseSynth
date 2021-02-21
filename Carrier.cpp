@@ -16,6 +16,8 @@ float32 Carrier::next() {
 }
 
 float32 Pulse::next() {
+	if(holding) return 0.0;
+
 	auto last=phase;
 	phase = remainder(phase+delta,meromorph::TwoPi);
 	return (last>phase) ? 1.0 : 0.0;

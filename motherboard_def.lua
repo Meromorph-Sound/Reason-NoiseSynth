@@ -125,8 +125,29 @@ end
 PITCH_MIN = 100
 PITCH_MAX = 10000
 
-LENGTH_MIN = 1
+LENGTH_MIN = 10
 LENGTH_MAX = 500
+
+LIMITER_MIN = -3
+LIMITER_MAX = 9
+
+-- The property tags
+local SHAPE_TAG = 1
+local PITCH_TAG = 2
+local LENGTH_TAG = 3
+local PAN_TAG = 4
+local AMPLITUDE_TAG = 5
+local TRIGGER_TAG = 6
+local TRIGGER_MODE_TAG = 7
+local LIMITER_TAG = 8
+local LIMITER_ONOFF_TAG = 9
+local LIMITER_HARD_SOFT_TAG = 10
+
+local LFO_FREQUENCY_TAG = 11
+local LFO_HOLD_TAG = 12
+local LFO_MODULATOR_ONOFF_TAG = 13
+
+local TRIGGERED_TAG = 20
 
 
 
@@ -137,13 +158,13 @@ custom_properties = jbox.property_set{
         default=0,
         steps=9,
         ui_name = jbox.ui_text("shape"),  
-        property_tag=1,
+        property_tag=SHAPE_TAG,
         ui_type = jbox.ui_selector(uiShapeNames)
       },
      ["pitch"] = jbox.number {
       default=0,
       ui_name = jbox.ui_text("pitch"),  
-      property_tag=2,
+      property_tag=PITCH_TAG,
       ui_type = jbox.ui_linear{
         min = PITCH_MIN,
         max = PITCH_MAX,
@@ -153,17 +174,17 @@ custom_properties = jbox.property_set{
      ["length"] = jbox.number {
       default=0,
       ui_name = jbox.ui_text("length"),  
-      property_tag=3,
+      property_tag=LENGTH_TAG,
         ui_type = jbox.ui_linear{
           min=LENGTH_MIN,
           max=LENGTH_MAX,
-          units = {{ decimals=0}}
+          units = {{ decimals=0, unit = { template = jbox.ui_text("samples" )}}}
         }
      },
      ["pan"] = jbox.number {
       default=0.5,
       ui_name = jbox.ui_text("pan"),  
-      property_tag=4,
+      property_tag=PAN_TAG,
       ui_type = jbox.ui_linear{
         min = -90,
         max = 90,
@@ -180,28 +201,53 @@ custom_properties = jbox.property_set{
      ["amplitude"] = jbox.number {
       default=1,
       ui_name = jbox.ui_text("amplitude"),  
-      property_tag=5,
+      property_tag=AMPLITUDE_TAG,
       ui_type = jbox.ui_percent{decimals=1}
      },
      ["trigger"] = jbox.number {
         default=0,
         steps=2,
         ui_name = jbox.ui_text("trigger"),  
-        property_tag=6,
+        property_tag=TRIGGER_TAG,
         ui_type = jbox.ui_selector({jbox.UI_TEXT_OFF,jbox.UI_TEXT_ON})
       },
       ["triggerMode"] = jbox.number {
         default=0,
         steps=3,
         ui_name = jbox.ui_text("trigger"),  
-        property_tag=7,
+        property_tag=TRIGGER_MODE_TAG,
         ui_type = labelType({"external","clocked","manual"})
       },
       
+      ["limiter"] = jbox.number {
+      default=0,
+      ui_name = jbox.ui_text("limiter"),  
+      property_tag=LIMITER_TAG,
+      ui_type = jbox.ui_linear{
+          min=LIMITER_MIN,
+          max=LIMITER_MAX,
+          units = {{ decimals=1, unit = { template = jbox.ui_text("decibels" )}}}
+        }
+     },
+     ["limiterOnOff"] = jbox.number {
+        default=0,
+        steps=2,
+        ui_name = jbox.ui_text("limiter"),  
+        property_tag=LIMITER_ONOFF_TAG,
+        ui_type = jbox.ui_selector({jbox.UI_TEXT_OFF,jbox.UI_TEXT_ON})
+      },
+      ["limiterHardSoft"] = jbox.number {
+        default=0,
+        steps=2,
+        ui_name = jbox.ui_text("limiter"),  
+        property_tag=LIMITER_HARD_SOFT_TAG,
+        ui_type = jbox.ui_selector({jbox.UI_TEXT_OFF,jbox.UI_TEXT_ON})
+      },
+      
       ["vcoFrequency"] = jbox.number {
-        default=20,
+        default=20/750,
         ui_name = jbox.ui_text("frequency"),
-        property_tag = 20,
+        property_tag = LFO_FREQUENCY_TAG,
         ui_type = jbox.ui_linear{
         min = 0,
         max = 750,
@@ -216,28 +262,14 @@ custom_properties = jbox.property_set{
         default=0,
         steps=2,
         ui_name = jbox.ui_text("hold"),  
-        property_tag=21,
+        property_tag=LFO_HOLD_TAG,
         ui_type = jbox.ui_selector({jbox.UI_TEXT_OFF,jbox.UI_TEXT_ON})   
       },
-      ["vcoModulatorMultiplier"] = jbox.number {
-      default=1,
-      ui_name = jbox.ui_text("multiplier"),  
-      property_tag=22,
-      ui_type = jbox.ui_linear{
-        min = -1,
-        max = 1,
-        units = {
-          { 
-            decimals=2,
-            unit={ template = jbox.ui_text("linear_template") }
-          }
-        }
-     }},
      ["vcoModulatorActive"] =jbox.number {
         default=0,
         steps=2,
         ui_name = jbox.ui_text("modulator"),  
-        property_tag=23,
+        property_tag=LFO_MODULATOR_ONOFF_TAG,
         ui_type = jbox.ui_selector({jbox.UI_TEXT_OFF,jbox.UI_TEXT_ON})   
       }
 	}},
@@ -250,7 +282,7 @@ custom_properties = jbox.property_set{
 		    default = 0,
         steps = 2,
         ui_name = jbox.ui_text("trigger"),
-        property_tag = 10,
+        property_tag = TRIGGERED_TAG,
         ui_type = jbox.ui_selector{ jbox.UI_TEXT_OFF, jbox.UI_TEXT_ON } 
 		  }
 		}
@@ -281,8 +313,9 @@ remote_implementation_chart = {
 ui_groups = {}
 
 cv_inputs = {
-  externalTrigger = jbox.cv_input{ ui_name = jbox.ui_text("trigger") }
-}
+  externalTrigger = jbox.cv_input{ ui_name = jbox.ui_text("trigger") },
+  lfoModulator = jbox.cv_input{ ui_name = jbox.ui_text("modulator") }
+  }
 cv_outputs = {}
 
 audio_inputs = {}

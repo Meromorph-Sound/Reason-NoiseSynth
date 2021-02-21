@@ -26,6 +26,9 @@ void OscillatorBase::setFrequency(const float32 freq) {
 void OscillatorBase::reset() {
 	phase=0;
 }
+void OscillatorBase::hold(const bool h) {
+	holding=h;
+}
 
 
 

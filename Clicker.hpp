@@ -12,6 +12,7 @@
 #import "OscillatorBase.hpp"
 #import "Carrier.hpp"
 #import "Click.hpp"
+#import "Limiter.hpp"
 
 
 namespace meromorph {
@@ -27,8 +28,15 @@ enum Tags : uint32 {
 	AMPLITUDE=5,
 	TRIGGER=6,
 	TRIGGER_MODE=7,
+	LIMITER = 8,
+	LIMITER_ONOFF = 9,
+	LIMITER_HARD_SOFT = 10,
 
-	TRIGGER_BACK = 10
+	LFO_FREQUENCY = 11,
+	LFO_HOLD = 12,
+	LFO_MODULATOR_ONOFF = 13,
+
+	TRIGGER_BACK = 20
 	};
 
 enum TriggerMode : uint32 {
@@ -86,8 +94,10 @@ private:
 	EdgeDetector edges;
 	Clicks clicks;
 	ClickShape click = ClickShape::SQUARE;
+	Limiter limiter;
 
 	float32 amplitude = 1.0;
+	bool shouldTrigger = false;
 
 
 	void handleTriggerLED();

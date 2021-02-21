@@ -58,3 +58,4 @@ mono.recon.aif
 test.aif
 
 *.recon
+/Debug/

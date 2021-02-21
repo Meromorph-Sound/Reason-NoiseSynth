@@ -1,4 +1,17 @@
 format_version = "2.0"
+
+local LightBlue = {26,130,196}
+local White = {255,255,255}
+
+function text_display(node,property)
+  return jbox.value_display{
+      graphics = { ["node"] = node },
+      value = "/custom_properties/"..property,
+      text_color = White,
+      text_style = "Small label font",
+  }
+end
+
 front = jbox.panel { 
   graphics = { node = "Bg" },
   widgets = {
@@ -7,7 +20,7 @@ front = jbox.panel {
     jbox.patch_name{
       graphics = { node = "patch" },
       fg_color = { 255,255,255 },
-      loader_alt_color = { 55,105,192 },
+      loader_alt_color = LightBlue,
       center = false,
       text_style = "Bold LCD font",
     },
@@ -23,10 +36,12 @@ front = jbox.panel {
       graphics={ node = "pitch" },
       value="/custom_properties/pitch"
     },
+    text_display("pitchDisplay","pitch"),
     jbox.analog_knob{
       graphics={ node = "length" },
       value="/custom_properties/length"
     },
+    text_display("lengthDisplay","length"),
     jbox.analog_knob{
       graphics={ node = "pan" },
       value="/custom_properties/pan"
@@ -48,9 +63,24 @@ front = jbox.panel {
       value = "/custom_properties/triggered"
     },
     jbox.analog_knob{
-      graphics{node="VCOFreq"},
+      graphics = {node="limiter"},
+      value="/custom_properties/limiter"
+    },
+    jbox.toggle_button{
+      graphics = {node="limiterOnOff"},
+      value="/custom_properties/limiterOnOff"
+    },
+    jbox.toggle_button{
+      graphics = {node="limiterHardSoft"},
+      value="/custom_properties/limiterHardSoft"
+    },
+    text_display("limiterDisplay","limiter"),
+    
+    jbox.analog_knob{
+      graphics = {node="VCOFreq"},
       value="/custom_properties/vcoFrequency"
     },
+    text_display("lfoFreqDisplay","vcoFrequency"),
     jbox.toggle_button{
       graphics = {node="VCOHold"},
       value="/custom_properties/vcoHold"
@@ -58,12 +88,7 @@ front = jbox.panel {
     jbox.toggle_button{
       graphics = {node="VCOModOnOff"},
       value="/custom_properties/vcoModulatorActive"
-    },
-    jbox.analog_knob{
-      graphics{node="VCOModMultiplier"},
-      value="/custom_properties/vcoModulatorMultiplier"
-    },
-    
+    }
   }	
 }
 back = jbox.panel { 
@@ -75,6 +100,14 @@ back = jbox.panel {
     jbox.cv_input_socket {
       graphics = { node = "TriggerIn" },
       socket = "/cv_inputs/externalTrigger",
+    },
+    jbox.cv_input_socket {
+      graphics = { node = "LFOModulatorIn" },
+      socket = "/cv_inputs/lfoModulator",
+    },
+    jbox.cv_trim_knob{
+      graphics = { node = "LFOModulatorTrim" },
+      socket = "/cv_inputs/lfoModulator",
     },
     jbox.audio_output_socket {
       graphics = { node = "AudioOutLeft" },
