@@ -103,7 +103,7 @@ private:
 	void handleTriggerLED();
 
 protected:
-	const static inline float32 PITCH_MIN = 100.f;
+	const static inline float32 PITCH_MIN = 20.f;
 	const static inline float32 PITCH_MAX = 10000.f;
 
 	const static inline float32 LENGTH_MIN = 1.f;

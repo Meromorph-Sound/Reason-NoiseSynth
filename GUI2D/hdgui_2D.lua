@@ -101,6 +101,16 @@ back = jbox.panel {
       graphics = { node = "TriggerIn" },
       socket = "/cv_inputs/externalTrigger",
     },
+    jbox.analog_knob {
+      graphics = { node = "threshold"},
+      value="/custom_properties/externalTriggerThreshold"
+    },
+    text_display("thresholdDisplay","externalTriggerThreshold"),
+    jbox.analog_knob {
+      graphics = { node = "delay"},
+      value="/custom_properties/externalTriggerDebounce"
+    },
+    text_display("delayDisplay","externalTriggerDebounce"),
     jbox.cv_input_socket {
       graphics = { node = "LFOModulatorIn" },
       socket = "/cv_inputs/lfoModulator",
@@ -120,7 +130,11 @@ back = jbox.panel {
     },
     jbox.device_name {
       graphics = { node = "deviceName" },
-    }
+    },
+    jbox.sequence_meter{
+      graphics = { node = "enabled" },
+      value = "/custom_properties/extEnabled"
+    },
   }
 }
 

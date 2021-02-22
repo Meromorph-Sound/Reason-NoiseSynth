@@ -3,6 +3,7 @@ format_version = "1.0"
 rtc_bindings = { 
   { source = "/environment/system_sample_rate", dest = "/global_rtc/init_instance" },
   { source = "/environment/instance_id", dest = "/global_rtc/init_instance" },
+  { source = "/custom_properties/triggerMode", dest="/global_rtc/trigger_mode_change" }
 }
 
 global_rtc = { 
@@ -11,6 +12,10 @@ global_rtc = {
     local new_no = jbox.make_native_object_rw("Instance", {instance_id})
     jbox.store_property("/custom_properties/instance", new_no);
   end,
+  trigger_mode_change = function(source_property_path, value)
+    local v = value==1
+    jbox.store_property("/custom_properties/extEnabled", v)
+  end
 }
 
 sample_rate_setup = { 

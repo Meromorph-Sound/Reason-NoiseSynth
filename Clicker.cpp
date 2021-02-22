@@ -70,7 +70,7 @@ void Clicker::processApplicationMessage(const TJBox_PropertyDiff &diff) {
 		break;
 	}
 	case Tags::PITCH: {
-		auto f = scaledFloat(diff.fCurrentValue,PITCH_MIN,PITCH_MAX);
+		auto f = intRangeToFloat(diff.fCurrentValue,8192,PITCH_MIN,PITCH_MAX);
 		trace("Carrier frequency is ^0",f);
 		carrier.setFrequency(f);
 		break;
@@ -106,7 +106,7 @@ void Clicker::processApplicationMessage(const TJBox_PropertyDiff &diff) {
 		break;
 	}
 	case Tags::LFO_FREQUENCY: {
-		auto freq = scaledFloat(diff.fCurrentValue,0,750);
+		auto freq = intRangeToFloat(diff.fCurrentValue,8192,0,750);
 		trace("Setting pulse to ^0",freq);
 		pulse.setFrequency(freq);
 		break; }

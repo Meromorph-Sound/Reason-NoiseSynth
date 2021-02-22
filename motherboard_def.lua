@@ -122,7 +122,7 @@ for _,name in pairs(shapeNames) do
 end 
 
 -- Some range properties
-PITCH_MIN = 100
+PITCH_MIN = 20
 PITCH_MAX = 10000
 
 LENGTH_MIN = 10
@@ -146,6 +146,9 @@ local LIMITER_HARD_SOFT_TAG = 10
 local LFO_FREQUENCY_TAG = 11
 local LFO_HOLD_TAG = 12
 local LFO_MODULATOR_ONOFF_TAG = 13
+
+local EXT_TRIGGER_THRESHOLD_TAG = 14
+local EXT_TRIGGER_DEBOUNCE_TAG = 15
 
 local TRIGGERED_TAG = 20
 
@@ -218,7 +221,23 @@ custom_properties = jbox.property_set{
         property_tag=TRIGGER_MODE_TAG,
         ui_type = labelType({"external","clocked","manual"})
       },
-      
+      ["externalTriggerThreshold"] = jbox.number {
+        default=0.5,
+        ui_name=jbox.ui_text("extTriggerThreshold"),
+        property_tag = EXT_TRIGGER_THRESHOLD_TAG,
+        ui_type = jbox.ui_percent{decimals=2}
+      },
+      ["externalTriggerDebounce"] = jbox.number {
+        default=1,
+        steps=64,
+        ui_name=jbox.ui_text("extTriggerDebounce"),
+        property_tag = EXT_TRIGGER_DEBOUNCE_TAG,
+        ui_type = jbox.ui_linear{
+          min=0,
+          max=63,
+          units = {{ decimals=0, unit = { template = jbox.ui_text("samples" )}}}
+        }
+      },
       ["limiter"] = jbox.number {
       default=0,
       ui_name = jbox.ui_text("limiter"),  
@@ -245,7 +264,7 @@ custom_properties = jbox.property_set{
       },
       
       ["vcoFrequency"] = jbox.number {
-        default=20/750,
+        default=0,
         ui_name = jbox.ui_text("frequency"),
         property_tag = LFO_FREQUENCY_TAG,
         ui_type = jbox.ui_linear{
@@ -274,7 +293,14 @@ custom_properties = jbox.property_set{
       }
 	}},
 	rtc_owner = {
-		properties = { instance = jbox.native_object{} }
+		properties = { 
+		instance = jbox.native_object{},
+		extEnabled = jbox.boolean { 
+		  default = false, 
+		  ui_name = jbox.ui_text("trigger"),
+		  ui_type = jbox.ui_selector({jbox.UI_TEXT_OFF,jbox.UI_TEXT_ON})
+		}
+	}
 	},
 	rt_owner = {
 		properties = {

@@ -22,9 +22,6 @@ front = {
   trigger  = { offset = {710,420}, { path = "Button_53_2frames", frames = 2}},
   triggered = { offset = {1580,25}, { path = "Lamp_10_GREEN_2frames", frames=2}},
   --
-  threshold = { offset = {1000,120}, {path="Knob_51_63frames", frames=63}},
-  delay = { offset = {1000,300}, {path="Knob_51_63frames", frames=63}},
-  --
   shape = { offset = {1200,120}, { path = "Clicks_9frames", frames = 9}},
   shapeUpDown   = { offset = {1400,157}, { path = "UpDown", frames = 3}},
   --
@@ -61,26 +58,24 @@ back = {
     offset = { 100, 100 },
     { path = "Placeholder" },
   },
-  TriggerIn = {
-    offset = {1200,120},
-    {path = "SharedCVJack", frames=3}
-  },
+  TriggerIn = { offset = {2000,120}, {path = "SharedCVJack", frames=3} },
+  enabled = { offset = {2100,145}, { path = "Lamp_10_GREEN_2frames", frames=2}},
+  threshold = { offset = {2000,300}, {path="Trim_Knob_64frames", frames=64}},
+  thresholdDisplay = { offset = {2150, 320 },{ path = "Display" }},
+  delay = { offset = {2000,450}, {path="Trim_Knob_64frames", frames=64}},
+  delayDisplay = { offset = {2150, 470 },{ path = "Display" }},
+  --
   LFOModulatorIn = {
-    offset = {1450,120},
+    offset = {2400,300},
     {path = "SharedCVJack", frames=3}
   },
   LFOModulatorTrim = {
-    offset = { 1450, 250 },
+    offset = { 2400, 400 },
     { path = "TrimKnob" }
   },
-  AudioOutLeft = {
-    offset = {1950,120},
-    { path = "SharedAudioJack", frames = 3},
-  },
-  AudioOutRight = {
-    offset = {2150,120},
-    { path = "SharedAudioJack", frames = 3},
-  },
+  AudioOutLeft = { offset = {1550,120}, { path = "SharedAudioJack", frames = 3}},
+  AudioOutRight = { offset = {1750,120},{ path = "SharedAudioJack", frames = 3}},
+  --
   deviceName = {
     offset = { 200, 230},
     { path = "Tape_Horizontal_1frames", frames = 1 },

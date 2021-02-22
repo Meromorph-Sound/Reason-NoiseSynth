@@ -36,6 +36,18 @@ void trace(const char *tmpl,const float32 value1,const float32 value2) {
 	 auto f=clampedFloat(diff);
 	 return min+(max-min)*f;
  }
+ float32 scaledDownFloat(const TJBox_Value diff,const float32 min_,const float32 max_) {
+ 	 auto f=std::max(min_,std::min(toFloat(diff),max_));
+ 	 return (f-min_)/(max_-min_);
+  }
+
+ float32 intRangeToFloat(const TJBox_Value diff,const uint32 steps,const float32 min,const float32 max) {
+	 auto m=(float32)(steps-1);
+	 auto f = std::max(0.f,std::min(toFloat(diff),m))/m;
+	 return min+max*f;
+ }
+
+
  bool toBool(const TJBox_Value diff) {
 	return static_cast<float32>(JBox_GetNumber(diff))>0;
 }

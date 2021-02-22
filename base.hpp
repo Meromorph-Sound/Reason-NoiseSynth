@@ -41,8 +41,11 @@ void trace(const char *tmpl,const float32 value1,const float32 value2);
  float32 toFloat(const TJBox_Value diff);
  float32 clampedFloat(const TJBox_Value diff);
  float32 scaledFloat(const TJBox_Value diff,const float32 min=0.0,const float32 max=1.0);
+ float32 scaledDownFloat(const TJBox_Value diff,const float32 min=0.0,const float32 max=1.0);
  bool toBool(const TJBox_Value diff);
  int32 toInt(const TJBox_Value diff);
+
+ float32 intRangeToFloat(const TJBox_Value diff,const uint32 steps,const float32 min=0.0,const float32 max=1.0);
 
  template<typename T>
 T clamp(const T lo,const T hi,const T value) {

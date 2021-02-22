@@ -64,5 +64,7 @@ texts = {
   ["multiplier"] = "Multiplier",
   ["modulator"] = "LFO Modulator",
   ["hold"] = "Hold",
-  ["limiter"] = "Limiter"
+  ["limiter"] = "Limiter",
+  ["extTriggerThreshold"] = "Threshold",
+  ["extTriggerDebounce"] = "Debounce"
 }
