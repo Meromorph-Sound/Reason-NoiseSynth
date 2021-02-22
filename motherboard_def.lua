@@ -153,6 +153,16 @@ local EXT_TRIGGER_DEBOUNCE_TAG = 15
 local TRIGGERED_TAG = 20
 
 
+local PropertiesTable = {
+  [SHAPE_TAG] = "shape",
+  [PITCH_TAG] = "pitch",
+  [LENGTH_TAG] = "length",
+  [PAN_TAG] = "pan",
+  [AMPLITUDE_TAG] = "amplitude",
+  [TRIGGER_TAG] = "trigger",
+  [TRIGGER_MODE_TAG] = "triggerMode",
+}
+
 
 custom_properties = jbox.property_set{
   document_owner = {
@@ -179,9 +189,9 @@ custom_properties = jbox.property_set{
       ui_name = jbox.ui_text("length"),  
       property_tag=LENGTH_TAG,
         ui_type = jbox.ui_linear{
-          min=LENGTH_MIN,
-          max=LENGTH_MAX,
-          units = {{ decimals=0, unit = { template = jbox.ui_text("samples" )}}}
+          min=-1,
+          max=1,
+          units = {{ decimals=2, unit = { template = jbox.ui_text("decibels" )}}}
         }
      },
      ["pan"] = jbox.number {
@@ -272,7 +282,7 @@ custom_properties = jbox.property_set{
         max = 750,
         units = {
           { 
-            decimals=3,
+            decimals=2,
             unit={ template = jbox.ui_text("hertz") }
           }
         }

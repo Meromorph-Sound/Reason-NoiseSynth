@@ -35,7 +35,7 @@ texts = {
   ["degrees"] = "^0 deg",
   ["hertz"] = "^0 Hz",
   ["seconds"] = "^0s",
-  ["samples"] = "^0 samples",
+  ["samples"] = "^0 smpl",
   ["decibels"] = "^0 dB",
   
   ["pitchbend"] = "Pitch Bend",

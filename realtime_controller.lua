@@ -42,6 +42,8 @@ rt_input_setup = {
   "/custom_properties/limiterOnOff",
   "/custom_properties/limiterHardSoft",
   "/custom_properties/vcoFrequency",
+  "/custom_properties/externalTriggerThreshold",
+  "/custom_properties/externalTriggerDebounce",
   "/custom_properties/vcoHold",
   "/custom_properties/vcoModulatorActive",
   "/cv_inputs/trigger",
