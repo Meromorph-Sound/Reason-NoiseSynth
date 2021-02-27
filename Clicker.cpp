@@ -88,11 +88,19 @@ void Clicker::processApplicationMessage(const TJBox_PropertyDiff &diff) {
 		trace("Pan angle is ^0",angle);
 		break;
 	}
-	case Tags::AMPLITUDE:
+	case Tags::AMPLITUDE: {
 		amplitude = clampedFloat(diff.fCurrentValue);
 		trace("Amplitude is ^0",amplitude);
 		break;
-
+	}
+	/*
+	 * The output limiter settings
+	 *
+	 * LIMITER : the limit threshold
+	 * LIMITER_ONOFF : is it sitched on
+	 * LIMITER_HARDSOFT: hard or soft limit
+	 *
+	 */
 	case Tags::LIMITER: {
 		auto l = clampedFloat(diff.fCurrentValue);
 		limiter.setLimit(pow(10.f,l));
@@ -106,6 +114,14 @@ void Clicker::processApplicationMessage(const TJBox_PropertyDiff &diff) {
 		limiter.setMode(mode);
 		break;
 	}
+	/*
+	 * LFO settings
+	 *
+	 * LFO_FREQUENCY
+	 * LFO_HOLD
+	 * LFO_MODULATOR_ONOFF
+	 *
+	 */
 	case Tags::LFO_FREQUENCY: {
 		auto freq = scaledFloat(diff.fCurrentValue,0,750);
 		trace("Setting pulse to ^0",freq);
@@ -115,21 +131,43 @@ void Clicker::processApplicationMessage(const TJBox_PropertyDiff &diff) {
 		pulse.hold(toBool(diff.fCurrentValue));
 		break;
 	case Tags::LFO_MODULATOR_ONOFF:
+		pulse.setModulateActive(toBool(diff.fCurrentValue));
 		break;
-
+	/*
+	 * Trigger settings
+	 * TRIGGER: manual mode
+	 * TRIGGER_MODE : the mode selector
+	 */
+	case Tags::TRIGGER_MODE:
+			trace("Trigger mode ^0",toFloat(diff.fCurrentValue));
+			mode = asMode(diff);
+			if(mode==TriggerMode::EXT_CLOCK) edges.reset();
+			break;
 	case Tags::TRIGGER:
 		if(mode==TriggerMode::MANUAL) {
 			if(toBool(diff.fCurrentValue)) shouldTrigger=true;
 		}
 		break;
-	case Tags::TRIGGER_MODE:
-		trace("Trigger mode ^0",toFloat(diff.fCurrentValue));
-		mode = asMode(diff);
-		if(mode==TriggerMode::EXT_CLOCK) edges.reset();
+	case Tags::EXT_TRIGGER_THRESHOLD: {
+		auto t = clampedFloat(diff.fCurrentValue);
+		trace("External trigger threshold ^0",t);
+		edges.setThreshold(t);
 		break;
+	}
+	case Tags::EXT_TRIGGER_DEBOUNCE: {
+			auto t = lround(scaledFloat(diff.fCurrentValue,0,63));
+			trace("External trigger threshold ^0",t);
+			edges.setDelay(t);
+			break;
+		}
+		/* CV settings */
 	case kJBox_CVInputValue:
 		if(mode==TriggerMode::EXT_CLOCK) {
 			if(edges(toFloat(diff.fCurrentValue))) shouldTrigger=true;
+		}
+		else if(mode==TriggerMode::INT_CLOCK) {
+			auto m = clampedFloat(diff.fCurrentValue);
+			pulse.setModulation(m);
 		}
 	}
 
@@ -183,7 +221,6 @@ void Clicker::process() {
 		clickOffset=0;
 	}
 	//if(clicking) trace("Clicking ON  Click offset is ^0",clickOffset);
-
 
 	if(clicking && clickOffset>=clickLength) {
 		clicking=false;

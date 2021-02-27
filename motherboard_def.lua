@@ -152,16 +152,32 @@ local EXT_TRIGGER_DEBOUNCE_TAG = 15
 
 local TRIGGERED_TAG = 20
 
-
-local PropertiesTable = {
-  [SHAPE_TAG] = "shape",
-  [PITCH_TAG] = "pitch",
-  [LENGTH_TAG] = "length",
-  [PAN_TAG] = "pan",
-  [AMPLITUDE_TAG] = "amplitude",
-  [TRIGGER_TAG] = "trigger",
-  [TRIGGER_MODE_TAG] = "triggerMode",
+local Props = {
+ 
+  PropertiesTable = {
+    [SHAPE_TAG] = "shape",
+    [PITCH_TAG] = "pitch",
+    [LENGTH_TAG] = "length",
+    [PAN_TAG] = "pan",
+    [AMPLITUDE_TAG] = "amplitude",
+    [TRIGGER_TAG] = "trigger",
+    [TRIGGER_MODE_TAG] = "triggerMode",
+    [LIMITER_TAG] = "limiter",
+    [LIMITER_ONOFF_TAG] = "limiterOnOff",
+    [LIMITER_HARD_SOFT_TAG] = "limiterHardSoft",
+    [LFO_FREQUENCY_TAG] = "vcoFrequency",
+    [LFO_HOLD_TAG] = "vcoHold",
+    [LFO_MODULATOR_ONOFF_TAG] = "vcoModulatorActive",
+    [EXT_TRIGGER_THRESHOLD_TAG] = "externalTriggerThreshold",
+    [EXT_TRIGGER_DEBOUNCE_TAG] = "externalTriggerDebounce"
+  },
+  
+  
+  name = function(tag) return Props.PropertiesTable[tag] end,
+  path = function(tag) return "/custom_properties" .. Props.name(tag) end
 }
+
+
 
 
 custom_properties = jbox.property_set{
@@ -185,13 +201,13 @@ custom_properties = jbox.property_set{
       }
     },
      ["length"] = jbox.number {
-      default=0,
+      default=100,
       ui_name = jbox.ui_text("length"),  
       property_tag=LENGTH_TAG,
         ui_type = jbox.ui_linear{
-          min=-1,
-          max=1,
-          units = {{ decimals=2, unit = { template = jbox.ui_text("decibels" )}}}
+          min=LENGTH_MIN,
+          max=LENGTH_MAX,
+          units = {{ decimals=0, unit = { template = jbox.ui_text("samples" )}}}
         }
      },
      ["pan"] = jbox.number {
@@ -325,11 +341,13 @@ custom_properties = jbox.property_set{
 	}
 }
 
+local midi_cc = {}
+for tag, name in pairs(Props.PropertiesTable) do
+  midi_cc[101+tag] = "/custom_properties/"..name
+end
+
 midi_implementation_chart = {
-	midi_cc_chart = {
---   [13] = "/custom_properties/trigger",                -- ControlEffectControl2
---	 [16] = "/custom_properties/shape",               -- ControlGeneralPurpose1
-	}
+	midi_cc_chart = midi_cc
 }
 
 function remote(name) 

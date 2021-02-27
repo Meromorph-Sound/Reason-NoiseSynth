@@ -29,7 +29,8 @@ public:
 
 class Pulse : public OscillatorBase {
 protected:
-
+	bool modulate = false;
+	float32 modulation = 0;
 public:
 	Pulse() : OscillatorBase(750) {};
 	virtual ~Pulse() = default;
@@ -37,7 +38,8 @@ public:
 	Pulse& operator=(const Pulse &other) = default;
 
 	virtual float32 next();
-
+	void setModulateActive(const bool);
+	void setModulation(const float32);
 };
 
 
