@@ -17,6 +17,9 @@ namespace click {
 const uint32 Clicks::CLICK_LENGTH = 200;
 const uint32 Clicks::N_SHAPE_FUNCTIONS = 9;
 
+//using ClickFunction = float32(float32,int32);
+//ClickFunction f = []( float32 w, int32 n) { return 1-(abs(n-w)/w); };
+
 ClickShape Clicks::asShape(const TJBox_PropertyDiff & diff) {
 	int32 i = toInt(diff.fCurrentValue);
 	int32 limited = clamp(0,(int32)N_SHAPE_FUNCTIONS-1,i);
@@ -31,7 +34,7 @@ Clicks::Clicks() {
 		at(TRIANGULAR,n) = 1.0-(abs(n-100.0)/100.0);
 		at(HALF_TRIANGULAR_DOWN,n) = std::max(0.0,1-(n/100.0));
 		at(HALF_TRIANGULAR_UP,n) = (n<100) ? n/100.0 : 0.0;
-		at(NORMAL,n) = exp(-pow((n-100.0)/10.0,2.0));
+		at(NORMAL,n) = exp(-pow((n-25.0)/6.0,2.0));
 		at(POISSON,n) = exp(-n/10.0);
 		at(DELTA,n) = (n<10) ? 1.0 : 0.0;
 		at(EXP_FALL_HARD,n) = (n<100) ? 1.0-exp(n-75.0) : 0.0;

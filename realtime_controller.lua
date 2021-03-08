@@ -3,7 +3,7 @@ format_version = "1.0"
 rtc_bindings = { 
   { source = "/environment/system_sample_rate", dest = "/global_rtc/init_instance" },
   { source = "/environment/instance_id", dest = "/global_rtc/init_instance" },
-  { source = "/custom_properties/triggerMode", dest="/global_rtc/trigger_mode_change" }
+ -- { source = "/custom_properties/triggerMode", dest="/global_rtc/trigger_mode_change" }
 }
 
 global_rtc = { 

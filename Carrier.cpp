@@ -18,17 +18,27 @@ float32 Carrier::next() {
 float32 Pulse::next() {
 	if(holding) return 0.0;
 
-	auto mod = modulate ? modulation : 0.f;
 	auto last=phase;
-	phase = remainder(phase+delta+mod,meromorph::TwoPi);
+	phase = remainder(phase+delta+modDelta,meromorph::TwoPi);
 	return (last>phase) ? 1.0 : 0.0;
+}
+
+int32 Pulse::multiStep(const uint32 n) {
+	int32 offset=0;
+	while(offset<n) {
+		if(next()) return offset;
+		offset++;
+	}
+	return -1;
 }
 
 void Pulse::setModulateActive(const bool m) {
 	modulate=m;
+	modDelta = modulate ? modulation : 0.f;
 }
 void Pulse::setModulation(const float32 m) {
 	modulation=m;
+	modDelta = modulate ? modulation : 0.f;
 }
 
 

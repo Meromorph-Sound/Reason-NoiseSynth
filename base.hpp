@@ -56,9 +56,15 @@ T clamp(const T lo,const T hi,const T value) {
 
  inline float32 const Pi = 3.141592653589793f;
  inline float32 const TwoPi = 2.f*Pi;
+
+
+enum TriggerMode : uint32 {
+	MANUAL = 0,
+	EXT_CLOCK = 1,
+	INT_CLOCK = 2
+};
+
 }
-
-
 
 
 

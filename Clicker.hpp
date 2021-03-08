@@ -8,15 +8,18 @@
 #ifndef CLICKER_HPP_
 #define CLICKER_HPP_
 
-#import "RackExtension.hpp"
-#import "OscillatorBase.hpp"
-#import "Carrier.hpp"
-#import "Click.hpp"
-#import "Limiter.hpp"
+#include "RackExtension.hpp"
+#include "OscillatorBase.hpp"
+#include "Carrier.hpp"
+#include "Click.hpp"
+#include "Limiter.hpp"
+#include "Property.hpp"
 
 
 namespace meromorph {
 namespace click {
+
+
 
 
 
@@ -42,11 +45,7 @@ enum Tags : uint32 {
 	TRIGGER_BACK = 20
 	};
 
-enum TriggerMode : uint32 {
-	MANUAL = 0,
-	EXT_CLOCK = 1,
-	INT_CLOCK = 2
-};
+
 
 struct TriggerState {
 	static const float32 TriggerPeriod;
@@ -79,8 +78,7 @@ private:
 
 	std::vector<float32> lBuffer;
 	std::vector<float32> rBuffer;
-	float32 lPan = 0.71;
-	float32 rPan = 0.71;
+	Pan pan;
 
 	TriggerMode mode = MANUAL;
 	TriggerState tState;
@@ -106,11 +104,7 @@ private:
 	void handleTriggerLED();
 
 protected:
-	const static inline float32 PITCH_MIN = 20.f;
-	const static inline float32 PITCH_MAX = 10000.f;
 
-	const static inline float32 LENGTH_MIN = 1.f;
-	const static inline float32 LENGTH_MAX = 500.f;
 
 
 	virtual void setSampleRate(const float32 rate);

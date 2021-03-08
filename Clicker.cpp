@@ -7,6 +7,7 @@
 
 #include "Clicker.hpp"
 
+
 namespace meromorph {
 namespace click {
 
@@ -53,11 +54,6 @@ Clicker::Clicker() : RackExtension(), lBuffer(BUFFER_SIZE), rBuffer(BUFFER_SIZE)
 }
 
 
-TriggerMode asMode(const TJBox_PropertyDiff & diff) {
-	int32 i = toInt(diff.fCurrentValue);
-	int32 limited = clamp(0,2,i);
-	return static_cast<TriggerMode>(limited);
-}
 
 
 void Clicker::processApplicationMessage(const TJBox_PropertyDiff &diff) {
@@ -70,22 +66,17 @@ void Clicker::processApplicationMessage(const TJBox_PropertyDiff &diff) {
 		break;
 	}
 	case Tags::PITCH: {
-		auto f = scaledFloat(diff.fCurrentValue,PITCH_MIN,PITCH_MAX);
-		trace("Carrier frequency is ^0",f);
-		carrier.setFrequency(f);
+		carrier.setFrequency(Property::pitch(diff));
 		break;
 	}
 	case Tags::LENGTH: {
-		clickLength = lround(scaledFloat(diff.fCurrentValue,LENGTH_MIN,LENGTH_MAX));
+		clickLength = Property::length(diff);
 		clicks.setScale(clickLength);
 		trace("Click length is ^0",clickLength);
 		break;
 	}
 	case Tags::PAN: {
-		auto angle = scaledFloat(diff.fCurrentValue,0,meromorph::Pi/2);
-		lPan = cos(angle);
-		rPan = sin(angle);
-		trace("Pan angle is ^0",angle);
+		pan = Property::pan(diff);
 		break;
 	}
 	case Tags::AMPLITUDE: {
@@ -101,19 +92,16 @@ void Clicker::processApplicationMessage(const TJBox_PropertyDiff &diff) {
 	 * LIMITER_HARDSOFT: hard or soft limit
 	 *
 	 */
-	case Tags::LIMITER: {
-		auto l = clampedFloat(diff.fCurrentValue);
-		limiter.setLimit(pow(10.f,l));
+	case Tags::LIMITER:
+		limiter.setLimit(Property::limit(diff));
 		break;
-	}
 	case Tags::LIMITER_ONOFF:
 		limiter.setActive(toBool(diff.fCurrentValue));
 		break;
-	case Tags::LIMITER_HARD_SOFT: {
-		auto mode = toBool(diff.fCurrentValue) ? Limiter::HARD : Limiter::SOFT;
-		limiter.setMode(mode);
+	case Tags::LIMITER_HARD_SOFT:
+		limiter.setMode(Property::limitMode(diff));
 		break;
-	}
+
 	/*
 	 * LFO settings
 	 *
@@ -122,11 +110,9 @@ void Clicker::processApplicationMessage(const TJBox_PropertyDiff &diff) {
 	 * LFO_MODULATOR_ONOFF
 	 *
 	 */
-	case Tags::LFO_FREQUENCY: {
-		auto freq = scaledFloat(diff.fCurrentValue,0,750);
-		trace("Setting pulse to ^0",freq);
-		pulse.setFrequency(freq);
-		break; }
+	case Tags::LFO_FREQUENCY:
+		pulse.setFrequency(Property::lfoFreq(diff));
+		break;
 	case Tags::LFO_HOLD:
 		pulse.hold(toBool(diff.fCurrentValue));
 		break;
@@ -139,27 +125,21 @@ void Clicker::processApplicationMessage(const TJBox_PropertyDiff &diff) {
 	 * TRIGGER_MODE : the mode selector
 	 */
 	case Tags::TRIGGER_MODE:
-			trace("Trigger mode ^0",toFloat(diff.fCurrentValue));
-			mode = asMode(diff);
-			if(mode==TriggerMode::EXT_CLOCK) edges.reset();
-			break;
+		trace("Trigger mode ^0",toFloat(diff.fCurrentValue));
+		mode = Property::triggerMode(diff);
+		if(mode==TriggerMode::EXT_CLOCK) edges.reset();
+		break;
 	case Tags::TRIGGER:
 		if(mode==TriggerMode::MANUAL) {
 			if(toBool(diff.fCurrentValue)) shouldTrigger=true;
 		}
 		break;
-	case Tags::EXT_TRIGGER_THRESHOLD: {
-		auto t = clampedFloat(diff.fCurrentValue);
-		trace("External trigger threshold ^0",t);
-		edges.setThreshold(t);
+	case Tags::EXT_TRIGGER_THRESHOLD:
+		edges.setThreshold(Property::triggerThreshold(diff));
 		break;
-	}
-	case Tags::EXT_TRIGGER_DEBOUNCE: {
-			auto t = lround(scaledFloat(diff.fCurrentValue,0,63));
-			trace("External trigger threshold ^0",t);
-			edges.setDelay(t);
-			break;
-		}
+	case Tags::EXT_TRIGGER_DEBOUNCE:
+		edges.setDelay(Property::triggerDebounce(diff));
+		break;
 		/* CV settings */
 	case kJBox_CVInputValue:
 		if(mode==TriggerMode::EXT_CLOCK) {
@@ -194,6 +174,8 @@ void Clicker::setSampleRate(const float32 rate) {
 	sampleRate=rate;
 	tState.setDelay(rate,BUFFER_SIZE);
 	carrier.setSampleRate(rate);
+	//pulse.setSampleRate(rate/(float32)BUFFER_SIZE);
+	pulse.setSampleRate(rate);
 	trace("Sample rate is ^0",rate);
 }
 
@@ -203,38 +185,44 @@ void Clicker::process() {
 		initialised=true;
 	}
 
-	auto p = pulse.next();
-	if(mode==TriggerMode::INT_CLOCK) {
-		shouldTrigger=p>0;
-		//if(p>0) trace("Triggering internal");
-	}
-
-	if(shouldTrigger) {
-		//trace("Triggering pulse, mode is ^0",mode);
-		tState.set();
-		shouldTrigger=false;
-	}
 
 
-	if(tState.isTriggered()) {
-		clicking=true;
-		clickOffset=0;
-	}
-	//if(clicking) trace("Clicking ON  Click offset is ^0",clickOffset);
 
-	if(clicking && clickOffset>=clickLength) {
-		clicking=false;
-		clickOffset=0;
-	}
+
 
 	for(auto n=0;n<BUFFER_SIZE;n++) {
+
+		auto p = pulse.next();
+		if(mode==TriggerMode::INT_CLOCK) {
+			shouldTrigger=p>0;
+			//if(p>0) trace("Triggering internal");
+		}
+
+		if(shouldTrigger) {
+			//trace("Triggering pulse, mode is ^0",mode);
+			tState.set();
+			shouldTrigger=false;
+		}
+
+
+		if(tState.isTriggered()) {
+			clicking=true;
+			clickOffset=0;
+		}
+		//if(clicking) trace("Clicking ON  Click offset is ^0",clickOffset);
+
+		if(clicking && clickOffset>=clickLength) {
+			clicking=false;
+			clickOffset=0;
+		}
+
 		auto c = (clicking) ? clicks.at(click,clickOffset++) : 0.f;
 		auto f = carrier.next();
 		auto sample=c*f*amplitude;
-
-		lBuffer[n]=sample*lPan;
-		rBuffer[n]=sample*rPan;
+		lBuffer[n]=pan.toLeft(sample);
+		rBuffer[n]=pan.toRight(sample);
 	}
+
 
 	limiter.limit(lBuffer);
 	limiter.limit(rBuffer);

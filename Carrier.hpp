@@ -14,6 +14,8 @@
 namespace meromorph {
 namespace click {
 
+#define PER_SAMPLE
+
 class Carrier : public OscillatorBase {
 protected:
 
@@ -31,16 +33,21 @@ class Pulse : public OscillatorBase {
 protected:
 	bool modulate = false;
 	float32 modulation = 0;
+	float32 modDelta=0;
 public:
-	Pulse() : OscillatorBase(750) {};
+	Pulse() : OscillatorBase(48000) {};
+	//Pulse() : OscillatorBase(750) {};
 	virtual ~Pulse() = default;
 	Pulse(const Pulse &other) = default;
 	Pulse& operator=(const Pulse &other) = default;
 
 	virtual float32 next();
+	int32 multiStep(const uint32);
 	void setModulateActive(const bool);
 	void setModulation(const float32);
 };
+
+
 
 
 } /* namespace click */

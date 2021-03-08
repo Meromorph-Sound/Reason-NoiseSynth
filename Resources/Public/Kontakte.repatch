@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<JukeboxPatch xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="patch.xsd" version="1.0">
-    <DeviceNameInEnglish>Pulse Train</DeviceNameInEnglish>
-    <Properties deviceProductID="org.porternet.pulsetrain" deviceVersion="1.0.0d1">
-        <Object name="custom_properties">
-            <Value property="shape" type="number">0</Value>
-            <Value property="triggerMode" type="number">0</Value>
-        </Object>
-    </Properties>
+<JukeboxPatch
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="patch.xsd" version="1.0">
+	<DeviceNameInEnglish>Pulse Train</DeviceNameInEnglish>
+	<Properties deviceProductID="org.porternet.pulsetrain"
+		deviceVersion="1.0.0d1">
+		<Object name="custom_properties">
+			<Value property="shape" type="number">0</Value>
+			<Value property="pitch" type="number">0</Value>
+			<Value property="length" type="number">100</Value>
+			<Value property="pan" type="number">0.5</Value>
+			<Value property="amplitude" type="number">1</Value>
+			<Value property="trigger" type="number">0</Value>
+			<Value property="triggerMode" type="number">0</Value>
+			<Value property="externalTriggerThreshold" type="number">0.5</Value>
+			<Value property="externalTriggerDebounce" type="number">1</Value>
+			<Value property="limiter" type="number">0</Value>
+			<Value property="limiterOnOff" type="number">1</Value>
+			<Value property="limiterHardSoft" type="number">0</Value>
+			<Value property="vcoFrequency" type="number">0</Value>
+			<Value property="vcoHold" type="number">0</Value>
+			<Value property="vcoModulatorActive" type="number">0</Value>
+		</Object>
+	</Properties>
 </JukeboxPatch>

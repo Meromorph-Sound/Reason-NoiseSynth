@@ -202,6 +202,7 @@ custom_properties = jbox.property_set{
     },
      ["length"] = jbox.number {
       default=100,
+      steps=LENGTH_MAX+1,
       ui_name = jbox.ui_text("length"),  
       property_tag=LENGTH_TAG,
         ui_type = jbox.ui_linear{
@@ -275,7 +276,7 @@ custom_properties = jbox.property_set{
         }
      },
      ["limiterOnOff"] = jbox.number {
-        default=0,
+        default=1,
         steps=2,
         ui_name = jbox.ui_text("limiter"),  
         property_tag=LIMITER_ONOFF_TAG,
@@ -347,7 +348,7 @@ for tag, name in pairs(Props.PropertiesTable) do
 end
 
 midi_implementation_chart = {
-	midi_cc_chart = midi_cc
+	midi_cc_chart = {} -- midi_cc
 }
 
 function remote(name) 
