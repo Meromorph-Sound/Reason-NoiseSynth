@@ -25,9 +25,9 @@ front = {
   shape = { offset = {1200,120}, { path = "Clicks_9frames", frames = 9}},
   shapeUpDown   = { offset = {1400,157}, { path = "UpDown", frames = 3}},
   --
-  length = { offset = {1550,120}, { path = "Knob_01_63frames", frames = 63}},
+  --length = { offset = {1550,120}, { path = "Knob_01_63frames", frames = 63}},
   lengthDisplay = { offset = { 1540, 400 },{ path = "Display" }},
-  pitch = { offset = {1800,120}, { path = "Knob_01_63frames", frames = 63}},
+  --pitch = { offset = {1800,120}, { path = "Knob_01_63frames", frames = 63}},
   pitchDisplay = { offset = { 1790, 400 },{ path = "Display" }},
   pan = { offset = {2050,120}, { path = "Knob_01_63frames", frames = 63}},
   amplitude = { offset = {2300,120}, { path = "Knob_01_63frames", frames = 63}},
@@ -49,6 +49,9 @@ front = {
   VCOFreq = { offset = {1250,450}, { path = "Knob_51_63frames", frames = 63}},
   lfoFreqDisplay = { offset = { 1200, 620 },{ path = "Display" }},
 
+  threshold = { offset = {1790,500}, {path="Display"}},
+  delay = { offset = {1790,580}, {path="Display"}},
+
 }
 back = { 
   Bg = {
@@ -60,10 +63,6 @@ back = {
   },
   TriggerIn = { offset = {2000,120}, {path = "SharedCVJack", frames=3} },
   enabled = { offset = {2100,145}, { path = "Lamp_10_GREEN_2frames", frames=2}},
-  threshold = { offset = {2000,300}, {path="Trim_Knob_64frames", frames=64}},
-  thresholdDisplay = { offset = {2150, 320 },{ path = "Display" }},
-  delay = { offset = {2000,450}, {path="Trim_Knob_64frames", frames=64}},
-  delayDisplay = { offset = {2150, 470 },{ path = "Display" }},
   --
   LFOModulatorIn = {
     offset = {2400,300},

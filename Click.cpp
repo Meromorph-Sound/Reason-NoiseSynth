@@ -30,7 +30,7 @@ Clicks::Clicks() {
 	shapes=new float32[N_SHAPE_FUNCTIONS*CLICK_LENGTH];
 
 	for(auto n=0;n<Clicks::CLICK_LENGTH;n++) {
-		at(SQUARE,n) = 1;
+		at(SQUARE,n) = (n>5) ? 1.0 : 0.0;
 		at(TRIANGULAR,n) = 1.0-(abs(n-100.0)/100.0);
 		at(HALF_TRIANGULAR_DOWN,n) = std::max(0.0,1-(n/100.0));
 		at(HALF_TRIANGULAR_UP,n) = (n<100) ? n/100.0 : 0.0;

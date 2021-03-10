@@ -12,7 +12,14 @@ function text_display(node,property)
   }
 end
 
-front = jbox.panel { 
+function prop_display(node,property)
+  return {
+    graphics = { ["node"] = node },
+      value = "/custom_properties/"..property,
+  }
+end
+
+front = jbox.panel {
   graphics = { node = "Bg" },
   widgets = {
     jbox.device_name { graphics = {node = "deviceName" }},
@@ -24,36 +31,19 @@ front = jbox.panel {
       center = false,
       text_style = "Bold LCD font",
     },
-    jbox.up_down_button{
-      graphics={node="shapeUpDown"},
-      value="/custom_properties/shape"
-    },
-    jbox.analog_knob{
-      graphics={ node = "shape" },
-      value="/custom_properties/shape"
-    },
-    jbox.analog_knob{
-      graphics={ node = "pitch" },
-      value="/custom_properties/pitch"
-    },
+    jbox.up_down_button(prop_display("shapeUpDown","shape")),
+    jbox.analog_knob(prop_display("shape","shape")),
+    jbox.analog_knob(prop_display("pitch","pitch")),
     text_display("pitchDisplay","pitch"),
-    jbox.analog_knob{
-      graphics={ node = "length" },
-      value="/custom_properties/length"
-    },
+    --jbox.analog_knob{
+    --  graphics={ node = "length" },
+    --  value="/custom_properties/length"
+    --},
+    jbox.analog_knob(prop_display("length","length")),
     text_display("lengthDisplay","length"),
-    jbox.analog_knob{
-      graphics={ node = "pan" },
-      value="/custom_properties/pan"
-    },
-    jbox.analog_knob{
-      graphics={ node = "amplitude" },
-      value="/custom_properties/amplitude"
-    },
-    jbox.momentary_button{
-      graphics = { node = "trigger" },
-      value = "/custom_properties/trigger"
-    },
+    jbox.analog_knob(prop_display("pan","pan")),
+    jbox.analog_knob(prop_display("amplitude","amplitude")),
+    jbox.momentary_button(prop_display("trigger","trrigger")),
     jbox.sequence_fader{
       graphics = { node = "triggerMode" },
       value = "/custom_properties/triggerMode"
@@ -62,10 +52,10 @@ front = jbox.panel {
       graphics = { node = "triggered" },
       value = "/custom_properties/triggered"
     },
-    jbox.analog_knob{
-      graphics = {node="limiter"},
-      value="/custom_properties/limiter"
-    },
+    --jbox.analog_knob{
+    --  graphics = {node="limiter"},
+    --  value="/custom_properties/limiter"
+    --},
     jbox.toggle_button{
       graphics = {node="limiterOnOff"},
       value="/custom_properties/limiterOnOff"
@@ -88,7 +78,9 @@ front = jbox.panel {
     jbox.toggle_button{
       graphics = {node="VCOModOnOff"},
       value="/custom_properties/vcoModulatorActive"
-    }
+    },
+    text_display("threshold","externalTriggerThreshold"),
+    text_display("delay","externalTriggerDebounce"),
   }	
 }
 back = jbox.panel { 
@@ -101,16 +93,7 @@ back = jbox.panel {
       graphics = { node = "TriggerIn" },
       socket = "/cv_inputs/externalTrigger",
     },
-    jbox.analog_knob {
-      graphics = { node = "threshold"},
-      value="/custom_properties/externalTriggerThreshold"
-    },
-    text_display("thresholdDisplay","externalTriggerThreshold"),
-    jbox.analog_knob {
-      graphics = { node = "delay"},
-      value="/custom_properties/externalTriggerDebounce"
-    },
-    text_display("delayDisplay","externalTriggerDebounce"),
+    
     jbox.cv_input_socket {
       graphics = { node = "LFOModulatorIn" },
       socket = "/cv_inputs/lfoModulator",
@@ -131,10 +114,10 @@ back = jbox.panel {
     jbox.device_name {
       graphics = { node = "deviceName" },
     },
-    jbox.sequence_meter{
-      graphics = { node = "enabled" },
-      value = "/custom_properties/extEnabled"
-    },
+--    jbox.sequence_meter{
+--      graphics = { node = "enabled" },
+--      value = "/custom_properties/extEnabled"
+--    },
   }
 }
 
