@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
+   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -20,6 +21,54 @@
    inkscape:export-ydpi="96">
   <defs
      id="defs2453">
+    <linearGradient
+       id="linearGradient1927"
+       inkscape:collect="always">
+      <stop
+         id="stop1919"
+         offset="0"
+         style="stop-color:#f0f0ff;stop-opacity:0.50196081" />
+      <stop
+         style="stop-color:#f0f0ff;stop-opacity:0.3764706"
+         offset="0.38324299"
+         id="stop1921" />
+      <stop
+         id="stop1923"
+         offset="0.88314134"
+         style="stop-color:#f0fff4;stop-opacity:0" />
+      <stop
+         id="stop1925"
+         offset="1"
+         style="stop-color:#000000;stop-opacity:0;" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient1842">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0.50196081"
+         offset="0"
+         id="stop1846" />
+      <stop
+         id="stop1859"
+         offset="0.38324299"
+         style="stop-color:#ffffff;stop-opacity:0.3764706" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0.25098041"
+         offset="0.88314134"
+         id="stop1861" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="1"
+         id="stop1848" />
+    </linearGradient>
+    <linearGradient
+       osb:paint="solid"
+       id="linearGradient1663">
+      <stop
+         id="stop1661"
+         offset="0"
+         style="stop-color:#000000;stop-opacity:1;" />
+    </linearGradient>
     <filter
        style="color-interpolation-filters:sRGB;"
        inkscape:label="Drop Shadow"
@@ -85,6 +134,50 @@
          operator="over"
          result="composite2" />
     </filter>
+    <radialGradient
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,0,0.02593233,-0.43310547,470.86279)"
+       r="477.50473"
+       fy="483.39844"
+       fx="1898.8491"
+       cy="483.39844"
+       cx="1898.8491"
+       id="radialGradient1844"
+       xlink:href="#linearGradient1842"
+       inkscape:collect="always" />
+    <radialGradient
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,0,0.02593233,-0.43315023,277.84665)"
+       r="477.50473"
+       fy="483.39844"
+       fx="1898.8491"
+       cy="483.39844"
+       cx="1898.8491"
+       id="radialGradient1844-9-1"
+       xlink:href="#linearGradient1927"
+       inkscape:collect="always" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1927"
+       id="radialGradient1844-9-1-1"
+       cx="1898.8491"
+       cy="483.39844"
+       fx="1898.8491"
+       fy="483.39844"
+       r="477.50473"
+       gradientTransform="matrix(1,0,0,0.02593233,-0.43314545,376.35673)"
+       gradientUnits="userSpaceOnUse" />
+    <radialGradient
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,0,0.02593233,-0.4331498,471.36164)"
+       r="477.50473"
+       fy="483.39844"
+       fx="1898.8491"
+       cy="483.39844"
+       cx="1898.8491"
+       id="radialGradient1844-9-1-1-2"
+       xlink:href="#linearGradient1927"
+       inkscape:collect="always" />
   </defs>
   <sodipodi:namedview
      inkscape:snap-global="false"
@@ -97,9 +190,9 @@
      inkscape:document-rotation="0"
      inkscape:current-layer="layer2"
      inkscape:document-units="mm"
-     inkscape:cy="795.85938"
-     inkscape:cx="1587.0704"
-     inkscape:zoom="0.44137931"
+     inkscape:cy="344.95047"
+     inkscape:cx="1775.537"
+     inkscape:zoom="1.2484092"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
      borderopacity="1.0"
@@ -172,6 +265,24 @@
      inkscape:label="Decorations"
      id="layer2"
      inkscape:groupmode="layer">
+    <rect
+       style="display:inline;fill:none;fill-opacity:1;stroke:none;stroke-width:3.447;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect1795-6"
+       width="955.00946"
+       height="24.765625"
+       x="1420.9113"
+       y="376.11157"
+       ry="0"
+       rx="0" />
+    <rect
+       rx="0"
+       ry="0"
+       y="277.99948"
+       x="1420.9113"
+       height="24.765625"
+       width="955.00946"
+       id="rect1795-6-7"
+       style="display:inline;fill:url(#radialGradient1844-9-1);fill-opacity:1;stroke:none;stroke-width:3.447;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none" />
     <text
        id="text1762-6-6"
        y="53.256001"
@@ -214,227 +325,362 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.66666667px;line-height:1.25;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;"
-       x="798.86572"
-       y="445.75598"
+       x="1855.7415"
+       y="491.444"
        id="text1762-6-6-9"><tspan
          sodipodi:role="line"
-         id="tspan1760-2-4-9"
-         x="798.86572"
-         y="445.75598"
-         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.66666667px;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;">manual</tspan><tspan
-         sodipodi:role="line"
-         x="798.86572"
-         y="485.75598"
+         x="1855.7415"
+         y="491.444"
          style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.66666667px;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;"
-         id="tspan2846">trigger</tspan></text>
+         id="tspan2846">manual trigger</tspan></text>
     <text
        xml:space="preserve"
        style="font-weight:500;font-stretch:condensed;font-size:26.6667px;line-height:1.25;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';display:inline"
-       x="797.05762"
-       y="170.24001"
+       x="1547.0576"
+       y="300.24005"
        id="text1762-6"><tspan
          sodipodi:role="line"
          id="tspan1760-2"
-         x="797.05762"
-         y="170.24001"
+         x="1547.0576"
+         y="300.24005"
          style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:condensed;font-size:40px;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Semi-Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff">int clock</tspan></text>
     <text
        id="text1762-6-8"
-       y="269.78"
-       x="797.85742"
+       y="399.78003"
+       x="1547.8574"
        style="font-weight:500;font-stretch:condensed;font-size:26.6667px;line-height:1.25;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';display:inline"
        xml:space="preserve"><tspan
          style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:condensed;font-size:40px;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Semi-Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
-         y="269.78"
-         x="797.85742"
+         y="399.78003"
+         x="1547.8574"
          id="tspan1760-2-5"
          sodipodi:role="line">ext clock</tspan></text>
     <text
        xml:space="preserve"
        style="font-weight:500;font-stretch:condensed;font-size:26.6667px;line-height:1.25;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';display:inline"
-       x="796.57764"
-       y="369.32001"
+       x="1546.5776"
+       y="495.32001"
        id="text1762-6-8-1"><tspan
          sodipodi:role="line"
          id="tspan1760-2-5-1"
-         x="796.57764"
-         y="369.32001"
+         x="1546.5776"
+         y="495.32001"
          style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:condensed;font-size:40px;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Semi-Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff">manual</tspan></text>
     <text
        id="text1762-6-6-2-1"
-       y="372.47476"
-       x="1299.9592"
-       style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.66666667px;line-height:1.25;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;display:inline;"
+       y="196.20802"
+       x="832.88916"
+       style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.6667px;line-height:1.25;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;display:inline"
        xml:space="preserve"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.66666667px;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#ffffff;"
-         y="372.47476"
-         x="1299.9592"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.6667px;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#ffffff"
+         y="196.20802"
+         x="832.88916"
          id="tspan1760-2-4-0-4"
-         sodipodi:role="line">click shape</tspan><tspan
+         sodipodi:role="line">shape</tspan><tspan
          id="tspan2913-8"
-         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.66666667px;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#ffffff;"
-         y="412.47476"
-         x="1299.9592"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.6667px;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#ffffff"
+         y="239.5414"
+         x="832.88916"
          sodipodi:role="line" /></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.66666667px;line-height:1.25;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;display:inline;"
-       x="2139.9978"
-       y="373.05072"
+       style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.6667px;line-height:1.25;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;display:inline"
+       x="3438.2009"
+       y="299.25388"
        id="text1762-6-6-2-7-4"><tspan
          sodipodi:role="line"
          id="tspan1760-2-4-0-5-3"
-         x="2139.9978"
-         y="373.05072"
-         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.66666667px;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#ffffff;">pan</tspan><tspan
+         x="3438.2009"
+         y="299.25388"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.6667px;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#ffffff">pan</tspan><tspan
          sodipodi:role="line"
-         x="2139.9978"
-         y="413.05072"
-         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.66666667px;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#ffffff;"
+         x="3438.2009"
+         y="342.58725"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.6667px;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#ffffff"
          id="tspan2913-9-8">(degrees)</tspan></text>
     <text
        id="text1762-6-6-2-7-4-8"
-       y="373.05072"
-       x="2390.4553"
-       style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.66666667px;line-height:1.25;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;display:inline;"
+       y="602.84766"
+       x="3441.7053"
+       style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.6667px;line-height:1.25;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;display:inline"
        xml:space="preserve"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.66666667px;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#ffffff;"
-         y="373.05072"
-         x="2390.4553"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.6667px;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#ffffff"
+         y="602.84766"
+         x="3441.7053"
          id="tspan1760-2-4-0-5-3-2"
          sodipodi:role="line">volume</tspan></text>
     <text
        id="text1742"
-       y="178.75"
-       x="2931.5625"
-       style="font-weight:500;font-stretch:condensed;font-size:34.66666667px;line-height:1.25;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';display:inline;fill:#ffffff;font-style:normal;font-variant:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;"
+       y="421.58261"
+       x="1200.6687"
+       style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.6667px;line-height:1.25;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#ffffff"
        xml:space="preserve"><tspan
-         y="178.75"
-         x="2931.5625"
+         y="421.58261"
+         x="1200.6687"
          id="tspan1740"
          sodipodi:role="line">limit</tspan></text>
     <text
        id="text1746"
-       y="161.79688"
-       x="2634.6094"
-       style="font-weight:500;font-stretch:condensed;font-size:34.66666667px;line-height:1.25;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';display:inline;fill:#ffffff;font-style:normal;font-variant:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;"
+       y="260.32669"
+       x="1184.6094"
+       style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.6667px;line-height:1.25;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#ffffff"
        xml:space="preserve"><tspan
-         y="161.79688"
-         x="2634.6094"
+         y="260.32669"
+         x="1184.6094"
          id="tspan1744"
-         sodipodi:role="line">limiter on/off</tspan></text>
+         sodipodi:role="line">on/off</tspan></text>
     <text
        xml:space="preserve"
-       style="font-weight:500;font-stretch:condensed;font-size:34.66666667px;line-height:1.25;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';display:inline;fill:#ffffff;font-style:normal;font-variant:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;"
-       x="2639.3088"
-       y="239.63232"
+       style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.6667px;line-height:1.25;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#ffffff"
+       x="1189.3088"
+       y="350.32669"
        id="text1746-3"><tspan
          sodipodi:role="line"
          id="tspan1744-6"
-         x="2639.3088"
-         y="239.63232">hard/soft</tspan></text>
+         x="1189.3088"
+         y="350.32669">hard/soft</tspan></text>
     <text
        xml:space="preserve"
-       style="display:inline;font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.66666667px;line-height:1.25;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;"
-       x="1640.1028"
-       y="372.47476"
+       style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.6667px;line-height:1.25;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;display:inline"
+       x="832.43799"
+       y="456.20813"
        id="text1762-6-6-2"><tspan
          sodipodi:role="line"
          id="tspan1760-2-4-0"
-         x="1640.1028"
-         y="372.47476"
-         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.66666667px;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#ffffff;">click length</tspan></text>
+         x="832.43799"
+         y="456.20813"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.6667px;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#ffffff">length</tspan></text>
     <text
        id="text1762-6-6-2-7"
-       y="373.05075"
-       x="1889.5117"
-       style="display:inline;font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.66666667px;line-height:1.25;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;"
+       y="570.83215"
+       x="831.93036"
+       style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:37.3333px;line-height:1.25;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;display:inline"
        xml:space="preserve"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.66666667px;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#ffffff;"
-         y="373.05075"
-         x="1889.5117"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:37.3333px;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#ffffff"
+         y="570.83215"
+         x="831.93036"
          id="tspan1760-2-4-0-5"
          sodipodi:role="line">carrier frequency</tspan></text>
     <rect
-       style="display:inline;fill:#333333;stroke:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round"
+       style="display:inline;fill:#333333;stroke:none;stroke-width:4.60435;stroke-linecap:round;stroke-linejoin:round"
        id="rect1559"
-       width="200"
+       width="265"
        height="55"
-       x="1540"
-       y="400"
+       x="700"
+       y="470.00009"
        label="click length" />
     <rect
-       y="400"
-       x="1790"
+       y="585"
+       x="700"
        height="55"
-       width="200"
+       width="265"
        id="rect1559-8"
-       style="display:inline;fill:#333333;stroke:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round"
+       style="display:inline;fill:#333333;stroke:none;stroke-width:4.60435;stroke-linecap:round;stroke-linejoin:round"
        label="carrier" />
     <text
        xml:space="preserve"
-       style="display:inline;font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.66666667px;line-height:1.25;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;"
-       x="1288.6523"
-       y="595.31641"
+       style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.66666667px;line-height:1.25;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;display:inline;"
+       x="1912.5084"
+       y="252.57599"
        id="text1762-6-6-2-7-3"><tspan
          sodipodi:role="line"
          id="tspan1760-2-4-0-5-1"
-         x="1288.6523"
-         y="595.31641"
-         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.66666667px;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#ffffff;">LFO frequency</tspan></text>
+         x="1912.5084"
+         y="252.57599"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.66666667px;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#ffffff;">frequency</tspan></text>
     <rect
        label="carrier"
-       style="display:inline;fill:#333333;stroke:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round"
+       style="display:inline;fill:#333333;stroke:none;stroke-width:4.60435;stroke-linecap:round;stroke-linejoin:round"
        id="rect1559-8-8"
-       width="200"
+       width="265"
        height="55"
-       x="1200"
-       y="620" />
+       x="1780"
+       y="260" />
     <rect
        label="carrier"
-       style="display:inline;fill:#333333;stroke:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round"
+       style="display:inline;fill:#333333;stroke:none;stroke-width:4.60435;stroke-linecap:round;stroke-linejoin:round"
        id="rect1559-8-1"
-       width="200"
+       width="265"
        height="55"
-       x="2800"
-       y="240" />
+       x="1098.5156"
+       y="430" />
     <text
        id="text1762-6-6-2-7-4-8-9"
-       y="540.30933"
-       x="2086.729"
+       y="357.952"
+       x="1914.3535"
        style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.6667px;line-height:1.25;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;display:inline"
        xml:space="preserve"><tspan
          style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.6667px;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#ffffff"
-         y="540.30933"
-         x="2086.729"
+         y="357.952"
+         x="1914.3535"
          id="tspan1760-2-4-0-5-3-2-38"
          sodipodi:role="line">threshold</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.6667px;line-height:1.25;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;display:inline"
-       x="2088.0596"
-       y="620.30933"
+       x="2192.4561"
+       y="357.13101"
        id="text1762-6-6-2-7-4-8-6"><tspan
          sodipodi:role="line"
          id="tspan1760-2-4-0-5-3-2-3"
-         x="2088.0596"
-         y="620.30933"
+         x="2192.4561"
+         y="357.13101"
          style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.6667px;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#ffffff">debounce</tspan></text>
+    <g
+       id="g1699">
+      <rect
+         style="fill:none;fill-opacity:0.890196;stroke:#ffffff;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+         id="rect1659"
+         width="331.62204"
+         height="531.87689"
+         x="666.68896"
+         y="132.96922"
+         ry="25.632622"
+         rx="25.632622" />
+      <g
+         id="g1657"
+         transform="translate(-762.6687,-402.11174)">
+        <rect
+           y="515.32898"
+           x="1545.1687"
+           height="40"
+           width="100"
+           id="rect1652"
+           style="fill:#41416c;fill-opacity:0.890196;stroke-width:3.64976;stroke-linecap:round;stroke-linejoin:round" />
+        <text
+           id="text1762-6-65"
+           y="553.065"
+           x="1545.161"
+           style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:condensed;font-size:48px;line-height:1.25;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Semi-Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline"
+           xml:space="preserve"><tspan
+             style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:condensed;font-size:48px;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Semi-Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff"
+             y="553.065"
+             x="1545.161"
+             id="tspan1760-2-7"
+             sodipodi:role="line">Pulse</tspan></text>
+      </g>
+    </g>
+    <g
+       transform="translate(0,7.64441)"
+       id="g1706">
+      <rect
+         rx="25.632622"
+         ry="25.632622"
+         y="125.32481"
+         x="1048.5344"
+         height="531.87689"
+         width="331.62204"
+         id="rect1659-0"
+         style="display:inline;fill:none;fill-opacity:0.890196;stroke:#ffffff;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none" />
+      <g
+         transform="translate(-395.82326,-409.75615)"
+         id="g1657-0"
+         style="display:inline">
+        <rect
+           style="fill:#41416c;fill-opacity:0.890196;stroke-width:4.16137;stroke-linecap:round;stroke-linejoin:round"
+           id="rect1652-3"
+           width="130"
+           height="40"
+           x="1545.1687"
+           y="515.32898" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:condensed;font-size:48px;line-height:1.25;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Semi-Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline"
+           x="1545.161"
+           y="553.065"
+           id="text1762-6-65-8"><tspan
+             sodipodi:role="line"
+             id="tspan1760-2-7-3"
+             x="1545.161"
+             y="553.065"
+             style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:condensed;font-size:48px;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Semi-Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff">Limiter</tspan></text>
+      </g>
+    </g>
     <rect
-       y="500"
-       x="1790"
+       rx="25.632622"
+       ry="25.632622"
+       y="135.05832"
+       x="1417.4904"
+       height="527.69867"
+       width="961.8512"
+       id="rect1659-0-4"
+       style="display:inline;fill:none;fill-opacity:0.890196;stroke:#ffffff;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none" />
+    <g
+       transform="translate(288.2991,-402.11174)"
+       id="g1657-0-5"
+       style="display:inline">
+      <rect
+         style="fill:#41416c;fill-opacity:0.890196;stroke-width:4.16137;stroke-linecap:round;stroke-linejoin:round"
+         id="rect1652-3-1"
+         width="130"
+         height="40"
+         x="1545.1687"
+         y="515.32898" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:condensed;font-size:48px;line-height:1.25;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Semi-Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline"
+         x="1545.161"
+         y="553.065"
+         id="text1762-6-65-8-7"><tspan
+           sodipodi:role="line"
+           id="tspan1760-2-7-3-8"
+           x="1545.161"
+           y="553.065"
+           style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:condensed;font-size:48px;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Semi-Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff">Trigger</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.6667px;line-height:1.25;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#ffffff"
+       x="2141.6211"
+       y="298.07065"
+       id="text1746-0"><tspan
+         sodipodi:role="line"
+         id="tspan1744-8"
+         x="2141.6211"
+         y="298.07065">on/off</tspan></text>
+    <text
+       id="text1746-0-1"
+       y="298.05331"
+       x="2308.4666"
+       style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:condensed;font-size:34.6667px;line-height:1.25;font-family:'Avenir Next Condensed';-inkscape-font-specification:'Avenir Next Condensed, Medium Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#ffffff"
+       xml:space="preserve"><tspan
+         y="298.05331"
+         x="2308.4666"
+         id="tspan1744-8-4"
+         sodipodi:role="line">hold</tspan></text>
+    <rect
+       style="display:inline;fill:url(#radialGradient1844-9-1-1);fill-opacity:1;stroke:none;stroke-width:3.447;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect1795-6-7-5"
+       width="955.00946"
+       height="24.765625"
+       x="1420.9113"
+       y="376.50955"
+       ry="0"
+       rx="0" />
+    <rect
+       rx="0"
+       ry="0"
+       y="471.51447"
+       x="1420.9113"
+       height="24.765625"
+       width="955.00946"
+       id="rect1795-6-7-5-8"
+       style="display:inline;fill:url(#radialGradient1844-9-1-1-2);fill-opacity:1;stroke:none;stroke-width:3.447;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none" />
+    <rect
+       y="360"
+       x="1780"
        height="55"
-       width="200"
+       width="265"
        id="rect1559-8-0"
-       style="display:inline;fill:#333333;stroke:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round"
+       style="display:inline;fill:#333333;stroke:none;stroke-width:4.60434;stroke-linecap:round;stroke-linejoin:round"
        label="carrier" />
     <rect
-       y="580"
-       x="1790"
+       y="360"
+       x="2060"
        height="55"
-       width="200"
+       width="265"
        id="rect1559-8-2"
-       style="display:inline;fill:#333333;stroke:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round"
+       style="display:inline;fill:#333333;stroke:none;stroke-width:4.60434;stroke-linecap:round;stroke-linejoin:round"
        label="carrier" />
   </g>
   <g
@@ -464,8 +710,8 @@
        x="200"
        y="20" />
     <rect
-       y="120"
-       x="700"
+       y="250"
+       x="1450"
        height="270"
        width="80"
        id="rect4733"
@@ -480,15 +726,15 @@
        id="rect1726"
        style="display:inline;fill:#ff0000;stroke:#ff0000;stroke-width:6.66667;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none" />
     <rect
-       y="420"
-       x="710"
+       y="445"
+       x="1780"
        height="75"
        width="65"
        id="rect4807"
        style="fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:1.74553;stroke-linecap:round;stroke-linejoin:round" />
     <rect
-       y="120"
-       x="1200"
+       y="210.00011"
+       x="700"
        height="200"
        width="200"
        id="rect2854-47"
@@ -498,53 +744,32 @@
        id="rect2889"
        width="65"
        height="125"
-       x="1400"
-       y="157.5" />
+       x="900"
+       y="247.50009" />
     <rect
-       style="fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
-       id="rect2854"
-       width="180"
-       height="200"
-       x="1550"
-       y="120" />
-    <rect
-       y="120"
-       x="1800"
-       height="200"
-       width="180"
-       id="rect2854-5"
-       style="fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1" />
-    <rect
-       style="display:inline;fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       style="display:inline;fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:3.79473;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
        id="rect2854-5-2"
        width="180"
-       height="200"
-       x="2050"
-       y="120" />
+       height="180"
+       x="3348.2031"
+       y="72.421867" />
     <rect
-       y="120"
-       x="2300"
-       height="200"
+       y="376.01562"
+       x="3351.25"
+       height="180"
        width="180"
        id="rect2854-5-2-8"
-       style="display:inline;fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1" />
+       style="display:inline;fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:3.79473;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1" />
     <rect
        style="display:inline;fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:1.74553;stroke-linecap:round;stroke-linejoin:round"
        id="rect4807-5"
        width="65"
        height="75"
-       x="2550"
-       y="120" />
+       x="1100"
+       y="210" />
     <rect
-       style="display:inline;fill:#ff0000;stroke-width:4;stroke-linecap:round;stroke-linejoin:round"
-       id="rect1685-4-1-7"
-       width="100"
-       height="100"
-       x="2800"
-       y="120" />
-    <rect
-       y="200"
-       x="2550"
+       y="300"
+       x="1100"
        height="75"
        width="65"
        id="rect4807-5-1"
@@ -554,21 +779,14 @@
        id="rect4807-5-1-9"
        width="65"
        height="75"
-       x="1550"
-       y="500" />
+       x="2070"
+       y="245" />
     <rect
        style="display:inline;fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:1.74553;stroke-linecap:round;stroke-linejoin:round"
        id="rect4807-5-1-0"
        width="65"
        height="75"
-       x="1550"
-       y="580" />
-    <rect
-       y="450"
-       x="1250"
-       height="100"
-       width="100"
-       id="rect1685-4-1-7-2"
-       style="display:inline;fill:#ff0000;stroke-width:4;stroke-linecap:round;stroke-linejoin:round" />
+       x="2240"
+       y="245" />
   </g>
 </svg>

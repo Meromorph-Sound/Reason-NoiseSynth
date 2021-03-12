@@ -3,54 +3,41 @@ format_version = "2.0"
 
 
 front = { 
-  Bg = {
-    { path = "Panel_Front_2U" }
-  },
-  deviceName = {
-    offset = { 200, 590},
-    { path = "Tape_Horizontal_1frames", frames = 1 },
-  },
-  patches = {
-    offset = { 200,10},
-    { path = "PatchBrowseGroup", frames = 1}
-  },
-  patch = {
-    offset = {505,20},
-    { path = "204x10_5x5",frames=1}
-  },
-  triggerMode = { offset = {700,120}, {path = "Fader_32_3frames", frames=3}},
-  trigger  = { offset = {710,420}, { path = "Button_53_2frames", frames = 2}},
-  triggered = { offset = {1580,25}, { path = "Lamp_10_GREEN_2frames", frames=2}},
+  Bg = {{ path = "Panel_Front_2U" }},
+  deviceName = { offset = { 200, 590}, { path = "Tape_Horizontal_1frames", frames = 1 }},
+  patches = { offset = { 200,10},{ path = "PatchBrowseGroup", frames = 1}},
+  patch = { offset = {505,20},{ path = "204x10_5x5",frames=1}},
   --
-  shape = { offset = {1200,120}, { path = "Clicks_9frames", frames = 9}},
-  shapeUpDown   = { offset = {1400,157}, { path = "UpDown", frames = 3}},
+  triggerMode = { offset = {1650,250}, {path = "Fader_32_3frames", frames=3}},
+  trigger  = { offset = {1580,25}, { path = "Button_53_2frames", frames = 2}},
+  triggered = { offset = {1980,445}, { path = "Lamp_10_GREEN_2frames", frames=2}},
   --
-  --length = { offset = {1550,120}, { path = "Knob_01_63frames", frames = 63}},
-  lengthDisplay = { offset = { 1540, 400 },{ path = "Display" }},
-  --pitch = { offset = {1800,120}, { path = "Knob_01_63frames", frames = 63}},
-  pitchDisplay = { offset = { 1790, 400 },{ path = "Display" }},
-  pan = { offset = {2050,120}, { path = "Knob_01_63frames", frames = 63}},
-  amplitude = { offset = {2300,120}, { path = "Knob_01_63frames", frames = 63}},
+  shape = { offset = {900,210}, { path = "Clicks_9frames", frames = 9}},
+  shapeUpDown   = { offset = {1100,247}, { path = "UpDown", frames = 3}},
   --
-  limiter = { offset = {2800,120}, {path="Knob_51_63frames", frames=63}},
-  limiterDisplay = { offset = {2800, 240 },{ path = "Display" }},
-  limiterOnOff = { offset = {2550,120}, {path="Button_53_2frames",frames=2}},
-  limiterHardSoft = { offset = {2550,200}, {path="Button_53_2frames",frames=2}},
+  lengthDisplay = { offset = { 900, 470 },{ path = "Display" }},
+  pitchDisplay = { offset = { 900, 585 },{ path = "Display" }},
+  pan = { offset = {3350,75}, { path = "Knob_01_63frames", frames = 63}},
+  amplitude = { offset = {3350,375}, { path = "Knob_01_63frames", frames = 63}},
+  --
+  --limiter = { offset = {2800,120}, {path="Knob_51_63frames", frames=63}},
+  limiterDisplay = { offset = {1300, 430 },{ path = "Display" }},
+  limiterOnOff = { offset = {1300,210}, {path="Button_53_2frames",frames=2}},
+  limiterHardSoft = { offset = {1300,300}, {path="Button_53_2frames",frames=2}},
   --
   
   --
   -- OnOff: whether the unit is switched on - push to toggle
   -- Hold: switches stepping on/off - otherwise frozen at current value - push to toggle
   -- Reset: resets the unit to the default value (i.e. offset)  - push to reset
-  VCOModOnOff = { offset = {1550,580}, {path="Button_53_2frames",frames=2}}, 
-  VCOHold = { offset = {1550,500}, {path="Button_53_2frames",frames=2}}, 
+  VCOModOnOff = { offset = {2270,245}, {path="Button_53_2frames",frames=2}}, 
+  VCOHold = { offset = {2440,245}, {path="Button_53_2frames",frames=2}}, 
   -- Size: the multiplying factor before it ids added to the click frequency
   -- Offset: the offset added to the click frequency
-  VCOFreq = { offset = {1250,450}, { path = "Knob_51_63frames", frames = 63}},
-  lfoFreqDisplay = { offset = { 1200, 620 },{ path = "Display" }},
+  lfoFreqDisplay = { offset = { 1980, 260 },{ path = "Display" }},
 
-  threshold = { offset = {1790,500}, {path="Display"}},
-  delay = { offset = {1790,580}, {path="Display"}},
+  threshold = { offset = {1980,360}, {path="Display"}},
+  delay = { offset = {2260,360}, {path="Display"}},
 
 }
 back = { 
