@@ -8,36 +8,37 @@ front = {
   patches = { offset = { 200,10},{ path = "PatchBrowseGroup", frames = 1}},
   patch = { offset = {505,20},{ path = "204x10_5x5",frames=1}},
   --
-  triggerMode = { offset = {1650,250}, {path = "Fader_32_3frames", frames=3}},
-  trigger  = { offset = {1580,25}, { path = "Button_53_2frames", frames = 2}},
-  triggered = { offset = {1980,445}, { path = "Lamp_10_GREEN_2frames", frames=2}},
+  triggerMode = { offset = {850,200}, {path = "Fader_32_3frames", frames=3}},
+  trigger  = { offset = {1290,405}, { path = "Button_53_2frames", frames = 2}},
+  triggered = { offset = {1580,25}, { path = "Lamp_10_GREEN_2frames", frames=2}},
   --
-  shape = { offset = {900,210}, { path = "Clicks_9frames", frames = 9}},
-  shapeUpDown   = { offset = {1100,247}, { path = "UpDown", frames = 3}},
+  shape = { offset = {2340,100}, { path = "Clicks_9frames", frames = 9}},
+  shapeUpDown   = { offset = {2540,137}, { path = "UpDown", frames = 3}},
   --
-  lengthDisplay = { offset = { 900, 470 },{ path = "Display" }},
-  pitchDisplay = { offset = { 900, 585 },{ path = "Display" }},
+  lengthDisplay = { offset = { 2770, 120 },{ path = "Display" }},
+  pitchDisplay = { offset = { 2770, 220 },{ path = "Display" }},
+  --
   pan = { offset = {3350,75}, { path = "Knob_01_63frames", frames = 63}},
   amplitude = { offset = {3350,375}, { path = "Knob_01_63frames", frames = 63}},
   --
   --limiter = { offset = {2800,120}, {path="Knob_51_63frames", frames=63}},
-  limiterDisplay = { offset = {1300, 430 },{ path = "Display" }},
-  limiterOnOff = { offset = {1300,210}, {path="Button_53_2frames",frames=2}},
-  limiterHardSoft = { offset = {1300,300}, {path="Button_53_2frames",frames=2}},
+  limiterDisplay = { offset = {2430, 510 },{ path = "Display" }},
+  limiterOnOff = { offset = {2430,400}, {path="Button_53_2frames",frames=2}},
+  limiterHardSoft = { offset = {2680,400}, {path="Button_53_2frames",frames=2}},
   --
   
   --
   -- OnOff: whether the unit is switched on - push to toggle
   -- Hold: switches stepping on/off - otherwise frozen at current value - push to toggle
   -- Reset: resets the unit to the default value (i.e. offset)  - push to reset
-  VCOModOnOff = { offset = {2270,245}, {path="Button_53_2frames",frames=2}}, 
-  VCOHold = { offset = {2440,245}, {path="Button_53_2frames",frames=2}}, 
+  VCOModOnOff = { offset = {1800,215}, {path="Button_53_2frames",frames=2}}, 
+  VCOHold = { offset = {2050,215}, {path="Button_53_2frames",frames=2}}, 
   -- Size: the multiplying factor before it ids added to the click frequency
   -- Offset: the offset added to the click frequency
-  lfoFreqDisplay = { offset = { 1980, 260 },{ path = "Display" }},
+  lfoFreqDisplay = { offset = { 1290, 210 },{ path = "Display" }},
 
-  threshold = { offset = {1980,360}, {path="Display"}},
-  delay = { offset = {2260,360}, {path="Display"}},
+  threshold = { offset = {1290,310}, {path="Display"}},
+  delay = { offset = {1800,310}, {path="Display"}},
 
 }
 back = { 
