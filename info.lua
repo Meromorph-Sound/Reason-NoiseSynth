@@ -3,15 +3,15 @@ format_version = "1.0"
 -- Note that changing this file requires a Reason/Recon restart
 
 -- Max 40 chars
-long_name = "Pulse Train"
+long_name = "Kontakte Pulse Machine"
 
 -- Max 20 chars
-medium_name = "Pulse Train"
+medium_name = "Kontakte"
 
 -- Max 10 chars
-short_name = "PulseTrain"
+short_name = "Kontakte"
 
-product_id = "org.porternet.pulsetrain"
+product_id = "org.porternet.kontakte"
 manufacturer = "meromorph"
 version_number = "1.0.0d1"
 device_type = "instrument"

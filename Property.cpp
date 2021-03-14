@@ -12,7 +12,7 @@ namespace click {
 
 float32 Property::pitch(const TJBox_PropertyDiff &diff) {
 	//return scaledFloat(diff.fCurrentValue,PITCH_MIN,PITCH_MAX);
-	return 1+toInt(diff.fCurrentValue);
+	return toInt(diff.fCurrentValue);
 }
 
 uint32 Property::length(const TJBox_PropertyDiff &diff) {
@@ -40,7 +40,7 @@ Limiter::Mode Property::limitMode(const TJBox_PropertyDiff &diff) {
 }
 
 float32 Property::lfoFreq(const TJBox_PropertyDiff &diff) {
-	return 1+toInt(diff.fCurrentValue);
+	return toInt(diff.fCurrentValue)*0.1f;
 	//return toFloat(diff.fCurrentValue)/10.0f;
 	//return scaledFloat(diff.fCurrentValue,LFO_MIN,LFO_MAX);
 }

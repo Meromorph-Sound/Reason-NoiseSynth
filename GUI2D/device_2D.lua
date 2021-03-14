@@ -41,34 +41,18 @@ front = {
 
 }
 back = { 
-  Bg = {
-    { path = "Panel_Back_2U" },
-  },
-  Placeholder = {
-    offset = { 100, 100 },
-    { path = "Placeholder" },
-  },
-  TriggerIn = { offset = {2000,120}, {path = "SharedCVJack", frames=3} },
+  Bg = {{ path = "Panel_Back_2U" }},
+  Placeholder = { offset = { 100, 100 },{ path = "Placeholder" }},
+  deviceName = { offset = { 750, 50}, { path = "Tape_Horizontal_1frames", frames = 1 }},
   --
-  
+  TriggerIn = { offset = {2105,120}, {path = "SharedCVJack", frames=3} },
   AudioOutLeft = { offset = {1550,120}, { path = "SharedAudioJack", frames = 3}},
-  AudioOutRight = { offset = {1750,120},{ path = "SharedAudioJack", frames = 3}},
-  --
-  deviceName = {
-    offset = { 200, 230},
-    { path = "Tape_Horizontal_1frames", frames = 1 },
-  },
+  AudioOutRight = { offset = {1750,120},{ path = "SharedAudioJack", frames = 3}}
   }
 folded_front = { 
-  Bg = {
-    { path = "Panel_Folded_Front" },
-  },
+  Bg = {{ path = "Panel_Folded_Front" }}
 }
 folded_back = { 
-  Bg = {
-    { path = "Panel_Folded_Back" },
-  },
-  CableOrigin = {
-    offset = { 1885, 75 },
-  },
+  Bg = {{ path = "Panel_Folded_Back" }},
+  CableOrigin = { offset = { 1885, 75 }}
 }

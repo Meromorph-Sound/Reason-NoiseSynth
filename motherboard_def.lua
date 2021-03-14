@@ -192,11 +192,11 @@ custom_properties = jbox.property_set{
       },
      ["pitch"] = jbox.number {
       default=20,
-      steps = 10000,
+      steps = 10001,
       ui_name = jbox.ui_text("pitch"),  
       property_tag=PITCH_TAG,
       ui_type = jbox.ui_linear{
-        min = 1,
+        min = 0,
         max = 10000,
         units = {{ decimals=0, unit = { template = jbox.ui_text("hertz") }}}
       }
@@ -267,7 +267,7 @@ custom_properties = jbox.property_set{
         }
       },
       ["limiter"] = jbox.number {
-      default=0,
+      default=1,
       ui_name = jbox.ui_text("limiter"),  
       property_tag=LIMITER_TAG,
       ui_type = jbox.ui_linear{
@@ -293,15 +293,15 @@ custom_properties = jbox.property_set{
       
       ["vcoFrequency"] = jbox.number {
         default=1,
-        steps=750,
+        steps=7501,
         ui_name = jbox.ui_text("frequency"),
         property_tag = LFO_FREQUENCY_TAG,
         ui_type = jbox.ui_linear{
-        min = 1,
+        min = 0,
         max = 750,
         units = {
           { 
-            decimals=0,
+            decimals=1,
             unit={ template = jbox.ui_text("hertz") }
           }
         }
