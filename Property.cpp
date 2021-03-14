@@ -11,11 +11,12 @@ namespace meromorph {
 namespace click {
 
 float32 Property::pitch(const TJBox_PropertyDiff &diff) {
-	return scaledFloat(diff.fCurrentValue,PITCH_MIN,PITCH_MAX);
+	//return scaledFloat(diff.fCurrentValue,PITCH_MIN,PITCH_MAX);
+	return 1+toInt(diff.fCurrentValue);
 }
 
 uint32 Property::length(const TJBox_PropertyDiff &diff) {
-	return lround(scaledFloat(diff.fCurrentValue,LENGTH_MIN,LENGTH_MAX));
+	return 1+toInt(diff.fCurrentValue);
 }
 
 Pan Property::pan(const TJBox_PropertyDiff &diff) {
@@ -30,8 +31,8 @@ TriggerMode Property::triggerMode(const TJBox_PropertyDiff & diff) {
 
 
 float32 Property::limit(const TJBox_PropertyDiff &diff) {
-	auto l = clampedFloat(diff.fCurrentValue);
-	return pow(10.f,l);
+	auto l = scaledFloat(diff.fCurrentValue,-12.f,0.f);
+	return pow(10.f,l*0.1f);
 }
 
 Limiter::Mode Property::limitMode(const TJBox_PropertyDiff &diff) {
@@ -39,7 +40,9 @@ Limiter::Mode Property::limitMode(const TJBox_PropertyDiff &diff) {
 }
 
 float32 Property::lfoFreq(const TJBox_PropertyDiff &diff) {
-	return scaledFloat(diff.fCurrentValue,LFO_MIN,LFO_MAX);
+	return 1+toInt(diff.fCurrentValue);
+	//return toFloat(diff.fCurrentValue)/10.0f;
+	//return scaledFloat(diff.fCurrentValue,LFO_MIN,LFO_MAX);
 }
 
 uint32 Property::triggerDebounce(const TJBox_PropertyDiff &diff) {

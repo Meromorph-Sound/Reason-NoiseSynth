@@ -125,11 +125,11 @@ end
 PITCH_MIN = 20
 PITCH_MAX = 10000
 
-LENGTH_MIN = 10
+LENGTH_MIN = 1
 LENGTH_MAX = 500
 
-LIMITER_MIN = -3
-LIMITER_MAX = 9
+LIMITER_MIN = -12
+LIMITER_MAX = 0
 
 -- The property tags
 local SHAPE_TAG = 1
@@ -191,18 +191,19 @@ custom_properties = jbox.property_set{
         ui_type = jbox.ui_selector(uiShapeNames)
       },
      ["pitch"] = jbox.number {
-      default=0,
+      default=20,
+      steps = 10000,
       ui_name = jbox.ui_text("pitch"),  
       property_tag=PITCH_TAG,
       ui_type = jbox.ui_linear{
-        min = PITCH_MIN,
-        max = PITCH_MAX,
-        units = {{ decimals=1, unit = { template = jbox.ui_text("hertz") }}}
+        min = 1,
+        max = 10000,
+        units = {{ decimals=0, unit = { template = jbox.ui_text("hertz") }}}
       }
     },
      ["length"] = jbox.number {
       default=100,
-      steps=LENGTH_MAX+1,
+      steps=500,
       ui_name = jbox.ui_text("length"),  
       property_tag=LENGTH_TAG,
         ui_type = jbox.ui_linear{
@@ -291,15 +292,16 @@ custom_properties = jbox.property_set{
       },
       
       ["vcoFrequency"] = jbox.number {
-        default=0,
+        default=1,
+        steps=750,
         ui_name = jbox.ui_text("frequency"),
         property_tag = LFO_FREQUENCY_TAG,
         ui_type = jbox.ui_linear{
-        min = 0,
+        min = 1,
         max = 750,
         units = {
           { 
-            decimals=2,
+            decimals=0,
             unit={ template = jbox.ui_text("hertz") }
           }
         }
@@ -309,13 +311,6 @@ custom_properties = jbox.property_set{
         steps=2,
         ui_name = jbox.ui_text("hold"),  
         property_tag=LFO_HOLD_TAG,
-        ui_type = jbox.ui_selector({jbox.UI_TEXT_OFF,jbox.UI_TEXT_ON})   
-      },
-     ["vcoModulatorActive"] =jbox.number {
-        default=0,
-        steps=2,
-        ui_name = jbox.ui_text("modulator"),  
-        property_tag=LFO_MODULATOR_ONOFF_TAG,
         ui_type = jbox.ui_selector({jbox.UI_TEXT_OFF,jbox.UI_TEXT_ON})   
       }
 	}},
@@ -368,8 +363,7 @@ remote_implementation_chart = {
 ui_groups = {}
 
 cv_inputs = {
-  externalTrigger = jbox.cv_input{ ui_name = jbox.ui_text("trigger") },
-  lfoModulator = jbox.cv_input{ ui_name = jbox.ui_text("modulator") }
+  externalTrigger = jbox.cv_input{ ui_name = jbox.ui_text("trigger") }
   }
 cv_outputs = {}
 

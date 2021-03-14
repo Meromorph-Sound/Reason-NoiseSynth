@@ -87,7 +87,7 @@ private:
 	float32 sampleRate = 48000;
 	bool clicking = false;
 	uint32 clickOffset = 0;
-	uint32 clickLength = 200;
+	uint32 clickLength = 100;
 
 
 	Carrier carrier;
@@ -99,6 +99,8 @@ private:
 
 	float32 amplitude = 1.0;
 	bool shouldTrigger = false;
+
+	float32 triggerIn = 0.0;
 
 
 	void handleTriggerLED();

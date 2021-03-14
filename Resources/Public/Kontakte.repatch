@@ -20,7 +20,6 @@
 			<Value property="limiterHardSoft" type="number">0</Value>
 			<Value property="vcoFrequency" type="number">0</Value>
 			<Value property="vcoHold" type="number">0</Value>
-			<Value property="vcoModulatorActive" type="number">0</Value>
 		</Object>
 	</Properties>
 </JukeboxPatch>

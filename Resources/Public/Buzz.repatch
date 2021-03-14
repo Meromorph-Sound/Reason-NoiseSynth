@@ -47,9 +47,7 @@
             <Value property="vcoHold"  type="number" >
                 0
             </Value>
-            <Value property="vcoModulatorActive"  type="number" >
-                0
-            </Value>
+            
         </Object>
         <Object name="transport" />
     </Properties>

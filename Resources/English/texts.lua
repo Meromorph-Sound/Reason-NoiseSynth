@@ -28,15 +28,19 @@ texts = {
   ["note"] = "Note",
   ["volume"] = "Volume",
   
-  
+  -- units for tooltips
   
   ["left"] = "Full left",
   ["right"] = "Full right",
   ["degrees"] = "^0 deg",
   ["hertz"] = "^0 Hz",
   ["seconds"] = "^0s",
-  ["samples"] = "^0 smpl",
+  ["samples"] = "^0",
   ["decibels"] = "^0 dB",
+
+  -- units for displays
+
+  ["simple"] = "^0",
   
   ["pitchbend"] = "Pitch Bend",
   ["expression"] = "Expression",
@@ -49,6 +53,8 @@ texts = {
   ["zero"] = "0",
   ["one"] = "1",
   ["max"] = "max",
+
+  -- click shapes
   
   ["normal"] = "Normal", 
   ["poisson"] = "Poisson", 

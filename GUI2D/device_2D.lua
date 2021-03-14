@@ -31,7 +31,6 @@ front = {
   -- OnOff: whether the unit is switched on - push to toggle
   -- Hold: switches stepping on/off - otherwise frozen at current value - push to toggle
   -- Reset: resets the unit to the default value (i.e. offset)  - push to reset
-  VCOModOnOff = { offset = {1800,215}, {path="Button_53_2frames",frames=2}}, 
   VCOHold = { offset = {2050,215}, {path="Button_53_2frames",frames=2}}, 
   -- Size: the multiplying factor before it ids added to the click frequency
   -- Offset: the offset added to the click frequency
@@ -50,16 +49,8 @@ back = {
     { path = "Placeholder" },
   },
   TriggerIn = { offset = {2000,120}, {path = "SharedCVJack", frames=3} },
-  enabled = { offset = {2100,145}, { path = "Lamp_10_GREEN_2frames", frames=2}},
   --
-  LFOModulatorIn = {
-    offset = {2400,300},
-    {path = "SharedCVJack", frames=3}
-  },
-  LFOModulatorTrim = {
-    offset = { 2400, 400 },
-    { path = "TrimKnob" }
-  },
+  
   AudioOutLeft = { offset = {1550,120}, { path = "SharedAudioJack", frames = 3}},
   AudioOutRight = { offset = {1750,120},{ path = "SharedAudioJack", frames = 3}},
   --

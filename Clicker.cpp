@@ -70,7 +70,7 @@ void Clicker::processApplicationMessage(const TJBox_PropertyDiff &diff) {
 		break;
 	}
 	case Tags::LENGTH: {
-		clickLength = Property::length(diff);
+		clickLength = 1+toInt(diff.fCurrentValue); //Property::length(diff);
 		clicks.setScale(clickLength);
 		trace("Click length is ^0",clickLength);
 		break;
@@ -116,9 +116,6 @@ void Clicker::processApplicationMessage(const TJBox_PropertyDiff &diff) {
 	case Tags::LFO_HOLD:
 		pulse.hold(toBool(diff.fCurrentValue));
 		break;
-	case Tags::LFO_MODULATOR_ONOFF:
-		pulse.setModulateActive(toBool(diff.fCurrentValue));
-		break;
 	/*
 	 * Trigger settings
 	 * TRIGGER: manual mode
@@ -142,13 +139,8 @@ void Clicker::processApplicationMessage(const TJBox_PropertyDiff &diff) {
 		break;
 		/* CV settings */
 	case kJBox_CVInputValue:
-		if(mode==TriggerMode::EXT_CLOCK) {
-			if(edges(toFloat(diff.fCurrentValue))) shouldTrigger=true;
-		}
-		else if(mode==TriggerMode::INT_CLOCK) {
-			auto m = clampedFloat(diff.fCurrentValue);
-			pulse.setModulation(m);
-		}
+		triggerIn = toFloat(diff.fCurrentValue);
+		break;
 	}
 
 
@@ -187,7 +179,9 @@ void Clicker::process() {
 
 
 
-
+	if(mode==TriggerMode::EXT_CLOCK) {
+		if(edges(triggerIn)) shouldTrigger=true;
+	}
 
 
 	for(auto n=0;n<BUFFER_SIZE;n++) {
@@ -216,11 +210,13 @@ void Clicker::process() {
 			clickOffset=0;
 		}
 
-		auto c = (clicking) ? clicks.at(click,clickOffset++) : 0.f;
+		auto c = (clicking) ? clicks.at(click,clickOffset) : 0.f;
 		auto f = carrier.next();
 		auto sample=c*f*amplitude;
 		lBuffer[n]=pan.toLeft(sample);
 		rBuffer[n]=pan.toRight(sample);
+
+		if(clicking) clickOffset++;
 	}
 
 

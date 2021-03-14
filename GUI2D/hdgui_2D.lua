@@ -3,12 +3,28 @@ format_version = "2.0"
 local LightBlue = {26,130,196}
 local White = {255,255,255}
 
-function text_display(node,property)
+function text_display(node,property,tooltip)
+  tooltip = tooltip or "simple"
   return jbox.value_display{
       graphics = { ["node"] = node },
       value = "/custom_properties/"..property,
       text_color = White,
       text_style = "Small label font",
+      horizontal_justification = "left",
+      tooltip_template = jbox.ui_text(tooltip)
+  }
+end
+
+function special_display(node,property,tooltip)
+  tooltip = tooltip or "simple"
+  return jbox.value_display{
+      graphics = { ["node"] = node },
+      display_width_pixels=295,
+      display_height_pixels=55,
+      values = { "/custom_properties/"..property },
+--    invalidate_function="invalidTextBox",
+      draw_function="drawTextBox",
+      gesture_function="actionTextBox"
   }
 end
 
@@ -39,6 +55,7 @@ front = jbox.panel {
     text_display("lengthDisplay","length"),
     jbox.analog_knob(prop_display("pan")),
     jbox.analog_knob(prop_display("amplitude")),
+    
     jbox.momentary_button(prop_display("trigger")),
     jbox.sequence_fader(prop_display("triggerMode")),
     jbox.sequence_meter(prop_display("triggered")),
@@ -46,10 +63,9 @@ front = jbox.panel {
     jbox.toggle_button(prop_display("limiterOnOff")),
     jbox.toggle_button(prop_display("limiterHardSoft")),
     text_display("limiterDisplay","limiter"),
-
     text_display("lfoFreqDisplay","vcoFrequency"),
     jbox.toggle_button(prop_display("VCOHold","vcoHold")),
-    jbox.toggle_button(prop_display("VCOModOnOff","vcoModulatorActive")),
+    
     text_display("threshold","externalTriggerThreshold"),
     text_display("delay","externalTriggerDebounce"),
   }	
@@ -59,8 +75,6 @@ back = jbox.panel {
   widgets = {
     jbox.placeholder { graphics = { node = "Placeholder" }},
     jbox.cv_input_socket { graphics = { node = "TriggerIn" }, socket = "/cv_inputs/externalTrigger"},
-    jbox.cv_input_socket {graphics = { node = "LFOModulatorIn" },socket = "/cv_inputs/lfoModulator"},
-    jbox.cv_trim_knob{graphics = { node = "LFOModulatorTrim" },socket = "/cv_inputs/lfoModulator"},
     jbox.audio_output_socket {graphics = { node = "AudioOutLeft" },socket = "/audio_outputs/audioOutLeft"},
     jbox.audio_output_socket {graphics = { node = "AudioOutRight" },socket = "/audio_outputs/audioOutRight"},
     jbox.device_name {graphics = { node = "deviceName" }},

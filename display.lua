@@ -4,68 +4,92 @@ local Axes = { r=180,g=180,b=180 }
 local Rect = { r=80,g=80,b=80,a = 64 }
 local Graph = { r=0,g=255,b=0  }
 
-function clip(value)
+function Clamp(value)
   return math.max(0,math.min(1,value))
 end
 
-function valueOf(sampleRate,alpha,exponent,freq)
+function ValueOf(sampleRate,alpha,exponent,freq)
   return alpha*math.pow(sampleRate/freq,exponent)
 end
 
-
-function drawExponent(property_values,display_info,dirty_rect)
-  local alpha = clip(property_values[1])
-  local exponent = clip(property_values[2])
-  local rate = 100
+function ChangeTable(freq,name)
+  freq=Clamp(freq)
+  jbox.trace("Setting freq = " .. freq .. "for function " .. name)
   
-  local w = display_info.width
-  local h = display_info.height
+  local changes = {}
+  changes[1] = freq
   
-  local fMin = 1
-  local fMax = rate/2
-  local xScale = (fMax-fMin)/w
-  
-  if alpha>0 then
-  
-    
-    local yMax = valueOf(rate,1,exponent,fMin)
-    local yMin = 0
-    local yScale = (yMax-yMin)/h;
-    jbox.trace("yMax ="..yMax)
-   
-    local points={}
-    jbox.trace("Rate ="..rate)
-    jbox.trace("Alpha ="..alpha)
-    jbox.trace("Exponent ="..exponent)
-    
-    -- lines
-    local yAlpha = h*valueOf(rate,alpha,0,fMin)
-    jbox_display.draw_rect({left= 0, top= h-yAlpha, right= w-1, bottom= h-1},Rect)
-    
-    for x = 0,w,5 do
-      local freq=fMin+xScale*x
-      local y=valueOf(rate,alpha,exponent,freq)/yScale
-      --jbox.trace("x="..x.." freq="..freq.." y="..y)
-      table.insert(points,{x=x,y=h-y})
-    end
-    table.insert(points,{x=w,y=h})
-    table.insert(points,{x=0,y=h})
-    jbox_display.draw_polygon(points,Graph)
-    
-    
-    
-  end
-  
-   -- axes
-  jbox_display.draw_lines({ {x=0,y=0},{x=w-1,y=0},{x=w-1,y=h-1},{x=0,y=h-1} },Axes,"closed") 
+  return {
+    gesture_ui_name = jbox.ui_text(name),
+    property_changes = changes
+  }
 end
 
-function drawVolume(property_values,display_info,dirty_rect)
-  local volume=clip(property_values[1])
-  local w = display_info.width
-  local h = display_info.height
+
+function drawTextBox(property_values,last_property_values,display_info)
+  local lfoFreq=property_values[1]
+  local w=display_info.width
+  local h=display_info.height
+
+
+end
+
+
+function actionTextBox(property_values,display_info,gesture_start_point)
+  local y=gesture_start_point.y;
+  local f=property_values[1];
+
+  local gestureDefinition = {
+    custom_data = {
+      freq = f,
+      y = y
+    },
+    handlers = {
+      on_tap = "DidTap",
+      on_update = "DidMove",
+      on_release = "DidMove",
+      on_cancel = "DidReset"
+    }
+  }
+  return gestureDefinition
+end
+
+function DidTap(property_values,display_info,gesture_info,custom_data)
+  local f = property_values[1]
+  local y = gesture_info.current_point.y
+  assert(y ~= nil)
+  assert(f ~= nil)
+
+  custom_data = {
+    freq = f,
+    y = y
+  }
+  return ChangeTable(f,"DidTap")
+end
+
+function DidMove(property_values,display_info,gesture_info,custom_data) 
+
+  local f = property_values[1]
+  local lasty = custom_data.y
+  assert(lasty ~= nil)
+  assert(f ~= nil)
+
+  local y = gesture_info.current_point.y
+  if y-lasty > 2 then
+    f=Clamp(f+0.01)
+    custom_data.y=y
+  elseif y-lasty < -2 then
+    f=Clamp(f-0.01)
+    custom_data.y=y
+  end
+
   
-  local width = w*volume
-  jbox_display.draw_rect({left= 0, top= 0, right= width, bottom= h-1},Graph)
+  return ChangeTable(f,"DidMove")
+end
+
+function DidReset(property_values,display_info,gesture_info,custom_data)
+  local freq = custom_data.freq
+  assert(freq ~= nil)
   
+  return ChangeTable(freq,"resetLFO")
 end
