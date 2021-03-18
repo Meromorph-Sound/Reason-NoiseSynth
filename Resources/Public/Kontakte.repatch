@@ -3,7 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="patch.xsd" version="1.0">
 	<DeviceNameInEnglish>Pulse Train</DeviceNameInEnglish>
-	<Properties deviceProductID="org.porternet.pulsetrain"
+	<Properties deviceProductID="org.porternet.kontakte"
 		deviceVersion="1.0.0d1">
 		<Object name="custom_properties">
 			<Value property="shape" type="number">0</Value>

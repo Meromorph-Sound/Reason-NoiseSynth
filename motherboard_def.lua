@@ -104,22 +104,26 @@ function append(to,extras)
   return to
 end  
 
-local shapeNames = { 
-  "normal", 
-  "poisson", 
-  "triangleDown", 
-  "triangleUp", 
-  "triangle", 
-  "delta", 
-  "expHard", 
-  "expSoft", 
-  "square" 
-}
 
-local uiShapeNames={}
-for _,name in pairs(shapeNames) do
-  table.insert(uiShapeNames,jbox.ui_text(name))
-end 
+  local shapeNames = { 
+    "normal", 
+    "poisson", 
+    "triangleDown", 
+    "triangleUp", 
+    "triangle", 
+    "delta", 
+    "expHard", 
+    "expSoft", 
+    "square" 
+  }
+
+function  apply(fn,list)
+  local out={}
+  for idx,value in pairs(list) do
+    out[idx]=fn(value)
+  end
+  return out
+end
 
 -- Some range properties
 PITCH_MIN = 20
@@ -167,7 +171,7 @@ local Props = {
     [LIMITER_HARD_SOFT_TAG] = "limiterHardSoft",
     [LFO_FREQUENCY_TAG] = "vcoFrequency",
     [LFO_HOLD_TAG] = "vcoHold",
-    [LFO_MODULATOR_ONOFF_TAG] = "vcoModulatorActive",
+--    [LFO_MODULATOR_ONOFF_TAG] = "vcoModulatorActive",
     [EXT_TRIGGER_THRESHOLD_TAG] = "externalTriggerThreshold",
     [EXT_TRIGGER_DEBOUNCE_TAG] = "externalTriggerDebounce"
   },
@@ -188,7 +192,7 @@ custom_properties = jbox.property_set{
         steps=9,
         ui_name = jbox.ui_text("shape"),  
         property_tag=SHAPE_TAG,
-        ui_type = jbox.ui_selector(uiShapeNames)
+        ui_type = jbox.ui_selector(apply(jbox.ui_text,shapeNames))
       },
      ["pitch"] = jbox.number {
       default=20,
@@ -337,15 +341,6 @@ custom_properties = jbox.property_set{
 	}
 }
 
-local midi_cc = {}
-for tag, name in pairs(Props.PropertiesTable) do
-  midi_cc[101+tag] = "/custom_properties/"..name
-end
-
-midi_implementation_chart = {
-	midi_cc_chart = {} -- midi_cc
-}
-
 function remote(name) 
 return {
   internal_name = name,
@@ -354,11 +349,16 @@ return {
 }
 end
 
-remote_implementation_chart = {
---  ["/custom_properties/triggerMode"] = remote("triggerMode"),
- -- ["/custom_properties/trigger"] = remote("trigger"),
- -- ["/custom_properties/shape"] = remote("shape"),
-}
+local midi_cc = {}
+local remotes = {}
+for tag, name in pairs(Props.PropertiesTable) do
+  local pname = "/custom_properties/"..name
+  midi_cc[101+tag] = pname
+  remotes[pname]=remote(name)
+end
+
+midi_implementation_chart = { midi_cc_chart = midi_cc }
+remote_implementation_chart = remotes
 
 ui_groups = {}
 

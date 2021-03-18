@@ -16,7 +16,7 @@ function text_display(node,property,tooltip)
 end
 
 function special_display(node,property,tooltip)
-  tooltip = tooltip or "simple"
+  tooltip = tooltip or "tooltip"
   return jbox.value_display{
       graphics = { ["node"] = node },
       display_width_pixels=295,
