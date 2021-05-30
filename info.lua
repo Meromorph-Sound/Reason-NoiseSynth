@@ -13,7 +13,7 @@ short_name = "NoiseSynth"
 
 product_id = "org.porternet.noisesynth"
 manufacturer = "meromorph"
-version_number = "1.0.1b1"
+version_number = "1.1.0b1"
 device_type = "instrument"
 supports_patches = false
 accepts_notes = true

@@ -37,12 +37,14 @@ float32 ChannelProcessor::getEnvVariable(const uint32 tag) const {
 }
 
 void ChannelProcessor::reset() {
-	float32 pos = std::max(1.f,getEnvVariable(kJBox_TransportPlayPos));
-	float32 v = (3.9271*pos+12)*(421.956*seed+1);
-	trace("Raw is ^0, Seed is ^1",seed, v);
-	rng.init(llround(v));
+	//float32 pos = std::max(1.f,getEnvVariable(kJBox_TransportPlayPos));
+	//float32 v = (3.9271*pos+12)*(421.956*seed+1);
+	//trace("Raw is ^0, Seed is ^1",seed, v);
+	//rng.init(llround(v));
+	rng.init(seed);
 	for(auto i=0;i<SEQUENCE_SIZE;i++) sequence[i]=rng();
 	startPos=0;
+	initialised=true;
 }
 
 

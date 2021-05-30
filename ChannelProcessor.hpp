@@ -33,7 +33,7 @@ private:
 	float32 inc=0;
 	float32 alpha=0;
 	float32 exponent = 0.5;
-	uint32 seed = 12;
+	uint64 seed = 0x1956183;
 	float32 permutationSize = 25.0;
 
 
@@ -55,7 +55,7 @@ public:
 	void reset();
 	void setAlpha(const float32 a) { alpha = a*0.5f; }
 	void setExponent(const float32 e) { exponent = e; }
-	void setSeed(const uint32 s) { seed = s; }
+	void setSeed(const uint64 s) { seed = s; }
 	void setMutationRate(const float32 m) { flag.setThreshold(m); }
 	void setMutationRange(const float32 r) { permutationSize=r; }
 

@@ -34,8 +34,6 @@ protected:
 
 
 	static uint64 seed(const uint64 n);
-
-
 	float32 nextFloat() { return float32(rng())/I32Max; }
 
 	virtual float32 next() = 0;

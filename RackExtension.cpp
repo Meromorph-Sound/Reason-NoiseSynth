@@ -2,13 +2,14 @@
 #include <cstring>
 #include "RackExtension.hpp"
 #include <algorithm>
+#include <cstdint>
 
 namespace meromorph {
 
 
 const uint32 RackExtension::MAX_NOTES = 8;
 const uint32 RackExtension::MAX_MUTATE_RANGES = 5;
-
+const uint32 RackExtension::N_TAGS = 6;
 
 
 
@@ -23,6 +24,24 @@ RackExtension::RackExtension() : notes(MAX_NOTES), buffer(ChannelProcessor::BUFF
 void RackExtension::set(const float32 value,const Tag tag) {
 	TJBox_Value v = JBox_MakeNumber(static_cast<float64>(value));
 	JBox_StoreMOMPropertyByTag(props,tag,v);
+}
+
+float32 RackExtension::get(const Tag tag) {
+	auto obj=JBox_LoadMOMPropertyByTag(props,tag);
+	auto ntype = JBox_GetType(obj);
+	switch(ntype) {
+	case kJBox_Number:
+		return JBox_GetNumber(obj);
+	case kJBox_Boolean:
+		return (float32)JBox_GetBoolean(obj);
+	default:
+		return (float32)*obj.fSecret;
+	}
+}
+
+uint8 RackExtension::getSecret(const Tag tag) {
+	auto obj=JBox_LoadMOMPropertyByTag(props,tag);
+	return *obj.fSecret;
 }
 
 void RackExtension::process() {
@@ -59,7 +78,26 @@ void RackExtension::processMIDIEvent(const TJBox_PropertyDiff &diff) {
 	}
 }
 
+uint64 RackExtension::generateSeed() {
+	uint64 seed=0x1956183;
+	for(auto n=0;n<N_TAGS;n++) {
+		auto value = 1048575.f * tanh(get(AllTags[n]));
+		seed = seed*0x1473093451956295 + (uint64(value)<<5);
+	}
+	return seed;
+}
+
+void RackExtension::reload() {
+	auto seed=generateSeed();
+	channel.setSeed(seed);
+	trace("Seed is ^0",seed);
+	channel.reset();
+	loaded=true;
+}
+
 void RackExtension::RenderBatch(const TJBox_PropertyDiff diffs[], TJBox_UInt32 nDiffs) {
+	if(!loaded) reload();
+
 	noteCount=0;
 	for(auto i=0;i<nDiffs;i++) {
 		auto diff=diffs[i];
@@ -86,11 +124,15 @@ void RackExtension::RenderBatch(const TJBox_PropertyDiff diffs[], TJBox_UInt32 n
 			case Tags::RELOAD:
 				if(toBool(diff.fCurrentValue)) {
 					trace("RELOAD");
-					channel.reset();
+					reload();
 				}
 				break;
-			case Tags::SEED:
-				channel.setSeed(toInt(diff.fCurrentValue));
+			case Tags::SEED: //{
+				//auto seed=generateSeed();
+				//channel.setSeed(seed);
+				//break;
+			//}
+				//channel.setSeed(toInt(diff.fCurrentValue));
 				break;
 			case Tags::EXPONENT:
 				trace("EXPONENT is ^0",toFloat(diff.fCurrentValue));

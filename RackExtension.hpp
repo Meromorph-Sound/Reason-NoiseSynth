@@ -30,6 +30,8 @@ private:
 	const static uint32 MAX_NOTES;
 	const static float32 constexpr MutateRanges[] = {5,10,25,50,75,100};
 	const static uint32 MAX_MUTATE_RANGES;
+	const static Tag constexpr AllTags[] = { ALPHA,SEED,EXPONENT,MUTATE,MUTATE_RANGE,PITCH_BEND_RANGE };
+	const static uint32 N_TAGS;
 	TJBox_ObjectRef noteState;
 	TJBox_ObjectRef left;
 	TJBox_ObjectRef right;
@@ -49,17 +51,23 @@ private:
 
 	std::vector<float32> buffer;
 
-
+	bool loaded = false;
 
 
 	NoteEvent currentNote;
 	ChannelProcessor channel;
 
 	void set(const float32 value,const Tag tag);
+	float32 get(const Tag tag);
+	uint8 getSecret(const Tag tag);
+	void reload();
 	void process();
 
 
 	void processMIDIEvent(const TJBox_PropertyDiff &diff);
+
+protected:
+	virtual uint64 generateSeed();
 
 public:
 	static const uint32 BUFFER_SIZE;
