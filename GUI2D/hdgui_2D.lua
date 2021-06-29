@@ -7,6 +7,14 @@ front = jbox.panel {
 	jbox.device_name {
 			graphics = { node = "deviceName" },
 		},
+  jbox.patch_browse_group { graphics = {node="patches"}},
+  jbox.patch_name{
+      graphics = { node = "patch" },
+      fg_color = { 255,255,255 },
+      loader_alt_color = LightBlue,
+      center = false,
+      text_style = "Bold LCD font",
+  },
 	jbox.analog_knob{
 	 graphics = { node = "alpha" },
 	 value = "/custom_properties/alpha"

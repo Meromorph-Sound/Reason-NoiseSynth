@@ -15,10 +15,11 @@ product_id = "org.porternet.noisesynth"
 manufacturer = "meromorph"
 version_number = "1.1.0b1"
 device_type = "instrument"
-supports_patches = false
+supports_patches = true
+default_patch = "/Public/Default.repatch"
 accepts_notes = true
 auto_create_track = true
 auto_create_note_lane = true
 supports_performance_automation = true
-device_height_ru = 1
+device_height_ru = 2
 automation_highlight_color = {r = 60, g = 255, b = 2}
