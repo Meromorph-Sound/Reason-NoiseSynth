@@ -20,14 +20,19 @@ front = {
   rangeDisplay = { offset = {3100,355}, { path = "Display_24frames", frames=24}}
 }
 back = { 
-  Bg = {{ path = "Panel_Back_1U" }},
+  Bg = {{ path = "Panel_Back_2U" }},
   Placeholder = { offset = { 2000, 100 }, { path = "Placeholder" }},
-  AudioLeft = { offset = {1550,120}, { path = "SharedAudioJack", frames = 3}},
-  AudioRight = { offset = {1750,120}, { path = "SharedAudioJack", frames = 3}},
-  deviceName = { offset = { 200, 230}, { path = "Tape_Horizontal_1frames", frames = 1 }},
+  AudioLeft = { offset = {1550,320}, { path = "SharedAudioJack", frames = 3}},
+  AudioRight = { offset = {1750,320}, { path = "SharedAudioJack", frames = 3}},
+  deviceName = { offset = { 200, 580}, { path = "Tape_Horizontal_1frames", frames = 1 }},
   }
 folded_front = { 
   Bg = {{ path = "Panel_Folded_Front" }},
+  patches = { offset = { 700,22},{ path = "PatchBrowseGroup", frames = 1}},
+  patch = { offset = {1005,22},{ path = "PatchName_1frames",frames=1}},
+  note = { offset = {2100,28}, { path = "Lamp_10_GREEN_2frames", frames = 2 }},
+  volume = { offset = {2300,32}, { path = "Display_200_50_1frames", frames = 1 }},
+  deviceName = { offset = { 2800, 20}, { path = "Tape_Horizontal_1frames", frames = 1 }},
 }
 folded_back = { 
   Bg = {{ path = "Panel_Folded_Back" }},

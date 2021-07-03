@@ -1,4 +1,8 @@
 format_version = "2.0"
+
+local LightBlue = {26,130,196}
+local White = {255,255,255}
+
 front = jbox.panel { 
 	graphics = {
 		node = "Bg",
@@ -10,7 +14,7 @@ front = jbox.panel {
   jbox.patch_browse_group { graphics = {node="patches"}},
   jbox.patch_name{
       graphics = { node = "patch" },
-      fg_color = { 255,255,255 },
+      fg_color = White,
       loader_alt_color = LightBlue,
       center = false,
       text_style = "Bold LCD font",
@@ -104,7 +108,24 @@ folded_front = jbox.panel {
 		node = "Bg",
 	},
 	widgets = {
-	},
+    jbox.device_name { graphics = { node = "deviceName" }},
+  jbox.patch_browse_group { graphics = {node="patches"}},
+  jbox.patch_name{
+      graphics = { node = "patch" },
+      fg_color = { 255,255,255 },
+      loader_alt_color = LightBlue,
+      center = false,
+      text_style = "Bold LCD font"
+  },
+  jbox.sequence_meter{ graphics={node="note"}, value = "/custom_properties/note" },
+  jbox.custom_display {
+      graphics={node="volume"},
+      display_width_pixels=300,
+      display_height_pixels=40,
+      values = { "/custom_properties/volume" },
+      draw_function = "drawVolume"
+    }
+	}
 }
 folded_back = jbox.panel { 
 	graphics = {

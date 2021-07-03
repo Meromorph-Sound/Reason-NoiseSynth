@@ -7,8 +7,8 @@
             <Value property="alpha" type="number">1</Value>
             <Value property="exponent" type="number">0.25</Value>
             <Value property="mutate" type="number">0.3</Value>
-            <Value property="mutateRange" type="number">25</Value>
-            <Value property="pitchBendRange" type="number">12</Value>
+            <Value property="mutateRange" type="number">2</Value>
+            <Value property="pitchBendRange" type="number">11</Value>
             <Value property="seed" type="number">14</Value>
         </Object>
     </Properties>
