@@ -195,8 +195,7 @@ custom_properties = jbox.property_set{
         ui_type = jbox.ui_selector(apply(jbox.ui_text,shapeNames))
       },
      ["pitch"] = jbox.number {
-      default=20,
-      steps = 10001,
+      default=20.0 / 10000.0,
       ui_name = jbox.ui_text("pitch"),  
       property_tag=PITCH_TAG,
       ui_type = jbox.ui_linear{
@@ -206,8 +205,8 @@ custom_properties = jbox.property_set{
       }
     },
      ["length"] = jbox.number {
-      default=100,
-      steps=500,
+      default=0,
+      steps = 500,
       ui_name = jbox.ui_text("length"),  
       property_tag=LENGTH_TAG,
         ui_type = jbox.ui_linear{
@@ -296,8 +295,7 @@ custom_properties = jbox.property_set{
       },
       
       ["vcoFrequency"] = jbox.number {
-        default=1,
-        steps=7501,
+        default=1.0 / 750.0,
         ui_name = jbox.ui_text("frequency"),
         property_tag = LFO_FREQUENCY_TAG,
         ui_type = jbox.ui_linear{

@@ -15,18 +15,7 @@ function text_display(node,property,tooltip)
   }
 end
 
-function special_display(node,property,tooltip)
-  tooltip = tooltip or "tooltip"
-  return jbox.value_display{
-      graphics = { ["node"] = node },
-      display_width_pixels=295,
-      display_height_pixels=55,
-      values = { "/custom_properties/"..property },
---    invalidate_function="invalidTextBox",
-      draw_function="drawTextBox",
-      gesture_function="actionTextBox"
-  }
-end
+
 
 function prop_display(node,property)
   property = property or node

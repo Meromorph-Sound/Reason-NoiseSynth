@@ -13,7 +13,7 @@ short_name = "Kontakte"
 
 product_id = "org.porternet.kontakte"
 manufacturer = "meromorph"
-version_number = "1.0.0d1"
+version_number = "1.0.0b1"
 device_type = "instrument"
 supports_patches = true
 default_patch = "/Public/Kontakte.repatch"

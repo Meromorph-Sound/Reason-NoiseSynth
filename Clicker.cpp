@@ -66,11 +66,13 @@ void Clicker::processApplicationMessage(const TJBox_PropertyDiff &diff) {
 		break;
 	}
 	case Tags::PITCH: {
-		carrier.setFrequency(Property::pitch(diff));
+		auto p=Property::pitch(diff);
+		carrier.setFrequency(p);
+		trace("Pitch is ^0",p);
 		break;
 	}
 	case Tags::LENGTH: {
-		clickLength = 1+toInt(diff.fCurrentValue); //Property::length(diff);
+		clickLength = Property::length(diff);
 		clicks.setScale(clickLength);
 		trace("Click length is ^0",clickLength);
 		break;
@@ -110,9 +112,12 @@ void Clicker::processApplicationMessage(const TJBox_PropertyDiff &diff) {
 	 * LFO_MODULATOR_ONOFF
 	 *
 	 */
-	case Tags::LFO_FREQUENCY:
-		pulse.setFrequency(Property::lfoFreq(diff));
+	case Tags::LFO_FREQUENCY: {
+		auto p = Property::lfoFreq(diff);
+		pulse.setFrequency(p);
+		trace("LFO Frequency is ^0",p);
 		break;
+	}
 	case Tags::LFO_HOLD:
 		pulse.hold(toBool(diff.fCurrentValue));
 		break;

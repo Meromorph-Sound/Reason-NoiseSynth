@@ -11,12 +11,13 @@ namespace meromorph {
 namespace click {
 
 float32 Property::pitch(const TJBox_PropertyDiff &diff) {
-	//return scaledFloat(diff.fCurrentValue,PITCH_MIN,PITCH_MAX);
-	return toInt(diff.fCurrentValue);
+	return scaledFloat(diff.fCurrentValue,PITCH_MIN,PITCH_MAX);
+	//return toInt(diff.fCurrentValue);
 }
 
 uint32 Property::length(const TJBox_PropertyDiff &diff) {
 	return 1+toInt(diff.fCurrentValue);
+	//return 1+uint32(toFloat(diff.fCurrentValue)*LENGTH_MAX);
 }
 
 Pan Property::pan(const TJBox_PropertyDiff &diff) {
@@ -40,9 +41,9 @@ Limiter::Mode Property::limitMode(const TJBox_PropertyDiff &diff) {
 }
 
 float32 Property::lfoFreq(const TJBox_PropertyDiff &diff) {
-	return toInt(diff.fCurrentValue)*0.1f;
+	//return toInt(diff.fCurrentValue)*0.1f;
 	//return toFloat(diff.fCurrentValue)/10.0f;
-	//return scaledFloat(diff.fCurrentValue,LFO_MIN,LFO_MAX);
+	return scaledFloat(diff.fCurrentValue,LFO_MIN,LFO_MAX);
 }
 
 uint32 Property::triggerDebounce(const TJBox_PropertyDiff &diff) {
