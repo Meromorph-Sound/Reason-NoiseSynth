@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<JukeboxPatch version="2.0"  deviceProductID="org.porternet.kontakte"  deviceVersion="1.0b1" >
+    <DeviceNameInEnglish>
+        Kontakte Pulse Machine
+    </DeviceNameInEnglish>
+    <Properties>
+        <Object name="custom_properties" >
+            <Value property="shape"  type="number" >
+                6
+            </Value>
+            <Value property="pitch"  type="number" >
+                0.0234375
+            </Value>
+            <Value property="length"  type="number" >
+                114
+            </Value>
+            <Value property="pan"  type="number" >
+                0.5
+            </Value>
+            <Value property="amplitude"  type="number" >
+                1
+            </Value>
+            <Value property="trigger"  type="number" >
+                0
+            </Value>
+            <Value property="triggerMode"  type="number" >
+                2
+            </Value>
+            <Value property="externalTriggerThreshold"  type="number" >
+                0.5
+            </Value>
+            <Value property="externalTriggerDebounce"  type="number" >
+                1
+            </Value>
+            <Value property="limiter"  type="number" >
+                1
+            </Value>
+            <Value property="limiterOnOff"  type="number" >
+                1
+            </Value>
+            <Value property="limiterHardSoft"  type="number" >
+                0
+            </Value>
+            <Value property="vcoFrequency"  type="number" >
+                0.001953125
+            </Value>
+            <Value property="vcoHold"  type="number" >
+                0
+            </Value>
+        </Object>
+        <Object name="transport" />
+    </Properties>
+</JukeboxPatch>

@@ -6,7 +6,7 @@ front = {
   Bg = {{ path = "Panel_Front_2U" }},
   deviceName = { offset = { 200, 590}, { path = "Tape_Horizontal_1frames", frames = 1 }},
   patches = { offset = { 200,10},{ path = "PatchBrowseGroup", frames = 1}},
-  patch = { offset = {505,20},{ path = "204x10_5x5",frames=1}},
+  patch = { offset = {505,10},{ path = "PatchName_1Frames",frames=1}},
   --
   triggerMode = { offset = {850,200}, {path = "Fader_32_3frames", frames=3}},
   trigger  = { offset = {1290,405}, { path = "Button_53_2frames", frames = 2}},
@@ -50,7 +50,11 @@ back = {
   AudioOutRight = { offset = {1750,120},{ path = "SharedAudioJack", frames = 3}}
   }
 folded_front = { 
-  Bg = {{ path = "Panel_Folded_Front" }}
+  Bg = {{ path = "Panel_Folded_Front" }},
+  patches = { offset = { 700,24},{ path = "PatchBrowseGroup", frames = 1}},
+  patch = { offset = {1010,24},{ path = "PatchName_1frames",frames=1}},
+  triggered = { offset = {2100,50}, { path = "Lamp_10_GREEN_2frames", frames = 2 }},
+  deviceName = { offset = { 2800, 42}, { path = "Tape_Horizontal_1frames", frames = 1 }},
 }
 folded_back = { 
   Bg = {{ path = "Panel_Folded_Back" }},

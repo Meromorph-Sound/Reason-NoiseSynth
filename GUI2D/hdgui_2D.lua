@@ -76,7 +76,18 @@ back = jbox.panel {
 
 folded_front = jbox.panel { 
   graphics = { node = "Bg" },
-  widgets = {}
+  widgets = {
+    jbox.device_name { graphics = { node = "deviceName" }},
+  jbox.patch_browse_group { graphics = {node="patches"}},
+  jbox.patch_name{
+      graphics = { node = "patch" },
+      fg_color = { 255,255,255 },
+      loader_alt_color = LightBlue,
+      center = false,
+      text_style = "Bold LCD font"
+  },
+  jbox.sequence_meter{ graphics={node="triggered"}, value = "/custom_properties/triggered" }
+  }
 }
 
 folded_back = jbox.panel { 
