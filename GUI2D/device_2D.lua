@@ -4,7 +4,7 @@ format_version = "2.0"
 front = { 
   Bg = {{ path = "Panel_Front_2U" }},
   patches = { offset = { 500,80},{ path = "PatchBrowseGroup", frames = 1}},
-  patch = { offset = {805,80},{ path = "PatchName_1frames",frames=1}},
+  patch = { offset = {810,80},{ path = "PatchName_1frames",frames=1}},
   deviceName = { offset = { 3100, 80}, { path = "Tape_Horizontal_1frames", frames = 1 }},
   note = { offset = {2000,88}, { path = "Lamp_10_GREEN_2frames", frames = 2 }},
   volume = { offset = {2200,92}, { path = "Display_200_50_1frames", frames = 1 }},
@@ -28,11 +28,11 @@ back = {
   }
 folded_front = { 
   Bg = {{ path = "Panel_Folded_Front" }},
-  patches = { offset = { 700,22},{ path = "PatchBrowseGroup", frames = 1}},
-  patch = { offset = {1005,22},{ path = "PatchName_1frames",frames=1}},
-  note = { offset = {2100,28}, { path = "Lamp_10_GREEN_2frames", frames = 2 }},
-  volume = { offset = {2300,32}, { path = "Display_200_50_1frames", frames = 1 }},
-  deviceName = { offset = { 2800, 20}, { path = "Tape_Horizontal_1frames", frames = 1 }},
+  patches = { offset = { 700,24},{ path = "PatchBrowseGroup", frames = 1}},
+  patch = { offset = {1010,24},{ path = "PatchName_1frames",frames=1}},
+  note = { offset = {2100,50}, { path = "Lamp_10_GREEN_2frames", frames = 2 }},
+  volume = { offset = {2300,54}, { path = "Display_200_50_1frames", frames = 1 }},
+  deviceName = { offset = { 2800, 42}, { path = "Tape_Horizontal_1frames", frames = 1 }},
 }
 folded_back = { 
   Bg = {{ path = "Panel_Folded_Back" }},

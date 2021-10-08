@@ -320,14 +320,14 @@
   </defs>
   <sodipodi:namedview
      inkscape:window-maximized="0"
-     inkscape:window-y="222"
-     inkscape:window-x="2165"
+     inkscape:window-y="1001"
+     inkscape:window-x="2196"
      inkscape:window-height="1027"
      inkscape:window-width="2170"
      inkscape:snap-global="false"
      showgrid="false"
      inkscape:document-rotation="0"
-     inkscape:current-layer="layer3"
+     inkscape:current-layer="layer1"
      inkscape:document-units="mm"
      inkscape:cy="223.92857"
      inkscape:cx="2050.7143"
@@ -382,7 +382,7 @@
      id="layer1"
      inkscape:groupmode="layer"
      inkscape:label="controls"
-     style="display:none">
+     style="display:inline">
     <rect
        style="fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.7;stroke-dasharray:none"
        id="rect3642-6"
